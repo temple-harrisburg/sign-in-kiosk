@@ -1,0 +1,9 @@
+{
+    "name": "@kiosk-app/mvc",
+    "type": "module",
+    "exports": {
+        ".": {
+            "default": "./index.js"
+        }
+    }
+}

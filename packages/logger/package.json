@@ -1,0 +1,9 @@
+{
+  "name": "@kiosk-app/logger",
+  "type": "module",
+  "exports": {
+    ".": {
+      "default": "./index.js"
+    }
+  }
+}

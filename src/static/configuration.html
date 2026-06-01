@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css" />
+    <title>Configuration</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/debug.html">Debug</a></li>
+            </ul>
+        </nav>
+    </header>
+    <form id="settings-form">
+        <fieldset>
+            <legend>Labels</legend>
+            <label for="labelDefaultCount">Default Count</label>
+            <input type="number" name="labelDefaultCount" id="labelDefaultCount" value="300" />
+
+            <label for="labelCurrentCount">Current Count</label>
+            <input type="number" name="labelCurrentCount" id="labelCurrentCount" value="300" />
+
+            <label for="labelTemplatePath">Template Path</label>
+            <input type="text" name="labelTemplatePath" id="labelTemplatePath" value="" />
+        </fieldset>
+
+        <fieldset>
+            <legend>Audio SFX</legend>
+            <label for="audioLowTone">Success <button type="button">Preview</button></label>
+            <input type="text" name="audioLowTone" id="audioLowTone" value="/sfx/tone.mp3" />
+
+            <label for="audioLowTone">Low Labels <button type="button">Preview </button></label>
+            <input type="text" name="audioLowTone" id="audioLowTone" value="/sfx/low_tone.mp3" />
+
+            <label for="audioReplaceLabels">Replace Labels <button type="button">Preview</button></label>
+            <input type="text" name="audioReplaceLabels" id="audioReplaceLabels" value="/sfx/replace_labels.mp3" />
+        </fieldset>
+
+        <fieldset>
+            <legend>Administration</legend>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" />
+        </fieldset>
+
+        <button type="reset" disabled>Reset</button>
+        <button type="submit" disabled>Save</button>
+        <a href="#" title="Download current config as .env file" id="download-config" download=".env"><button
+                type="button">Download</button></a>
+    </form>
+    <footer></footer>
+    <script>
+        /**
+         * 
+         * @param {string} string string to convert to snake_case
+         * @returns {string}
+         */
+        function toSnake(anyString) {
+            return anyString.match(/[a-z]+|[A-Z][a-z]+/g).map(word => word.toLowerCase()).join("_")
+        }
+
+        /**
+         * @param {HTMLFormElement} form
+         * @description Populate form fields with values of a config objects whose keys match the input's ID
+         */
+        async function initializeSettingsForm(form) {
+            await fetch('/api/config')
+                .then(res => res.json())
+                .then(({ status, data, error }) => {
+                    if (error) throw new Error(error);
+                    for (let i = 0; i < data.length; i++) {
+                        const { key, value } = data[i];
+                        const input = form.querySelector(`input#${key}`);
+                        if (input) {
+                            input.setAttribute("value", value);
+                        } else {
+                            console.warn(`Missing input for config option: ${key}`);
+                        }
+                    }
+                })
+
+        }
+
+
+        window.addEventListener("DOMContentLoaded", () => {
+
+            /**
+             * @type {HTMLFormElement}
+             */
+            const settingsForm = document.getElementById("settings-form");
+            initializeSettingsForm(settingsForm);
+
+            /**
+             * @type {HTMLButtonElement}
+             */
+            const resetButton = settingsForm.querySelector('button[type="reset"]')
+
+            /**
+             * @type {HTMLButtonElement}
+             */
+            const saveButton = settingsForm.querySelector('button[type="submit"]')
+
+            /**
+             * @type {HTMLAnchorElement}
+             */
+            const downloadConfigLink = document.getElementById("download-config");
+
+            /**
+             * Conver the current settings to a plain-text .env-style blob
+            * @returns {Promise<Blob>}
+            */
+            async function serializeConfig() {
+                const data = new FormData(settingsForm).entries()
+                return new Blob(data.map(([key, value]) => `${toSnake(key).toUpperCase()}="${value}"\n`), { type: "text/plain" });
+            }
+
+            serializeConfig().then(blob => {
+                downloadConfigLink.setAttribute("href", URL.createObjectURL(blob));
+            });
+
+
+            // Audio preview buttons
+            settingsForm.querySelectorAll('label[for^="audio"] button').forEach(button => {
+                button.addEventListener("click", async () => {
+                    button.toggleAttribute("disabled", true);
+                    const sfx = new Audio(button.parentElement.control.value);
+                    sfx.addEventListener("loadedmetadata", async () => {
+                        await sfx.play();
+                        setTimeout(() => {
+                            button.toggleAttribute("disabled", false);
+                        }, sfx.duration * 1000);
+
+                    })
+                })
+            })
+
+
+            settingsForm.addEventListener("change", () => {
+                saveButton.toggleAttribute("disabled", false);
+                resetButton.toggleAttribute("disabled", false);
+            })
+
+            settingsForm.addEventListener("reset", () => {
+                console.log('Form reset');
+                resetButton.toggleAttribute("disabled", true);
+                saveButton.toggleAttribute("disabled", true);
+            });
+
+            settingsForm.addEventListener("submit", async e => {
+                e.preventDefault();
+                const data = new FormData(settingsForm);
+                let errors = [];
+                for (const [key, value] of data.entries()) {
+                    await fetch(`/api/config/${key}`, {
+                        method: 'PATCH',
+                        body: JSON.stringify({ key, value }),
+                        headers: { "Content-type": "application/json" }
+                    })
+                        .then(res => res.json())
+                        .then(({ status, data, error }) => {
+                            if (error) throw error;
+                            console.log(status, data);
+                        })
+                        .catch(error => errors.push(error))
+                }
+                errors && console.error("The following errors occurred");
+                errors && errors.forEach(err => console.error(err));
+            });
+        })
+    </script>
+</body>
+
+</html>

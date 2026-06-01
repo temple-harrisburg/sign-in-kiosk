@@ -1,0 +1,32 @@
+{
+  "name": "kiosk-app",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch src/main.js --verbose --db-uri db.sqlite --env-file .env.example",
+    "start": "node src/main.js"
+  },
+  "keywords": [],
+  "workspaces": [
+    "packages/*"
+  ],
+  "author": "Temple University Harrisburg",
+  "license": "GPL-3.0-only",
+  "packageManager": "pnpm@10.28.0",
+  "dependencies": {
+    "express": "^5.2.1",
+    "@kiosk-app/mvc": "workspace:^",
+    "@kiosk-app/printer": "workspace:^",
+    "@kiosk-app/logger": "workspace:^",
+    "@kiosk-app/utils": "workspace:^"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.1",
+    "@types/express": "^5.0.6"
+  },
+  "pnpm": {
+    "executionEnv": {
+      "nodeVersion": "26.2.0"
+    }
+  }
+}

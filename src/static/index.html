@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/i18y.js"></script>
+    <script src="/barcode.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <template id="loading-spinner">
+        <style>
+            .spinner {
+                margin: 0 auto;
+                width: 50px;
+                aspect-ratio: 1;
+                border-radius: 50%;
+                background:
+                    radial-gradient(farthest-side, var(--blue) 94%, #0000) top/8px 8px no-repeat,
+                    conic-gradient(#0000 30%, var(--blue));
+                mask: radial-gradient(farthest-side, #0000 calc(100% - 8px), #000 0);
+                animation: rotate 1s infinite linear;
+            }
+
+            h1:empty {
+                margin: 0;
+            }
+
+            @keyframes rotate {
+                to {
+                    transform: rotate(1turn)
+                }
+            }
+        </style>
+        <h1 slot="message"></h1>
+        <div class="spinner"></div>
+    </template>
+    <template id="loading-message">
+        <div>
+            <h3 slot="message">MESSAGE</h3>
+            <p slot="detail">DETAIL</p>
+            <button type="button" command="close" commandfor="loader-modal" slot="dismiss">Dismiss</button>
+        </div>
+    </template>
+    <header>
+        <h1>Sign-in Kiosk</h1>
+        <div class="header-options">
+            <form id="i18y">
+                <fieldset>
+                    <legend data-i18y="i18y-title">Language</legend>
+                    <label for="lang-en">EN</label>
+                    <input type="radio" name="lang" value="EN" id="lang-en" checked />
+                    <label for="lang-es">ES</label>
+                    <input type="radio" name="lang" value="ES" id="lang-es" />
+                </fieldset>
+            </form>
+            <button command="show-modal" commandfor="config-login-modal" data-i18y="config-login-button">Edit
+                Configuration</button>
+            <button id="barcode-scan-launch" command="show-modal" commandfor="barcode-scan-modal"
+                data-i18y="barcode-button">Scan Barcode</button>
+        </div>
+        <dialog id="config-login-modal" closedby="any">
+            <form id="config-login-form" method="dialog">
+                <label for="password" data-i18y="password">Password</label>
+                <input type="password" name="password" id="password" required />
+                <button type="submit" data-i18y="submit">Submit</button>
+            </form>
+        </dialog>
+        <dialog id="barcode-scan-modal" closedby="any">
+            <form id="barcode-scan-form">
+                <input type="hidden" id="barcodeinfo" name="barcodeinfo" />
+            </form>
+            <p data-i18y="scanner-await">Waiting for input from scanner...</p>
+        </dialog>
+    </header>
+    <main id="main">
+        <dialog id="loader-modal" closedby="any">
+        </dialog>
+        <dialog id="reason-modal">
+            <form id="reason-form" method="dialog">
+                <fieldset class="reason-field">
+                    <legend data-i18y="reason-greeting">What brings you to Temple Harrisburg?</legend>
+                    <input type="radio" name="reason" id="conference" value="Conference" class="visually-hidden"
+                        checked />
+                    <label for="conference" class="reason-opt" tabindex="0"
+                        data-i18y="reason-conference">Conference</label>
+
+                    <input type="radio" name="reason" id="training" value="Training" class="visually-hidden" />
+                    <label for="training" class="reason-opt" tabindex="0" data-i18y="reason-training">Training</label>
+
+                    <input type="radio" name="reason" id="meeting" value="Meeting" class="visually-hidden" />
+                    <label for="meeting" class="reason-opt" tabindex="0" data-i18y="reason-meeting">Meeting</label>
+
+                    <input type="radio" name="reason" id="event" value="Event" class="visually-hidden" />
+                    <label for="event" class="reason-opt" tabindex="0" data-i18y="reason-event">Event</label>
+                </fieldset>
+                <button value="default" type="submit" data-i18y="submit">Submit</button>
+                <button value="cancel" type="button" command="close" commandfor="reason-modal"
+                    data-i18y="cancel">Cancel</button>
+            </form>
+        </dialog>
+        <dialog id="barcode-result-modal" closedby="any">
+            <form method="dialog" id="barcode-result-form">
+                <div class="field-wrapper">
+                    <label for="firstName" data-i18y="first-name">First Name</label>
+                    <input type="text" name="firstName" id="barcodeFirstName" disabled>
+                </div>
+                <div class="field-wrapper">
+                    <label for="lastName" data-i18y="last-name">Last Name</label>
+                    <input type="text" name="lastName" id="barcodeLastName" disabled>
+                </div>
+                <p data-i18y="barcode-confirm-correct">Is this correct?</p>
+                <div id="barcode-result-buttons-group">
+                    <button type="submit" id="barcode-result-confirm" data-i18y="yes">Yes</button>
+                    <button type="button" id="barcode-result-edit" data-i18y="edit">Edit</button>
+                    <button id="barcode-result-save" data-i18y="save" class="visually-hidden" disabled>Save</button>
+                    <button type="button" id="barcode-result-cancel" data-i18y="cancel"
+                        commandfor="barcode-result-modal" command="close">Cancel</button>
+                </div>
+            </form>
+        </dialog>
+        <form id="visitor-form" method="dialog">
+            <input type="hidden" name="method" id="method" value="form">
+            <input type="hidden" name="labelPrinted" id="labelPrinted" value="0">
+            <div class="field-wrapper">
+                <label for="firstName" data-i18y="first-name">First Name</label>
+                <input type="text" id="firstName" name="firstName" placeholder="First Name" required />
+            </div>
+            <div class="field-wrapper">
+                <label for="lastName" data-i18y="last-name">Last Name</label>
+                <input type="text" id="lastName" name="lastName" placeholder="Last Name" required />
+            </div>
+            <button type="submit" command="show-modal" commandfor="reason-modal"><span
+                    data-i18y="continue">Continue</span>...</button>
+        </form>
+    </main>
+    <footer>
+        <p>Copyright Temple University 2026</p>
+        <label id="label-current-count-wrapper">Labels Remaining <input type="number" value="300"
+                name="label-current-count" id="label-current-count" disabled inert /></label>
+    </footer>
+    <script>
+
+        /**
+         * Custom event for displaying the loading spinner and results in a popup.
+         */
+        class LoadingEvent extends Event {
+            #message
+            #detail
+            constructor(message, detail = "") {
+                super("message");
+                this.#message = message;
+                this.#detail = detail;
+            }
+
+            get detail() {
+                return { message: this.#message, detail: this.#detail }
+            }
+        }
+
+
+        /**
+         * Custom event for the barcode scan process
+         */
+        class BarcodeScanEvent extends Event {
+            /**
+             * @typedef {"ERROR"|"OK"} BarcodeScanStatus
+             * @typedef {{firstName:string, lastName:string}} BarcodeScanData
+             * @typedef {{status:BarcodeScanStatus, data:BarcodeScanData}} BarcodeScanResult
+             * @type {BarcodeScanResult}
+             */
+            #result = { status: "ERROR", data: { firstName: undefined, lastName: undefined } };
+
+            /**
+             * @param {BarcodeScanStatus} status
+             * @param {BarcodeScanData} data
+             */
+            constructor(status, data) {
+                super("barcode-scan");
+                this.#result = { status, data };
+            }
+
+            get status() {
+                return this.#result.status;
+            }
+
+            get data() {
+                return this.#result.data;
+            }
+        }
+
+        /**
+         * Custom event for pre-filling the entry form with data from the barcode scanner
+         */
+        class AutofillFormEvent extends Event {
+            /**
+             * @param {Record<string,string>} data
+             */
+            constructor(data) {
+                super("autofill");
+                this.data = data;
+            }
+        }
+
+        /**
+         * Custom event for optimistically updating the current label count.
+         */
+        class LabelCountEvent extends Event {
+            /**
+             * @param {number} count;
+             */
+            constructor(count) {
+                super("label-count");
+                this.count = count;
+            }
+        }
+
+        class VisitorRecord {
+            /**
+             * Date and time of visitor's entry.
+             * @type {Date}
+             */
+            entryDateTime
+
+            /**
+             * First name of the visitor
+             * @type {string}
+             */
+            firstName
+
+            /**
+             * Last name of the visitor
+             * @type {string}
+             */
+            lastName
+
+            /**
+             * Reason for visit
+             * @type {string}
+             */
+            reason
+
+            /**
+             * Method used to complete the entry
+             * @type {"form"|"barcode"}
+             */
+            method
+
+            /**
+             * Whether or not the label printed successfully (0 for no, 1 for yes).
+             * @type {number}
+             */
+            labelPrinted
+
+            constructor() {
+                this.entryDateTime = new Date();
+            }
+        }
+
+        class Config {
+            /**
+             * The password to modify configuration from the config panel
+             * @type {string}
+             */
+            password
+
+            /**
+             * Default number of labels
+             * @type {number}
+             */
+            labelDefaultCount
+
+            /**
+             * Current count of labels
+             * @type {number}
+             */
+            labelCurrentCount
+
+            /**
+             * Sound effect for successful entry. Must be path relative to `/sfx`
+             * @type {string}
+             */
+            audioEntryComplete
+
+            /**
+             * Sound effect for low labels. Must be path relative to `/sfx`
+             * @type {string}
+             */
+            audioLowLabels
+        }
+
+
+
+
+        window.addEventListener("DOMContentLoaded", async () => {
+
+            // Entry form elements
+            /**
+             * @type {HTMLFormElement}
+             */
+            const visitorForm = document.getElementById("visitor-form");
+
+            /**
+             * @type {HTMLFormElement}
+             */
+            const reasonForm = document.getElementById("reason-form");
+
+            /**
+             * @type {HTMLDialogElement}
+             */
+            const reasonDialog = document.getElementById("reason-modal");
+
+            // Barcode Elements
+            /**
+            * @type {HTMLButtonElement}
+            */
+            const barcodeLaunchButton = document.getElementById("barcode-scan-launch");
+
+            /**
+             * @type {HTMLFormElement}
+             */
+            const barcodeForm = document.getElementById("barcode-scan-form");
+
+            /**
+            * @type {HTMLDialogElement}
+            */
+            const barcodeDialog = document.getElementById("barcode-scan-modal");
+
+            /**
+             * @type {HTMLDialogElement}
+             */
+            const barcodeResultDialog = document.getElementById("barcode-result-modal");
+            const barcodeResultForm = document.getElementById("barcode-result-form");
+            const barcodeResultEditButton = document.getElementById("barcode-result-edit");
+            const barcodeResultConfirmButton = document.getElementById("barcode-result-confirm");
+            const barcodeResultSaveButton = document.getElementById("barcode-result-save");
+
+            /**
+             * @type {HTMLDivElement}
+             */
+            const barcodeResultButtonsGroup = document.getElementById("barcode-result-buttons-group");
+
+            /**
+             * @type {HTMLInputElement}
+             */
+            const labelCurrentCountIndicator = document.getElementById("label-current-count");
+
+            /**
+             * Internationalization form
+             * @type {HTMLFormElement}
+             */
+            const internationalizationForm = document.getElementById("i18y");
+
+            /**
+             * Admin configuration login form
+             * @type {HTMLFormElement}
+             */
+            const configLoginForm = document.getElementById("config-login-form");
+
+
+            // Popup message elements
+            /**
+             * @type {HTMLDialogElement}
+             */
+            const loaderDialog = document.getElementById("loader-modal");
+
+            /**
+             * @type {HTMLTemplateElement}
+             */
+            const spinnerTemplate = document.getElementById("loading-spinner");
+
+            /**
+             * @type {HTMLTemplateElement}
+             */
+            const messageTemplate = document.getElementById("loading-message");
+
+
+            /**
+             * @typedef {Record<string, string>} Config
+             * @returns {Config}
+             */
+            async function initConfig() {
+                return fetch('/api/config')
+                    .then(data => data.json())
+                    .then(({ status, data, error }) => {
+                        if (error) throw error;
+                        return Object.fromEntries(data.map(({ key, value }) => [key, value]))
+                    })
+                    .catch(err => {
+                        loaderDialog.dispatchEvent(new LoadingEvent("ERROR", `Something went wrong: ${err}`));
+                    });
+            }
+
+            /**
+             * @type {Config}
+             */
+            const config = await initConfig()
+                .then(config => {
+                    labelCurrentCountIndicator.value = config["labelCurrentCount"];
+                })
+
+            labelCurrentCountIndicator.addEventListener("label-count", ({ count }) => {
+                labelCurrentCountIndicator.value = count;
+            })
+
+            function currentLang() {
+                return internationalizationForm.lang.value;
+            }
+
+            /*
+            *
+            * LOADING/ALERT POPUP
+            * 
+            */
+
+            /**
+             * Create a popup message from the template
+             * @param {string} message
+             * @param {string} detail
+             * @returns {HTMLDivElement} message element
+             */
+            function createModalMessage(message, detail) {
+                const msg = document.importNode(messageTemplate.content, true);
+                msg.querySelector('[slot="message"]').textContent = message;
+                msg.querySelector('[slot="detail"]').textContent = detail;
+                msg.querySelector('[slot="dismiss"]').textContent = i18y.getTranslation(currentLang(), "dismiss");
+                return msg;
+            }
+
+            function logEntry() {
+                // 1. POST /api/entry
+                // 2. POST /api/print
+                // 3. PATCH /api/entry/{id}
+                // 4. PATCH /api/config/labelCurrentCount
+            }
+
+            /**
+             * Show the loader modal when a message is received;
+             * @param {LoadingEvent} e
+             */
+            loaderDialog.addEventListener('message', e => {
+                const { message, detail } = e.detail;
+                let content;
+
+                switch (message) {
+                    case "LOADING":
+                        content = document.importNode(spinnerTemplate.content, true);
+                        loaderDialog.setAttribute("closedby", "none")
+                        break;
+                    case "PRINTING":
+                        const spinner = document.importNode(spinnerTemplate.content, true);
+                        spinner.querySelector('[slot="message"]').textContent = detail;
+                        loaderDialog.setAttribute("closedby", "none")
+                        content = spinner;
+                        break;
+                    default:
+                        loaderDialog.setAttribute("closedby", "any")
+                        content = createModalMessage(message, detail);
+                        break;
+                }
+                loaderDialog.replaceChildren(content);
+                loaderDialog.showModal();
+            });
+
+
+            /**
+             * 
+             * INTERNATIONALIZATION FORM
+             * 
+             */
+            internationalizationForm.addEventListener("change", () => {
+                const { value: langCode } = internationalizationForm.lang;
+                console.log(`Switching to language: ${langCode}`);
+                i18y.translate(langCode, document.body);
+            })
+
+
+            /**
+            * 
+            * BARCODE SCANNING
+            * see '/barcode.js'
+            * @typedef {Object} BarcodeHandler
+            * @typedef {Object} Pdf417Parser
+            */
+
+            const parseInputCallback = (keyboardEvents) => {
+                console.log(`Caught ${keyboardEvents.length} keystrokes`)
+                try {
+                    /**
+                     * @type {Pdf417Parser}
+                     */
+                    const parser = new Pdf417Parser();
+                    parser.feed(...keyboardEvents);
+                    const result = Object.fromEntries(parser.result);
+
+                    const [firstName, lastName] = [result["DAC"], result["DCS"]]
+                    loaderDialog.close();
+                    barcodeDialog.close();
+                    barcodeResultDialog.dispatchEvent(new BarcodeScanEvent("OK", { firstName, lastName }));
+                } catch (err) {
+                    console.error(err);
+                    loaderDialog.dispatchEvent(new LoadingEvent("ERROR", `An error ocurred: ${err}`));
+                } finally {
+                    barcodeDialog.close();
+                }
+            }
+
+            const startReadingCallback = () => {
+                loaderDialog.dispatchEvent(new LoadingEvent("LOADING"));
+            };
+
+            const handler = new BarcodeHandler({ timeoutDuration: 20, parseInputCallback, startReadingCallback });
+            function handleKeydown(e) {
+                handler.handleKeydown(e);
+            }
+
+            barcodeLaunchButton.addEventListener("click", e => {
+                console.log("Starting keydown trap")
+                document.addEventListener("keydown", handleKeydown);
+            });
+
+            barcodeDialog.addEventListener("close", () => {
+                console.log("Ending keydown trap");
+                document.removeEventListener("keydown", handleKeydown);
+            });
+
+            barcodeResultDialog.addEventListener("barcode-scan", e => {
+                const { status, data } = e;
+                if (status === "OK") {
+                    barcodeResultDialog.querySelector("input#barcodeFirstName").value = data.firstName;
+                    barcodeResultDialog.querySelector("input#barcodeLastName").value = data.lastName;
+
+                }
+                barcodeResultDialog.showModal();
+            });
+
+            barcodeResultForm.addEventListener("submit", e => {
+                const inputs = Array.from(barcodeResultForm.querySelectorAll("input"));
+                const entries = inputs.map(input => [input.name, input.value]);
+                entries.push(['method', 'barcode']);
+                const event = new AutofillFormEvent(Object.fromEntries(entries));
+                visitorForm.dispatchEvent(event);
+            })
+
+            barcodeResultEditButton.addEventListener("click", () => {
+                // Show 'Save' button
+                barcodeResultSaveButton.classList.toggle('visually-hidden', false);
+                barcodeResultSaveButton.toggleAttribute("disabled", false)
+
+                // Hide 'Edit' button
+                barcodeResultEditButton.classList.toggle('visually-hidden', true);
+                barcodeResultEditButton.toggleAttribute("disabled", true)
+
+                // Hide 'Yes' button
+                barcodeResultConfirmButton.classList.toggle('visually-hidden', true);
+                barcodeResultConfirmButton.toggleAttribute("disabled", true);
+
+                // Unlock inputs
+                const firstNameInput = barcodeResultDialog.querySelector("input#barcodeFirstName")
+                firstNameInput.toggleAttribute("disabled", false)
+                firstNameInput.focus();
+
+                barcodeResultDialog.querySelector("input#barcodeLastName").toggleAttribute("disabled", false)
+            })
+
+            barcodeResultSaveButton.addEventListener("click", () => {
+                // Hide 'Save' button
+                barcodeResultSaveButton.classList.toggle('visually-hidden', true);
+                barcodeResultSaveButton.toggleAttribute("disabled", true);
+
+                // Show 'Edit' button
+                barcodeResultEditButton.classList.toggle('visually-hidden', false);
+                barcodeResultEditButton.toggleAttribute("disabled", false)
+
+                // Show 'Yes' button
+                barcodeResultConfirmButton.classList.toggle('visually-hidden', false);
+                barcodeResultConfirmButton.toggleAttribute("disabled", false)
+
+                // Lock inputs
+                barcodeResultDialog.querySelector("input#barcodeFirstName").toggleAttribute("disabled", true)
+                barcodeResultDialog.querySelector("input#barcodeLastName").toggleAttribute("disabled", true)
+            })
+
+            /**
+             * 
+             * ENTRY FORMS 
+             * 
+             */
+
+            visitorForm.addEventListener("autofill", ({ data }) => {
+                for (const [key, value] of Object.entries(data)) {
+                    visitorForm[key].value = value;
+                }
+            })
+
+
+            const entryContinueButton = visitorForm.querySelector("button")
+            entryContinueButton.addEventListener("click", () => { if (visitorForm.reportValidity()) reasonDialog.showModal() })
+
+            reasonForm.querySelectorAll('label.reason-opt').forEach(
+                /**
+                 * @param {HTMLLabelElement} el
+                 */
+                (el, i, parent) => {
+                    el.addEventListener("keydown",
+                        /**
+                         * @param {KeyboardEvent} e
+                         */
+                        e => {
+                            const { key } = e;
+                            console.log(key)
+                            switch (key) {
+                                case "Tab":
+                                    break;
+                                case "Enter":
+                                    const active = el.control.getAttribute("checked") === '' ?? false;
+                                    if (active) {
+                                        el.control.toggleAttribute("checked", false);
+                                    } else {
+                                        el.control.toggleAttribute("checked", true);
+                                        reasonForm.querySelector('button[type="submit"]').focus();
+                                    }
+
+                                    break;
+                                /**
+                                 * @todo add handlers for keyboard events
+                                 */
+                                case "ArrowLeft":
+                                    break;
+                                case "ArrowRight":
+                                    break;
+                                default:
+                                    break;
+                            }
+                        })
+
+                })
+
+            /**
+             * @description Handle submission of 'entry' by collecting data from visitor form and reason form.
+             */
+            reasonForm.addEventListener("submit", async e => {
+                e.preventDefault();
+                reasonDialog.close();
+                loaderDialog.dispatchEvent(new LoadingEvent("LOADING"))
+                const record = new VisitorRecord();
+
+                const forms = [reasonForm, visitorForm];
+                forms.forEach(form => {
+                    const formdata = new FormData(form);
+                    for (const [key, val] of formdata.entries()) {
+                        record[key] = val;
+                    }
+                });
+
+                const body = JSON.stringify(record);
+
+                try {
+                    const method = "POST";
+                    const headers = { "Content-type": "application/json" };
+                    const options = { body, method, headers };
+                    const entryResult = await fetch('/api/entry', options)
+                        .then(res => {
+                            if (res.ok) loaderDialog.dispatchEvent(new LoadingEvent("PRINTING", i18y.getTranslation(currentLang(), "entry-welcome")));
+                            return res.json();
+                        })
+                        .finally(() => console.log(`Entry POST finished`))
+                    console.log(entryResult);
+
+                    const printResult = await fetch('/api/print', options)
+                        .then(res => res.json())
+                        .then(({ status, data, error }) => {
+                            if (error) throw new Error(error);
+                        })
+                        .finally(() => console.log(`Print POST finished`))
+
+                    // If print succeeded, update record
+                    if (printResult.status === "OK") {
+                        const entryUpdateResult = await fetch(`/api/entry/${entryResult.data.lastInsertRowid}`, { body: JSON.stringify({ labelPrinted: 1 }), method: "PATCH", headers, })
+                            .then(res => res.json())
+                            .then(({ status, data, error }) => {
+                                if (error) throw new Error(error);
+                                return data;
+                            })
+                            .finally(() => console.log(`Entry update POST finished`))
+
+                        // Optimistically update the current label count;
+                        const labelCount = parseInt(labelCurrentCountIndicator.value)--;
+                        labelCurrentCountIndicator.dispatchEvent(new LabelCountEvent(labelCount));
+
+                        const currentLabelCount = await fetch(`/api/config/labelCurrentCount`, {
+                            method: "PATCH",
+                            body: JSON.stringify({ value: labelCount }),
+                            headers: {
+                                "Content-type": "application/json"
+                            }
+                        })
+                            .then(res => res.json())
+                            .then(({ status, data, error }) => {
+                                if (error) throw new Error(error);
+                            })
+                            .catch(err => loaderDialog.dispatchEvent(new LoadingEvent("ERROR", err.message)));
+                    } else {
+                        throw new Error("Printing failed. Try again");
+                    }
+                    console.log(entryResult, printResult, entryUpdateResult);
+                    loaderDialog.dispatchEvent(new LoadingEvent("Success", i18y.getTranslation(currentLang(), "entry-welcome")));
+
+                } catch (err) {
+                    loaderDialog.dispatchEvent(new LoadingEvent("ERROR", err.message));
+                }
+
+
+            })
+
+            /*
+            *
+            * ADMIN LOGIN FORM
+            *
+            */
+
+            configLoginForm.addEventListener("submit", e => {
+                e.preventDefault();
+
+                const valid = configLoginForm.reportValidity()
+                if (!valid) return;
+
+                const password = configLoginForm.password.value;
+                loaderDialog.dispatchEvent(new LoadingEvent("LOADING", "loading"));
+                fetch('/api/auth', {
+                    method: 'POST',
+                    body: JSON.stringify({ password }),
+                    headers: { "Content-type": "application/json" }
+                })
+                    .then(res => {
+                        if (!res.ok) throw new Error("Incorrect password");
+                        return res.json()
+                    })
+                    .then(data => {
+                        loaderDialog.close();
+                        window.location = '/configuration.html';
+                    })
+                    .catch(err => {
+                        loaderDialog.dispatchEvent(new LoadingEvent("ERROR", err.message))
+                    })
+            })
+
+        })
+    </script>
+</body>
+
+</html>

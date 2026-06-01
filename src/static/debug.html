@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/barcode.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <template id="spinner-template">
+        <style>
+            .spinner {
+                margin: 0 auto;
+                width: 50px;
+                aspect-ratio: 1;
+                border-radius: 50%;
+                background:
+                    radial-gradient(farthest-side, var(--blue) 94%, #0000) top/8px 8px no-repeat,
+                    conic-gradient(#0000 30%, var(--blue));
+                mask: radial-gradient(farthest-side, #0000 calc(100% - 8px), #000 0);
+                animation: rotate 1s infinite linear;
+            }
+
+            h1:empty {
+                margin: 0;
+            }
+
+            @keyframes rotate {
+                to {
+                    transform: rotate(1turn)
+                }
+            }
+        </style>
+        <h1 slot="message"></h1>
+        <div class="spinner"></div>
+    </template>
+    <template id="message-template">
+        <h3 slot="message-status">STATUS</h3>
+        <pre slot="message-data"></pre>
+    </template>
+    <dialog id="popup-message" closedby="any">
+        <div id="message-wrapper"></div>
+    </dialog>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/configuration.html">Configuration</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <form>
+            <fieldset>
+                <legend>Labels</legend>
+                <button type="button" id="print-test-label">Print Test Label</button>
+                <button type="button" id="save-test-label">Download Test Label</button>
+            </fieldset>
+            <fieldset>
+                <legend>Entry</legend>
+                <button type="button" id="log-test-entry">Log a test entry</button>
+                <button type="button" id="update-last-entry">Update 'labelPrinted' of last entry</button>
+            </fieldset>
+            <fieldset>
+                <legend>Barcode</legend>
+                <button type="button" id="test-barcode-parsing">Test Barcode parsing</button>
+            </fieldset>
+        </form>
+    </main>
+
+    <footer></footer>
+    <script>
+        window.addEventListener("DOMContentLoaded", () => {
+            /**
+             * @typedef {Object} BarcodeHandler
+             * @typedef {Object} Pdf417Parser
+             */
+
+            /**
+             * 
+             * @type {HTMLDialogElement}
+             */
+            const popupMessageDialog = document.getElementById("popup-message");
+
+
+            /**
+             * Button for printing test labels
+             * @type {HTMLButtonElement}
+             */
+            const printTestLabelButton = document.getElementById("print-test-label");
+
+            /**
+             * Button for logging test entries
+             * @type {HTMLButtonElement}
+             */
+            const logTestEntryButton = document.getElementById("log-test-entry");
+
+            /**
+             * Button for updating last logged entry
+             * @type {HTMLButtonElement}
+             */
+            const updateLastEntryButton = document.getElementById("update-last-entry");
+
+            /**
+             * Button to test the barcode scanner workflow
+             * @type {HTMLButtonElement}
+             */
+            const testBarcodeParsingButton = document.getElementById("test-barcode-parsing");
+
+            /**
+             * Template for popup messages
+             * @type {HTMLTemplateElement}
+             */
+            const messageTemplate = document.getElementById("message-template");
+
+            /**
+             * Template for loading spinners
+             * @type {HTMLTemplateElement}
+             */
+            const spinnerTemplate = document.getElementById("spinner-template");
+
+            function loadingMessage(message) {
+                const spinner = document.importNode(spinnerTemplate.content, true);
+                popupMessageDialog.querySelector("#message-wrapper").replaceChildren(spinner);
+                popupMessageDialog.showModal();
+            }
+
+            function popupMessage(status, data) {
+                const node = document.importNode(messageTemplate.content, true);
+                node.querySelector('[slot="message-status"]').textContent = status;
+                node.querySelector('[slot="message-data"]').textContent = JSON.stringify(data, null, 2);
+                popupMessageDialog.querySelector("#message-wrapper").replaceChildren(node);
+                popupMessageDialog.showModal();
+            }
+
+            popupMessageDialog.addEventListener("close", () => {
+                // Give exit animation time to play
+                setTimeout(() => {
+                    popupMessageDialog.querySelector("#message-wrapper").replaceChildren();
+                }, 250);
+            })
+
+            function postTestData(path) {
+                const testData = {
+                    "entryDateTime": new Date(),
+                    "firstName": "TEST",
+                    "lastName": "TEST",
+                    "reason": "TEST",
+                    "method": "DEBUG",
+                    "labelPrinted": 0,
+                };
+                const parameters = {
+                    body: JSON.stringify(testData), method: "POST", headers: { "Content-type": "application/json" }
+                };
+                loadingMessage();
+                fetch(path, parameters)
+                    .then(res => res.json())
+                    .then(({ status, data }) => {
+                        console.log(status, data);
+                        popupMessage(status, data);
+                    })
+                    .catch(err => {
+                        popupMessage("ERROR", err);
+                    })
+
+            }
+
+
+            printTestLabelButton.addEventListener("click", () => postTestData('/api/print'));
+
+            logTestEntryButton.addEventListener("click", () => postTestData('/api/entry'));
+
+            updateLastEntryButton.addEventListener("click", async () => {
+                try {
+
+                    const latestEntryId = await fetch('/api/entry?orderBy=entryDateTime&direction=DESC&limit=1')
+                        .then(res => res.json())
+                        .then(({ status, data, error }) => {
+                            if (!error) {
+                                return data[0].id
+                            } else {
+                                throw new Error(error)
+                            }
+                        })
+                    if (!latestEntryId) throw new Error("Could not retrieve latest entry");
+                    const result = await fetch(`/api/entry/${latestEntryId}`, {
+                        method: "PATCH",
+                        body: JSON.stringify({ labelPrinted: 1 }),
+                        headers: { "Content-type": "application/json" }
+                    })
+                        .then(res => res.json())
+                        .then(result => {
+                            popupMessage(result.status, result.data);
+                        });
+                } catch (err) {
+                    popupMessage("ERROR", err);
+                }
+            })
+
+            testBarcodeParsingButton.addEventListener("click", () => {
+                const parser = new Pdf417Parser();
+                const parseInputCallback = (input) => {
+                    parser.feed(...input);
+                    console.log(parser);
+                    const data = Object.fromEntries(parser.result)
+                    popupMessage('Result', data);
+                    window.removeEventListener('keydown', keydownHandler)
+
+                };
+                const startReadingCallback = () => {
+                    console.log("Reading input");
+                }
+
+                const barcodeHandler = new BarcodeHandler({ timeoutDuration: 20, parseInputCallback, startReadingCallback });
+                const keydownHandler = e => {
+                    console.log(e);
+                    barcodeHandler.handleKeydown(e)
+                };
+                window.addEventListener('keydown', keydownHandler)
+                popupMessage('Waiting', 'Waiting for input from barcode reader')
+                popupMessageDialog.addEventListener('close', () => {
+                    window.removeEventListener('keydown', keydownHandler);
+                })
+            })
+
+        })
+
+        window.addEventListener("beforeunload", () => {
+        })
+
+    </script>
+</body>
+
+</html>

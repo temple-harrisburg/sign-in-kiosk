@@ -1,0 +1,850 @@
+[0m2026-05-30 11:43:12 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}[0m
+[0m2026-05-30 11:43:12 [INFO] Created table entry for model Entry[0m
+[0m2026-05-30 11:43:12 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}[0m
+[0m2026-05-30 11:43:12 [INFO] Created table config for model Config[0m
+[31m2026-05-30 11:43:12 [ERROR] `lp` is not installed on host. Printing will not work.[0m
+[0m2026-05-30 11:43:12 [INFO] Loaded configuration from '.env'[0m
+[0m2026-05-30 11:43:12 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.[0m
+[0m2026-05-30 11:43:12 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.[0m
+[0m2026-05-30 11:43:12 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.[0m
+[0m2026-05-30 11:43:12 [DEBUG] Inserted config key 'password' with value 'password' into database.[0m
+[0m2026-05-30 11:43:12 [INFO] Server listening on http://localhost:8080[0m
+2026-05-30 11:43:28 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 11:43:28 [INFO] Created table entry for model Entry
+2026-05-30 11:43:28 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 11:43:28 [INFO] Created table config for model Config
+2026-05-30 11:43:28 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 11:43:28 [INFO] Loaded configuration from '.env'
+2026-05-30 11:43:28 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 11:43:28 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 11:43:28 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 11:43:28 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 11:43:28 [INFO] Server listening on http://localhost:8080
+2026-05-30 11:45:10 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 11:45:10 [INFO] Created table entry for model Entry
+2026-05-30 11:45:10 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 11:45:10 [INFO] Created table config for model Config
+2026-05-30 11:45:10 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 11:45:10 [INFO] Loaded configuration from '.env'
+2026-05-30 11:45:10 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 11:45:10 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 11:45:10 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 11:45:10 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 11:45:10 [INFO] Server listening on http://localhost:8080
+2026-05-30 12:00:19 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:00:19 [INFO] Created table entry for model Entry
+2026-05-30 12:00:19 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:00:19 [INFO] Created table config for model Config
+2026-05-30 12:00:19 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 12:00:19 [INFO] Loaded configuration from '.env'
+2026-05-30 12:00:19 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 12:00:19 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 12:00:19 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 12:00:19 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 12:00:19 [INFO] Server listening on http://localhost:8080
+2026-05-30 12:00:31 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:00:31 [INFO] Created table entry for model Entry
+2026-05-30 12:00:31 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:00:31 [INFO] Created table config for model Config
+2026-05-30 12:00:31 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 12:00:31 [INFO] Loaded configuration from '.env'
+2026-05-30 12:00:31 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 12:00:31 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 12:00:31 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 12:00:31 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 12:00:31 [INFO] Server listening on http://localhost:8080
+2026-05-30 12:01:08 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:01:08 [INFO] Created table entry for model Entry
+2026-05-30 12:01:08 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:01:08 [INFO] Created table config for model Config
+2026-05-30 12:01:08 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 12:01:08 [INFO] Loaded configuration from '.env'
+2026-05-30 12:01:08 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 12:01:08 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 12:01:08 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 12:01:08 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 12:01:08 [INFO] Server listening on http://localhost:8080
+2026-05-30 12:01:49 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:01:49 [INFO] Created table entry for model Entry
+2026-05-30 12:01:49 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:01:49 [INFO] Created table config for model Config
+2026-05-30 12:01:49 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 12:01:49 [DEBUG] {"id":1,"timediff(date(), entryDateTime)":"+0000-00-01 09:37:27.792"}
+2026-05-30 12:01:49 [INFO] Loaded configuration from '.env'
+2026-05-30 12:01:49 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 12:01:49 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 12:01:49 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 12:01:49 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 12:01:49 [INFO] Server listening on http://localhost:8080
+2026-05-30 12:02:24 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:02:24 [INFO] Created table entry for model Entry
+2026-05-30 12:02:24 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:02:24 [INFO] Created table config for model Config
+2026-05-30 12:02:24 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 12:02:24 [DEBUG] {"id":1,"timediff":"+0000-00-01 09:37:27.792"}
+2026-05-30 12:02:24 [INFO] Loaded configuration from '.env'
+2026-05-30 12:02:24 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 12:02:24 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 12:02:24 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 12:02:24 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 12:02:24 [INFO] Server listening on http://localhost:8080
+2026-05-30 12:02:54 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:02:54 [INFO] Created table entry for model Entry
+2026-05-30 12:02:54 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:02:54 [INFO] Created table config for model Config
+2026-05-30 12:02:54 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 12:02:54 [DEBUG] {"id":1,"timediff":"+0000-00-01 09:37:27.792"}
+2026-05-30 12:02:54 [INFO] Loaded configuration from '.env'
+2026-05-30 12:02:54 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 12:02:54 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 12:02:54 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 12:02:54 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 12:02:54 [INFO] Server listening on http://localhost:8080
+2026-05-30 12:02:58 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:02:58 [INFO] Created table entry for model Entry
+2026-05-30 12:02:58 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:02:58 [INFO] Created table config for model Config
+2026-05-30 12:02:58 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 12:02:58 [DEBUG] {"id":65,"timediff":"+0000-00-00 02:14:58.390"}
+2026-05-30 12:02:58 [INFO] Loaded configuration from '.env'
+2026-05-30 12:02:58 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 12:02:58 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 12:02:58 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 12:02:58 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 12:02:58 [INFO] Server listening on http://localhost:8080
+2026-05-30 12:05:57 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:05:57 [INFO] Created table entry for model Entry
+2026-05-30 12:05:57 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:05:57 [INFO] Created table config for model Config
+2026-05-30 12:05:57 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 12:05:57 [DEBUG] Last id was 65 entered +0000-00-00 02:14:58.390 ago
+2026-05-30 12:05:57 [INFO] Loaded configuration from '.env'
+2026-05-30 12:05:57 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 12:05:57 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 12:05:57 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 12:05:57 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 12:05:57 [INFO] Server listening on http://localhost:8080
+2026-05-30 12:06:28 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:06:28 [INFO] Created table entry for model Entry
+2026-05-30 12:06:28 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:06:28 [INFO] Created table config for model Config
+2026-05-30 12:06:28 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 12:06:28 [DEBUG] Last entry was 65 entered +0000-00-00 02:14:58.390 ago
+2026-05-30 12:06:28 [INFO] Loaded configuration from '.env'
+2026-05-30 12:06:28 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 12:06:28 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 12:06:28 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 12:06:28 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 12:06:28 [INFO] Server listening on http://localhost:8080
+2026-05-30 12:06:36 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:06:36 [INFO] Created table entry for model Entry
+2026-05-30 12:06:36 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:06:36 [INFO] Created table config for model Config
+2026-05-30 12:06:36 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 12:06:36 [DEBUG] Last entry was #65 entered +0000-00-00 02:14:58.390 ago
+2026-05-30 12:06:36 [INFO] Loaded configuration from '.env'
+2026-05-30 12:06:36 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 12:06:36 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 12:06:36 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 12:06:36 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 12:06:36 [INFO] Server listening on http://localhost:8080
+2026-05-30 12:11:22 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:11:22 [INFO] Created table entry for model Entry
+2026-05-30 12:11:22 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:11:22 [INFO] Created table config for model Config
+2026-05-30 12:11:22 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 12:11:22 [INFO] Loaded configuration from '.env'
+2026-05-30 12:11:22 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 12:11:22 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 12:11:22 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 12:11:22 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 12:11:22 [INFO] Server listening on http://localhost:8080
+2026-05-30 12:11:50 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:11:50 [INFO] Created table entry for model Entry
+2026-05-30 12:11:50 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:11:50 [INFO] Created table config for model Config
+2026-05-30 12:11:50 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 12:11:50 [DEBUG] Last entry was #1 entered null ago
+2026-05-30 12:11:50 [INFO] Loaded configuration from '.env'
+2026-05-30 12:11:50 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 12:11:50 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 12:11:50 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 12:11:50 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 12:11:50 [INFO] Server listening on http://localhost:8080
+2026-05-30 12:12:05 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:12:05 [INFO] Created table entry for model Entry
+2026-05-30 12:12:05 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:12:05 [INFO] Created table config for model Config
+2026-05-30 12:12:05 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 12:12:05 [DEBUG] Last entry was #65 entered +0000-00-00 02:14:58.390 ago
+2026-05-30 12:12:05 [INFO] Loaded configuration from '.env'
+2026-05-30 12:12:05 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 12:12:05 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 12:12:05 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 12:12:05 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 12:12:05 [INFO] Server listening on http://localhost:8080
+2026-05-30 12:15:44 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:15:44 [INFO] Created table entry for model Entry
+2026-05-30 12:15:44 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:15:44 [INFO] Created table config for model Config
+2026-05-30 12:15:44 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 12:15:44 [ERROR] Failed to retrieve Entry IDs: Error: near "strftime": syntax error
+2026-05-30 12:15:44 [INFO] Loaded configuration from '.env'
+2026-05-30 12:15:44 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 12:15:44 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 12:15:44 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 12:15:44 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 12:15:44 [INFO] Server listening on http://localhost:8080
+2026-05-30 12:15:50 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:15:50 [INFO] Created table entry for model Entry
+2026-05-30 12:15:50 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:15:50 [INFO] Created table config for model Config
+2026-05-30 12:15:50 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 12:15:50 [ERROR] Failed to retrieve Entry IDs: Error: near "strftime": syntax error
+2026-05-30 12:15:50 [INFO] Loaded configuration from '.env'
+2026-05-30 12:15:50 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 12:15:50 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 12:15:50 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 12:15:50 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 12:15:50 [INFO] Server listening on http://localhost:8080
+2026-05-30 12:15:55 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:15:55 [INFO] Created table entry for model Entry
+2026-05-30 12:15:55 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:15:55 [INFO] Created table config for model Config
+2026-05-30 12:15:55 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 12:15:55 [ERROR] Failed to retrieve Entry IDs: Error: near "strftime": syntax error
+2026-05-30 12:15:55 [INFO] Loaded configuration from '.env'
+2026-05-30 12:15:55 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 12:15:55 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 12:15:55 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 12:15:55 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 12:15:55 [INFO] Server listening on http://localhost:8080
+2026-05-30 12:16:02 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:16:02 [INFO] Created table entry for model Entry
+2026-05-30 12:16:02 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:16:02 [INFO] Created table config for model Config
+2026-05-30 12:16:02 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 12:16:02 [ERROR] Failed to retrieve Entry IDs: Error: near "strftime": syntax error
+2026-05-30 12:16:02 [INFO] Loaded configuration from '.env'
+2026-05-30 12:16:02 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 12:16:02 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 12:16:02 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 12:16:02 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 12:16:02 [INFO] Server listening on http://localhost:8080
+2026-05-30 12:17:33 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:17:33 [INFO] Created table entry for model Entry
+2026-05-30 12:17:33 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:17:33 [INFO] Created table config for model Config
+2026-05-30 12:17:33 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 12:17:33 [ERROR] Failed to retrieve Entry IDs: Error: near "strftime": syntax error
+2026-05-30 12:17:33 [INFO] Loaded configuration from '.env'
+2026-05-30 12:17:33 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 12:17:33 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 12:17:33 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 12:17:33 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 12:17:33 [INFO] Server listening on http://localhost:8080
+2026-05-30 12:17:59 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:17:59 [INFO] Created table entry for model Entry
+2026-05-30 12:17:59 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:17:59 [INFO] Created table config for model Config
+2026-05-30 12:17:59 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 12:17:59 [ERROR] Failed to retrieve Entry IDs: Error: no such column: elapsed
+2026-05-30 12:17:59 [INFO] Loaded configuration from '.env'
+2026-05-30 12:17:59 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 12:17:59 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 12:17:59 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 12:17:59 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 12:17:59 [INFO] Server listening on http://localhost:8080
+2026-05-30 12:18:02 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:18:02 [INFO] Created table entry for model Entry
+2026-05-30 12:18:02 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:18:02 [INFO] Created table config for model Config
+2026-05-30 12:18:02 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 12:18:02 [ERROR] Failed to retrieve Entry IDs: ReferenceError: timediff is not defined
+2026-05-30 12:18:02 [INFO] Loaded configuration from '.env'
+2026-05-30 12:18:02 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 12:18:02 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 12:18:02 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 12:18:02 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 12:18:02 [INFO] Server listening on http://localhost:8080
+2026-05-30 12:32:30 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:32:30 [INFO] Created table entry for model Entry
+2026-05-30 12:32:30 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:32:30 [INFO] Created table config for model Config
+2026-05-30 12:32:30 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 12:32:30 [INFO] Loaded configuration from '.env'
+2026-05-30 12:32:30 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 12:32:30 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 12:32:30 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 12:32:30 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 12:32:30 [INFO] Server listening on http://localhost:8080
+2026-05-30 12:34:49 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:34:49 [INFO] Created table entry for model Entry
+2026-05-30 12:34:49 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:34:49 [INFO] Created table config for model Config
+2026-05-30 12:34:49 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 12:34:49 [INFO] Loaded configuration from '.env'
+2026-05-30 12:34:49 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 12:34:49 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 12:34:49 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 12:34:49 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 12:34:49 [INFO] Server listening on http://localhost:8080
+2026-05-30 12:38:22 [DEBUG] Entry controller received post body: undefined
+2026-05-30 12:38:22 [ERROR] An error ocurred
+2026-05-30 12:38:22 [ERROR] {}
+2026-05-30 12:38:41 [DEBUG] Entry controller received post body: undefined
+2026-05-30 12:38:41 [ERROR] An error ocurred
+2026-05-30 12:38:41 [ERROR] {}
+2026-05-30 12:38:46 [DEBUG] Entry controller received post body: {"firstName":"TEST","lastName":"TEST","reason":"TEST","method":"DEBUG"}
+2026-05-30 12:38:46 [ERROR] An error ocurred
+2026-05-30 12:38:46 [ERROR] {"code":"ERR_INVALID_ARG_TYPE"}
+2026-05-30 12:40:29 [DEBUG] Print controller received body: {"firstName":"TEST","lastName":"TEST","reason":"TEST","method":"DEBUG"}
+2026-05-30 12:40:29 [ERROR] Failed to print
+2026-05-30 12:40:29 [DEBUG] {"errno":-2,"code":"ENOENT","syscall":"spawnSync lp","path":"lp","spawnargs":["-o","landscape","-o","media=Custom.2.5125x3.875in","tmp/labels-Fcrbrs/label-1780159229804.png"]}
+2026-05-30 12:40:33 [DEBUG] Print controller received body: {"firstName":"TEST","lastName":"TEST","reason":"TEST","method":"DEBUG"}
+2026-05-30 12:40:33 [ERROR] Failed to print
+2026-05-30 12:40:33 [DEBUG] {"errno":-2,"code":"ENOENT","syscall":"spawnSync lp","path":"lp","spawnargs":["-o","landscape","-o","media=Custom.2.5125x3.875in","tmp/labels-Fcrbrs/label-1780159233080.png"]}
+2026-05-30 12:40:39 [DEBUG] Print controller received body: {"firstName":"TEST","lastName":"TEST","reason":"TEST","method":"DEBUG"}
+2026-05-30 12:40:39 [ERROR] Failed to print
+2026-05-30 12:40:39 [DEBUG] {"errno":-2,"code":"ENOENT","syscall":"spawnSync lp","path":"lp","spawnargs":["-o","landscape","-o","media=Custom.2.5125x3.875in","tmp/labels-Fcrbrs/label-1780159239134.png"]}
+2026-05-30 12:40:51 [DEBUG] Entry controller received post body: {"firstName":"TEST","lastName":"TEST","reason":"TEST","method":"DEBUG"}
+2026-05-30 12:40:51 [ERROR] An error ocurred
+2026-05-30 12:40:51 [ERROR] {"code":"ERR_INVALID_ARG_TYPE"}
+2026-05-30 12:40:57 [DEBUG] Entry controller received post body: {"firstName":"TEST","lastName":"TEST","reason":"TEST","method":"DEBUG"}
+2026-05-30 12:40:57 [ERROR] An error ocurred
+2026-05-30 12:40:57 [ERROR] {"code":"ERR_INVALID_ARG_TYPE"}
+2026-05-30 12:41:12 [DEBUG] Entry controller received post body: {"firstName":"TEST","lastName":"TEST","reason":"TEST","method":"DEBUG"}
+2026-05-30 12:41:12 [ERROR] An error ocurred
+2026-05-30 12:41:12 [ERROR] {"code":"ERR_INVALID_ARG_TYPE"}
+2026-05-30 12:41:22 [DEBUG] Entry controller received post body: {"firstName":"TEST","lastName":"TEST","reason":"TEST","method":"DEBUG"}
+2026-05-30 12:41:22 [ERROR] An error ocurred
+2026-05-30 12:41:22 [ERROR] {"code":"ERR_INVALID_ARG_TYPE"}
+2026-05-30 12:41:59 [DEBUG] Entry controller received post body: {"firstName":"TEST","lastName":"TEST","reason":"TEST","method":"DEBUG"}
+2026-05-30 12:41:59 [ERROR] An error ocurred
+2026-05-30 12:41:59 [ERROR] {"code":"ERR_INVALID_ARG_TYPE"}
+2026-05-30 12:42:56 [DEBUG] Entry controller received post body: {"firstName":"TEST","lastName":"TEST","reason":"TEST","method":"DEBUG"}
+2026-05-30 12:42:56 [ERROR] An error ocurred
+2026-05-30 12:42:56 [ERROR] {"code":"ERR_INVALID_ARG_TYPE"}
+2026-05-30 12:43:06 [DEBUG] Entry controller received post body: {"firstName":"TEST","lastName":"TEST","reason":"TEST","method":"DEBUG"}
+2026-05-30 12:43:06 [ERROR] An error ocurred
+2026-05-30 12:43:06 [ERROR] {"code":"ERR_INVALID_ARG_TYPE"}
+2026-05-30 12:43:08 [DEBUG] Print controller received body: {"firstName":"TEST","lastName":"TEST","reason":"TEST","method":"DEBUG"}
+2026-05-30 12:43:08 [ERROR] Failed to print
+2026-05-30 12:43:08 [DEBUG] {"errno":-2,"code":"ENOENT","syscall":"spawnSync lp","path":"lp","spawnargs":["-o","landscape","-o","media=Custom.2.5125x3.875in","tmp/labels-Fcrbrs/label-1780159388524.png"]}
+2026-05-30 12:44:02 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:44:02 [INFO] Created table entry for model Entry
+2026-05-30 12:44:02 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:44:02 [INFO] Created table config for model Config
+2026-05-30 12:44:02 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 12:44:02 [INFO] Loaded configuration from '.env'
+2026-05-30 12:44:02 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 12:44:02 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 12:44:02 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 12:44:02 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 12:44:02 [INFO] Server listening on http://localhost:8080
+2026-05-30 12:44:11 [DEBUG] Entry controller received post body: {"firstName":"TEST","lastName":"TEST","reason":"TEST","method":"DEBUG"}
+2026-05-30 12:44:11 [ERROR] An error ocurred
+2026-05-30 12:44:11 [ERROR] {"code":"ERR_INVALID_ARG_TYPE"}
+2026-05-30 12:44:34 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:44:34 [INFO] Created table entry for model Entry
+2026-05-30 12:44:34 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:44:34 [INFO] Created table config for model Config
+2026-05-30 12:44:34 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 12:44:34 [INFO] Loaded configuration from '.env'
+2026-05-30 12:44:34 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 12:44:34 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 12:44:34 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 12:44:34 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 12:44:34 [INFO] Server listening on http://localhost:8080
+2026-05-30 12:44:36 [DEBUG] Entry controller received post body: {"firstName":"TEST","lastName":"TEST","reason":"TEST","method":"DEBUG"}
+2026-05-30 12:44:36 [ERROR] An error ocurred
+2026-05-30 12:44:36 [ERROR] {"code":"ERR_INVALID_ARG_TYPE"}
+2026-05-30 12:44:43 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:44:43 [INFO] Created table entry for model Entry
+2026-05-30 12:44:43 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:44:43 [INFO] Created table config for model Config
+2026-05-30 12:44:43 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 12:44:43 [INFO] Loaded configuration from '.env'
+2026-05-30 12:44:43 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 12:44:43 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 12:44:43 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 12:44:43 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 12:44:43 [INFO] Server listening on http://localhost:8080
+2026-05-30 12:44:44 [DEBUG] Entry controller received post body: {"firstName":"TEST","lastName":"TEST","reason":"TEST","method":"DEBUG"}
+2026-05-30 12:44:44 [ERROR] An error ocurred
+2026-05-30 12:44:44 [ERROR] {"code":"ERR_INVALID_ARG_TYPE"}
+2026-05-30 12:45:02 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:45:02 [INFO] Created table entry for model Entry
+2026-05-30 12:45:02 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:45:02 [INFO] Created table config for model Config
+2026-05-30 12:45:02 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 12:45:02 [INFO] Loaded configuration from '.env'
+2026-05-30 12:45:02 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 12:45:02 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 12:45:02 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 12:45:02 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 12:45:02 [INFO] Server listening on http://localhost:8080
+2026-05-30 12:45:04 [DEBUG] Entry controller received post body: {"firstName":"TEST","lastName":"TEST","reason":"TEST","method":"DEBUG"}
+2026-05-30 12:45:04 [ERROR] An error ocurred
+2026-05-30 12:45:04 [ERROR] {"code":"ERR_INVALID_ARG_TYPE"}
+2026-05-30 12:46:20 [DEBUG] Entry controller received post body: {"firstName":"TEST","lastName":"TEST","reason":"TEST","method":"DEBUG"}
+2026-05-30 12:46:20 [ERROR] An error ocurred
+2026-05-30 12:46:20 [ERROR] {"code":"ERR_INVALID_ARG_TYPE"}
+2026-05-30 12:46:22 [DEBUG] Entry controller received post body: {"entryDateTime":"2026-05-30T16:46:22.881Z","firstName":"TEST","lastName":"TEST","reason":"TEST","method":"DEBUG"}
+2026-05-30 12:46:22 [ERROR] An error ocurred
+2026-05-30 12:46:22 [ERROR] {"code":"ERR_INVALID_ARG_TYPE"}
+2026-05-30 12:46:56 [DEBUG] Entry controller received post body: {"entryDateTime":"2026-05-30T16:46:56.874Z","id":99999,"firstName":"TEST","lastName":"TEST","reason":"TEST","method":"DEBUG","labelPrinted":false}
+2026-05-30 12:46:56 [ERROR] An error ocurred
+2026-05-30 12:46:56 [ERROR] {"code":"ERR_INVALID_ARG_TYPE"}
+2026-05-30 12:47:18 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:47:18 [INFO] Created table entry for model Entry
+2026-05-30 12:47:18 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:47:18 [INFO] Created table config for model Config
+2026-05-30 12:47:18 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 12:47:18 [INFO] Loaded configuration from '.env'
+2026-05-30 12:47:18 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 12:47:18 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 12:47:18 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 12:47:18 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 12:47:18 [INFO] Server listening on http://localhost:8080
+2026-05-30 12:47:21 [DEBUG] Entry controller received post body: {"entryDateTime":"2026-05-30T16:47:21.041Z","id":99999,"firstName":"TEST","lastName":"TEST","reason":"TEST","method":"DEBUG","labelPrinted":false}
+2026-05-30 12:47:21 [ERROR] An error ocurred
+2026-05-30 12:47:21 [ERROR] {"code":"ERR_INVALID_ARG_TYPE"}
+2026-05-30 12:48:14 [DEBUG] Entry controller received post body: {"entryDateTime":"2026-05-30T16:48:14.223Z","id":99999,"firstName":"TEST","lastName":"TEST","reason":"TEST","method":"DEBUG","labelPrinted":false}
+2026-05-30 12:48:14 [ERROR] An error ocurred
+2026-05-30 12:48:14 [ERROR] {"code":"ERR_INVALID_ARG_TYPE"}
+2026-05-30 12:48:51 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:48:51 [INFO] Created table entry for model Entry
+2026-05-30 12:48:51 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:48:51 [INFO] Created table config for model Config
+2026-05-30 12:48:51 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 12:48:51 [INFO] Loaded configuration from '.env'
+2026-05-30 12:48:51 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 12:48:51 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 12:48:51 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 12:48:51 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 12:48:51 [INFO] Server listening on http://localhost:8080
+2026-05-30 12:49:01 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:49:01 [INFO] Created table entry for model Entry
+2026-05-30 12:49:01 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:49:01 [INFO] Created table config for model Config
+2026-05-30 12:49:01 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 12:49:01 [INFO] Loaded configuration from '.env'
+2026-05-30 12:49:01 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 12:49:01 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 12:49:01 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 12:49:01 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 12:49:01 [INFO] Server listening on http://localhost:8080
+2026-05-30 12:49:05 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:49:05 [INFO] Created table entry for model Entry
+2026-05-30 12:49:05 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:49:05 [INFO] Created table config for model Config
+2026-05-30 12:49:05 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 12:49:05 [INFO] Loaded configuration from '.env'
+2026-05-30 12:49:05 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 12:49:05 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 12:49:05 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 12:49:05 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 12:49:05 [INFO] Server listening on http://localhost:8080
+2026-05-30 12:49:34 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:49:34 [INFO] Created table entry for model Entry
+2026-05-30 12:49:34 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:49:34 [INFO] Created table config for model Config
+2026-05-30 12:49:34 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 12:49:34 [INFO] Loaded configuration from '.env'
+2026-05-30 12:49:34 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 12:49:34 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 12:49:34 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 12:49:34 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 12:49:34 [INFO] Server listening on http://localhost:8080
+2026-05-30 12:49:36 [DEBUG] Entry controller received post body: {"entryDateTime":"2026-05-30T16:49:36.767Z","id":99999,"firstName":"TEST","lastName":"TEST","reason":"TEST","method":"DEBUG","labelPrinted":false}
+2026-05-30 12:49:36 [ERROR] An error ocurred
+2026-05-30 12:49:36 [ERROR] {"code":"ERR_INVALID_ARG_TYPE"}
+2026-05-30 12:49:56 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:49:56 [INFO] Created table entry for model Entry
+2026-05-30 12:49:56 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:49:56 [INFO] Created table config for model Config
+2026-05-30 12:49:56 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 12:49:56 [INFO] Loaded configuration from '.env'
+2026-05-30 12:49:56 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 12:49:56 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 12:49:56 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 12:49:56 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 12:49:56 [INFO] Server listening on http://localhost:8080
+2026-05-30 12:49:59 [DEBUG] Entry controller received post body: {"entryDateTime":"2026-05-30T16:49:59.366Z","id":99999,"firstName":"TEST","lastName":"TEST","reason":"TEST","method":"DEBUG","labelPrinted":false}
+2026-05-30 12:49:59 [DEBUG] {
+  "sourceSQL": "INSERT INTO entry (id, entryDateTime, firstName, lastName, reason, method, labelPrinted) \n            VALUES (?, ?, ?, ?, ?, ?, ?) \n            ON CONFLICT (id)\n            DO UPDATE set labelPrinted=excluded.labelPrinted\n        ",
+  "expandedSQL": "INSERT INTO entry (id, entryDateTime, firstName, lastName, reason, method, labelPrinted) \n            VALUES (NULL, NULL, NULL, NULL, NULL, NULL, NULL) \n            ON CONFLICT (id)\n            DO UPDATE set labelPrinted=excluded.labelPrinted\n        "
+}
+2026-05-30 12:49:59 [ERROR] An error ocurred
+2026-05-30 12:49:59 [ERROR] {"code":"ERR_INVALID_ARG_TYPE"}
+2026-05-30 12:51:02 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:51:02 [INFO] Created table entry for model Entry
+2026-05-30 12:51:02 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:51:02 [INFO] Created table config for model Config
+2026-05-30 12:51:02 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 12:51:02 [INFO] Loaded configuration from '.env'
+2026-05-30 12:51:02 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 12:51:02 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 12:51:02 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 12:51:02 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 12:51:02 [INFO] Server listening on http://localhost:8080
+2026-05-30 12:52:19 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:52:19 [INFO] Created table entry for model Entry
+2026-05-30 12:52:19 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:52:19 [INFO] Created table config for model Config
+2026-05-30 12:52:19 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 12:52:19 [INFO] Loaded configuration from '.env'
+2026-05-30 12:52:19 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 12:52:19 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 12:52:19 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 12:52:19 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 12:52:19 [INFO] Server listening on http://localhost:8080
+2026-05-30 12:52:26 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:52:26 [INFO] Created table entry for model Entry
+2026-05-30 12:52:26 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:52:26 [INFO] Created table config for model Config
+2026-05-30 12:52:26 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 12:52:26 [INFO] Loaded configuration from '.env'
+2026-05-30 12:52:26 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 12:52:26 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 12:52:26 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 12:52:26 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 12:52:26 [INFO] Server listening on http://localhost:8080
+2026-05-30 12:53:33 [DEBUG] Entry controller received post body: {"entryDateTime":"2026-05-30T16:53:33.353Z","id":99,"firstName":"TEST","lastName":"TEST","reason":"TEST","method":"DEBUG","labelPrinted":false}
+2026-05-30 12:53:33 [DEBUG] {
+  "sourceSQL": "INSERT INTO entry (id, entryDateTime, firstName, lastName, reason, method, labelPrinted) \n            VALUES (?, ?, ?, ?, ?, ?, ?) \n            ON CONFLICT (id)\n            DO UPDATE set labelPrinted=excluded.labelPrinted\n        ",
+  "expandedSQL": "INSERT INTO entry (id, entryDateTime, firstName, lastName, reason, method, labelPrinted) \n            VALUES (NULL, NULL, NULL, NULL, NULL, NULL, NULL) \n            ON CONFLICT (id)\n            DO UPDATE set labelPrinted=excluded.labelPrinted\n        "
+}
+2026-05-30 12:53:33 [ERROR] An error ocurred
+2026-05-30 12:53:33 [ERROR] {"code":"ERR_INVALID_ARG_TYPE"}
+2026-05-30 12:53:59 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:53:59 [INFO] Created table entry for model Entry
+2026-05-30 12:53:59 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:53:59 [INFO] Created table config for model Config
+2026-05-30 12:53:59 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 12:53:59 [INFO] Loaded configuration from '.env'
+2026-05-30 12:53:59 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 12:53:59 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 12:53:59 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 12:53:59 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 12:53:59 [INFO] Server listening on http://localhost:8080
+2026-05-30 12:54:02 [DEBUG] Entry controller received post body: {"entryDateTime":"2026-05-30T16:54:02.520Z","id":99,"firstName":"TEST","lastName":"TEST","reason":"TEST","method":"DEBUG","labelPrinted":false}
+2026-05-30 12:54:02 [DEBUG] {
+  "id": 99,
+  "entryDateTime": "2026-05-30T16:54:02.520Z",
+  "firstName": "TEST",
+  "lastName": "TEST",
+  "reason": "TEST",
+  "method": "DEBUG",
+  "labelPrinted": false
+}
+2026-05-30 12:54:02 [DEBUG] {
+  "sourceSQL": "INSERT INTO entry (id, entryDateTime, firstName, lastName, reason, method, labelPrinted) \n            VALUES (?, ?, ?, ?, ?, ?, ?) \n            ON CONFLICT (id)\n            DO UPDATE set labelPrinted=excluded.labelPrinted\n        ",
+  "expandedSQL": "INSERT INTO entry (id, entryDateTime, firstName, lastName, reason, method, labelPrinted) \n            VALUES (NULL, NULL, NULL, NULL, NULL, NULL, NULL) \n            ON CONFLICT (id)\n            DO UPDATE set labelPrinted=excluded.labelPrinted\n        "
+}
+2026-05-30 12:54:02 [ERROR] An error ocurred
+2026-05-30 12:54:02 [ERROR] {"code":"ERR_INVALID_ARG_TYPE"}
+2026-05-30 12:55:03 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:55:03 [INFO] Created table entry for model Entry
+2026-05-30 12:55:03 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:55:03 [INFO] Created table config for model Config
+2026-05-30 12:55:03 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 12:55:03 [INFO] Loaded configuration from '.env'
+2026-05-30 12:55:03 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 12:55:03 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 12:55:03 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 12:55:03 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 12:55:03 [INFO] Server listening on http://localhost:8080
+2026-05-30 12:55:06 [DEBUG] Entry controller received post body: {"entryDateTime":"2026-05-30T16:55:06.054Z","id":99,"firstName":"TEST","lastName":"TEST","reason":"TEST","method":"DEBUG","labelPrinted":false}
+2026-05-30 12:55:06 [DEBUG] {
+  "id": 99,
+  "entryDateTime": "2026-05-30T16:55:06.054Z",
+  "firstName": "TEST",
+  "lastName": "TEST",
+  "reason": "TEST",
+  "method": "DEBUG",
+  "labelPrinted": false
+}
+2026-05-30 12:55:06 [DEBUG] {
+  "sourceSQL": "INSERT INTO entry (entryDateTime, firstName, lastName, reason, method, labelPrinted) \n            VALUES (?, ?, ?, ?, ?, ?) \n            ON CONFLICT (id)\n            DO UPDATE set labelPrinted=excluded.labelPrinted\n        ",
+  "expandedSQL": "INSERT INTO entry (entryDateTime, firstName, lastName, reason, method, labelPrinted) \n            VALUES (NULL, NULL, NULL, NULL, NULL, NULL) \n            ON CONFLICT (id)\n            DO UPDATE set labelPrinted=excluded.labelPrinted\n        "
+}
+2026-05-30 12:55:06 [ERROR] An error ocurred
+2026-05-30 12:55:06 [ERROR] {"code":"ERR_INVALID_ARG_TYPE"}
+2026-05-30 12:55:16 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:55:16 [INFO] Created table entry for model Entry
+2026-05-30 12:55:16 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:55:16 [INFO] Created table config for model Config
+2026-05-30 12:55:16 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 12:55:16 [INFO] Loaded configuration from '.env'
+2026-05-30 12:55:16 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 12:55:16 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 12:55:16 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 12:55:16 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 12:55:16 [INFO] Server listening on http://localhost:8080
+2026-05-30 12:55:18 [DEBUG] Entry controller received post body: {"entryDateTime":"2026-05-30T16:55:18.673Z","id":99,"firstName":"TEST","lastName":"TEST","reason":"TEST","method":"DEBUG","labelPrinted":false}
+2026-05-30 12:55:18 [DEBUG] {
+  "id": 99,
+  "entryDateTime": "2026-05-30T16:55:18.673Z",
+  "firstName": "TEST",
+  "lastName": "TEST",
+  "reason": "TEST",
+  "method": "DEBUG",
+  "labelPrinted": false
+}
+2026-05-30 12:55:18 [DEBUG] {
+  "sourceSQL": "INSERT INTO entry (entryDateTime, firstName, lastName, reason, method, labelPrinted) \n            VALUES (?, ?, ?, ?, ?, ?) \n            ON CONFLICT (id)\n            DO UPDATE set labelPrinted=excluded.labelPrinted\n        ",
+  "expandedSQL": "INSERT INTO entry (entryDateTime, firstName, lastName, reason, method, labelPrinted) \n            VALUES (NULL, NULL, NULL, NULL, NULL, NULL) \n            ON CONFLICT (id)\n            DO UPDATE set labelPrinted=excluded.labelPrinted\n        "
+}
+2026-05-30 12:55:18 [ERROR] An error ocurred
+2026-05-30 12:55:18 [ERROR] {"code":"ERR_INVALID_ARG_TYPE"}
+2026-05-30 12:55:39 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:55:39 [INFO] Created table entry for model Entry
+2026-05-30 12:55:39 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:55:39 [INFO] Created table config for model Config
+2026-05-30 12:55:39 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 12:55:39 [INFO] Loaded configuration from '.env'
+2026-05-30 12:55:39 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 12:55:39 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 12:55:39 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 12:55:39 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 12:55:39 [INFO] Server listening on http://localhost:8080
+2026-05-30 12:55:43 [DEBUG] Entry controller received post body: {"entryDateTime":"2026-05-30T16:55:43.509Z","id":99,"firstName":"TEST","lastName":"TEST","reason":"TEST","method":"DEBUG","labelPrinted":false}
+2026-05-30 12:55:43 [DEBUG] {
+  "id": 99,
+  "entryDateTime": "2026-05-30T16:55:43.509Z",
+  "firstName": "TEST",
+  "lastName": "TEST",
+  "reason": "TEST",
+  "method": "DEBUG",
+  "labelPrinted": false
+}
+2026-05-30 12:55:43 [DEBUG] {
+  "sourceSQL": "INSERT INTO entry (entryDateTime, firstName, lastName, reason, method, labelPrinted) VALUES (?, ?, ?, ?, ?, ?) ",
+  "expandedSQL": "INSERT INTO entry (entryDateTime, firstName, lastName, reason, method, labelPrinted) VALUES (NULL, NULL, NULL, NULL, NULL, NULL) "
+}
+2026-05-30 12:55:43 [ERROR] An error ocurred
+2026-05-30 12:55:43 [ERROR] {"code":"ERR_INVALID_ARG_TYPE"}
+2026-05-30 12:56:53 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:56:53 [INFO] Created table entry for model Entry
+2026-05-30 12:56:53 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:56:53 [INFO] Created table config for model Config
+2026-05-30 12:56:53 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 12:56:53 [INFO] Loaded configuration from '.env'
+2026-05-30 12:56:53 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 12:56:53 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 12:56:53 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 12:56:53 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 12:56:53 [INFO] Server listening on http://localhost:8080
+2026-05-30 12:57:00 [DEBUG] Entry controller received post body: {"entryDateTime":"2026-05-30T16:57:00.619Z","id":99,"firstName":"TEST","lastName":"TEST","reason":"TEST","method":"DEBUG","labelPrinted":false}
+2026-05-30 12:57:00 [DEBUG] {
+  "id": 99,
+  "entryDateTime": "2026-05-30T16:57:00.619Z",
+  "firstName": "TEST",
+  "lastName": "TEST",
+  "reason": "TEST",
+  "method": "DEBUG",
+  "labelPrinted": false
+}
+2026-05-30 12:57:00 [DEBUG] {
+  "sourceSQL": "INSERT INTO entry (entryDateTime, firstName, lastName, reason, method, labelPrinted) VALUES (?, ?, ?, ?, ?, ?) ",
+  "expandedSQL": "INSERT INTO entry (entryDateTime, firstName, lastName, reason, method, labelPrinted) VALUES (NULL, NULL, NULL, NULL, NULL, NULL) "
+}
+2026-05-30 12:57:00 [ERROR] An error ocurred
+2026-05-30 12:57:00 [ERROR] {"code":"ERR_INVALID_ARG_TYPE"}
+2026-05-30 12:57:18 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:57:18 [INFO] Created table entry for model Entry
+2026-05-30 12:57:18 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:57:18 [INFO] Created table config for model Config
+2026-05-30 12:57:18 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 12:57:18 [INFO] Loaded configuration from '.env'
+2026-05-30 12:57:18 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 12:57:18 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 12:57:18 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 12:57:18 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 12:57:18 [INFO] Server listening on http://localhost:8080
+2026-05-30 12:57:20 [DEBUG] Entry controller received post body: {"entryDateTime":"2026-05-30T16:57:20.249Z","id":99,"firstName":"TEST","lastName":"TEST","reason":"TEST","method":"DEBUG","labelPrinted":false}
+2026-05-30 12:57:20 [DEBUG] {
+  "id": 99,
+  "entryDateTime": "2026-05-30T16:57:20.249Z",
+  "firstName": "TEST",
+  "lastName": "TEST",
+  "reason": "TEST",
+  "method": "DEBUG",
+  "labelPrinted": false
+}
+2026-05-30 12:57:20 [DEBUG] {
+  "sourceSQL": "INSERT INTO entry (entryDateTime, firstName, lastName, reason, method, labelPrinted) VALUES (?, ?, ?, ?, ?, ?) ",
+  "expandedSQL": "INSERT INTO entry (entryDateTime, firstName, lastName, reason, method, labelPrinted) VALUES (NULL, NULL, NULL, NULL, NULL, NULL) "
+}
+2026-05-30 12:57:20 [ERROR] An error ocurred
+2026-05-30 12:57:20 [ERROR] {"code":"ERR_INVALID_ARG_TYPE"}
+2026-05-30 12:58:22 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:58:22 [INFO] Created table entry for model Entry
+2026-05-30 12:58:22 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 12:58:22 [INFO] Created table config for model Config
+2026-05-30 12:58:22 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 12:58:22 [INFO] Loaded configuration from '.env'
+2026-05-30 12:58:22 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 12:58:22 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 12:58:22 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 12:58:22 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 12:58:22 [INFO] Server listening on http://localhost:8080
+2026-05-30 12:58:24 [DEBUG] Entry controller received post body: {"entryDateTime":"2026-05-30T16:58:24.814Z","id":99,"firstName":"TEST","lastName":"TEST","reason":"TEST","method":"DEBUG","labelPrinted":false}
+2026-05-30 12:58:24 [DEBUG] {
+  "id": 99,
+  "entryDateTime": "2026-05-30T16:58:24.814Z",
+  "firstName": "TEST",
+  "lastName": "TEST",
+  "reason": "TEST",
+  "method": "DEBUG",
+  "labelPrinted": false
+}
+2026-05-30 12:58:24 [DEBUG] {
+  "sourceSQL": "INSERT INTO entry (entryDateTime, firstName, lastName, reason, method, labelPrinted) VALUES (?, ?, ?, ?, ?, ?) ",
+  "expandedSQL": "INSERT INTO entry (entryDateTime, firstName, lastName, reason, method, labelPrinted) VALUES (NULL, NULL, NULL, NULL, NULL, NULL) "
+}
+2026-05-30 12:58:28 [DEBUG] Entry controller received post body: {"entryDateTime":"2026-05-30T16:58:28.316Z","id":99,"firstName":"TEST","lastName":"TEST","reason":"TEST","method":"DEBUG","labelPrinted":false}
+2026-05-30 12:58:28 [DEBUG] {
+  "id": 99,
+  "entryDateTime": "2026-05-30T16:58:28.316Z",
+  "firstName": "TEST",
+  "lastName": "TEST",
+  "reason": "TEST",
+  "method": "DEBUG",
+  "labelPrinted": false
+}
+2026-05-30 12:58:28 [DEBUG] {
+  "sourceSQL": "INSERT INTO entry (entryDateTime, firstName, lastName, reason, method, labelPrinted) VALUES (?, ?, ?, ?, ?, ?) ",
+  "expandedSQL": "INSERT INTO entry (entryDateTime, firstName, lastName, reason, method, labelPrinted) VALUES (NULL, NULL, NULL, NULL, NULL, NULL) "
+}
+2026-05-30 13:00:00 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 13:00:00 [INFO] Created table entry for model Entry
+2026-05-30 13:00:00 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 13:00:00 [INFO] Created table config for model Config
+2026-05-30 13:00:00 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 13:00:00 [INFO] Loaded configuration from '.env'
+2026-05-30 13:00:00 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 13:00:00 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 13:00:00 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 13:00:00 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 13:00:00 [INFO] Server listening on http://localhost:8080
+2026-05-30 13:00:06 [DEBUG] Entry controller received post body: {"entryDateTime":"2026-05-30T17:00:06.091Z","id":99,"firstName":"TEST","lastName":"TEST","reason":"TEST","method":"DEBUG","labelPrinted":false}
+2026-05-30 13:00:06 [ERROR] An error ocurred
+2026-05-30 13:00:06 [ERROR] {"code":"ERR_INVALID_ARG_TYPE"}
+2026-05-30 13:00:34 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 13:00:34 [INFO] Created table entry for model Entry
+2026-05-30 13:00:34 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 13:00:34 [INFO] Created table config for model Config
+2026-05-30 13:00:34 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 13:00:34 [INFO] Loaded configuration from '.env'
+2026-05-30 13:00:34 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 13:00:34 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 13:00:34 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 13:00:34 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 13:00:34 [INFO] Server listening on http://localhost:8080
+2026-05-30 13:03:09 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 13:03:09 [INFO] Created table entry for model Entry
+2026-05-30 13:03:09 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 13:03:09 [INFO] Created table config for model Config
+2026-05-30 13:03:09 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 13:03:09 [INFO] Loaded configuration from '.env'
+2026-05-30 13:03:09 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 13:03:09 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 13:03:09 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 13:03:09 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 13:03:09 [INFO] Server listening on http://localhost:8080
+2026-05-30 13:03:47 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 13:03:47 [INFO] Created table entry for model Entry
+2026-05-30 13:03:47 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 13:03:47 [INFO] Created table config for model Config
+2026-05-30 13:03:47 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 13:03:47 [INFO] Loaded configuration from '.env'
+2026-05-30 13:03:47 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 13:03:47 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 13:03:47 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 13:03:47 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 13:03:47 [INFO] Server listening on http://localhost:8080
+2026-05-30 13:03:52 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 13:03:52 [INFO] Created table entry for model Entry
+2026-05-30 13:03:52 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 13:03:52 [INFO] Created table config for model Config
+2026-05-30 13:03:52 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 13:03:52 [INFO] Loaded configuration from '.env'
+2026-05-30 13:03:52 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 13:03:52 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 13:03:52 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 13:03:52 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 13:03:52 [INFO] Server listening on http://localhost:8080
+2026-05-30 13:05:35 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 13:05:35 [INFO] Created table entry for model Entry
+2026-05-30 13:05:35 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 13:05:35 [INFO] Created table config for model Config
+2026-05-30 13:05:35 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 13:05:35 [INFO] Loaded configuration from '.env'
+2026-05-30 13:05:35 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 13:05:35 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 13:05:35 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 13:05:35 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 13:05:35 [INFO] Server listening on http://localhost:8080
+2026-05-30 13:06:10 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 13:06:10 [INFO] Created table entry for model Entry
+2026-05-30 13:06:10 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 13:06:10 [INFO] Created table config for model Config
+2026-05-30 13:06:10 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 13:06:10 [INFO] Loaded configuration from '.env'
+2026-05-30 13:06:10 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 13:06:10 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 13:06:10 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 13:06:10 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 13:06:10 [INFO] Server listening on http://localhost:8080
+2026-05-30 13:06:39 [DEBUG] {"tableName":"entry","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 13:06:39 [INFO] Created table entry for model Entry
+2026-05-30 13:06:39 [DEBUG] {"tableName":"config","result":{"changes":0,"lastInsertRowid":0}}
+2026-05-30 13:06:39 [INFO] Created table config for model Config
+2026-05-30 13:06:39 [ERROR] `lp` is not installed on host. Printing will not work.
+2026-05-30 13:06:39 [INFO] Loaded configuration from '.env'
+2026-05-30 13:06:39 [DEBUG] Inserted config key 'labelCurrentCount' with value '0' into database.
+2026-05-30 13:06:39 [DEBUG] Inserted config key 'labelDefaultCount' with value '300' into database.
+2026-05-30 13:06:39 [DEBUG] Inserted config key 'labelTemplatePath' with value 'template.svg' into database.
+2026-05-30 13:06:39 [DEBUG] Inserted config key 'password' with value 'password' into database.
+2026-05-30 13:06:39 [INFO] Server listening on http://localhost:8080
+2026-05-30 13:23:13 [DEBUG] Entry controller received post body: {"entryDateTime":"2026-05-30T17:23:13.309Z","id":99,"firstName":"TEST","lastName":"TEST","reason":"TEST","method":"DEBUG","labelPrinted":false}
+2026-05-30 13:23:13 [ERROR] An error ocurred
+2026-05-30 13:23:13 [ERROR] {"code":"ERR_INVALID_ARG_TYPE"}
+2026-05-30 13:23:33 [DEBUG] Entry controller received post body: {"entryDateTime":"2026-05-30T17:23:33.961Z","id":99,"firstName":"TEST","lastName":"TEST","reason":"TEST","method":"DEBUG","labelPrinted":0}
+2026-05-30 13:23:38 [DEBUG] Print controller received body: {"entryDateTime":"2026-05-30T17:23:38.919Z","id":99,"firstName":"TEST","lastName":"TEST","reason":"TEST","method":"DEBUG","labelPrinted":0}
+2026-05-30 13:23:38 [ERROR] Failed to print
+2026-05-30 13:23:38 [DEBUG] {"errno":-2,"code":"ENOENT","syscall":"spawnSync lp","path":"lp","spawnargs":["-o","landscape","-o","media=Custom.2.5125x3.875in","tmp/labels-qMW4c7/label-1780161818922.png"]}
+2026-05-30 13:25:02 [DEBUG] Entry controller received post body: {"entryDateTime":"2026-05-30T17:25:02.128Z","firstName":"MATTHEW","lastName":"NEAVLING","reason":"Conference","method":"barcode"}
+2026-05-30 13:25:04 [DEBUG] Print controller received body: {"entryDateTime":"2026-05-30T17:25:02.128Z","firstName":"MATTHEW","lastName":"NEAVLING","reason":"Conference","method":"barcode"}
+2026-05-30 13:25:04 [ERROR] Failed to print
+2026-05-30 13:25:04 [DEBUG] {"errno":-2,"code":"ENOENT","syscall":"spawnSync lp","path":"lp","spawnargs":["-o","landscape","-o","media=Custom.2.5125x3.875in","tmp/labels-qMW4c7/label-1780161904240.png"]}
+2026-05-30 13:32:09 [DEBUG] Entry controller received post body: {"entryDateTime":"2026-05-30T17:32:09.333Z","id":99,"firstName":"TEST","lastName":"TEST","reason":"TEST","method":"DEBUG","labelPrinted":0}
+2026-05-30 13:37:09 [DEBUG] Entry controller received post body: {"entryDateTime":"2026-05-30T17:37:09.121Z","firstName":"MATTHEW","lastName":"NEAVLING","reason":"Conference","method":"barcode"}
+2026-05-30 13:37:09 [DEBUG] Print controller received body: {"entryDateTime":"2026-05-30T17:37:09.121Z","firstName":"MATTHEW","lastName":"NEAVLING","reason":"Conference","method":"barcode"}
+2026-05-30 13:37:09 [ERROR] Failed to print
+2026-05-30 13:37:09 [DEBUG] {"errno":-2,"code":"ENOENT","syscall":"spawnSync lp","path":"lp","spawnargs":["-o","landscape","-o","media=Custom.2.5125x3.875in","tmp/labels-qMW4c7/label-1780162629139.png"]}
+2026-05-30 13:39:01 [DEBUG] Entry controller received post body: {"entryDateTime":"2026-05-30T17:39:01.279Z","firstName":"MATTHEW","lastName":"NEAVLING","reason":"Conference","method":"barcode"}
+2026-05-30 13:39:01 [DEBUG] Print controller received body: {"entryDateTime":"2026-05-30T17:39:01.279Z","firstName":"MATTHEW","lastName":"NEAVLING","reason":"Conference","method":"barcode"}
+2026-05-30 13:39:01 [ERROR] Failed to print
+2026-05-30 13:39:01 [DEBUG] {"errno":-2,"code":"ENOENT","syscall":"spawnSync lp","path":"lp","spawnargs":["-o","landscape","-o","media=Custom.2.5125x3.875in","tmp/labels-qMW4c7/label-1780162741300.png"]}
+2026-05-30 13:40:28 [DEBUG] Entry controller received post body: {"entryDateTime":"2026-05-30T17:40:28.427Z","firstName":"MATTHEW","lastName":"NEAVLING","reason":"Conference","method":"barcode"}
+2026-05-30 13:40:28 [DEBUG] Print controller received body: {"entryDateTime":"2026-05-30T17:40:28.427Z","firstName":"MATTHEW","lastName":"NEAVLING","reason":"Conference","method":"barcode"}
+2026-05-30 13:40:28 [ERROR] Failed to print
+2026-05-30 13:40:28 [DEBUG] {"errno":-2,"code":"ENOENT","syscall":"spawnSync lp","path":"lp","spawnargs":["-o","landscape","-o","media=Custom.2.5125x3.875in","tmp/labels-qMW4c7/label-1780162828668.png"]}
+2026-05-30 13:41:06 [DEBUG] Entry controller received post body: {"entryDateTime":"2026-05-30T17:41:06.806Z","id":99,"firstName":"TEST","lastName":"TEST","reason":"TEST","method":"DEBUG","labelPrinted":0}
+2026-05-30 13:41:11 [DEBUG] Print controller received body: {"entryDateTime":"2026-05-30T17:41:11.905Z","id":99,"firstName":"TEST","lastName":"TEST","reason":"TEST","method":"DEBUG","labelPrinted":0}
+2026-05-30 13:41:11 [ERROR] Failed to print
+2026-05-30 13:41:11 [DEBUG] {"errno":-2,"code":"ENOENT","syscall":"spawnSync lp","path":"lp","spawnargs":["-o","landscape","-o","media=Custom.2.5125x3.875in","tmp/labels-qMW4c7/label-1780162871952.png"]}
+2026-05-30 13:58:06 [DEBUG] Print controller received body: {"entryDateTime":"2026-05-30T17:58:06.668Z","id":99,"firstName":"TEST","lastName":"TEST","reason":"TEST","method":"DEBUG","labelPrinted":0}
+2026-05-30 13:58:06 [ERROR] Failed to print
+2026-05-30 13:58:06 [DEBUG] {"errno":-2,"code":"ENOENT","syscall":"spawnSync lp","path":"lp","spawnargs":["-o","landscape","-o","media=Custom.2.5125x3.875in","tmp/labels-qMW4c7/label-1780163886680.png"]}
+2026-05-30 13:58:17 [DEBUG] Print controller received body: {"entryDateTime":"2026-05-30T17:58:17.184Z","id":99,"firstName":"TEST","lastName":"TEST","reason":"TEST","method":"DEBUG","labelPrinted":0}
+2026-05-30 13:58:17 [ERROR] Failed to print
+2026-05-30 13:58:17 [DEBUG] {"errno":-2,"code":"ENOENT","syscall":"spawnSync lp","path":"lp","spawnargs":["-o","landscape","-o","media=Custom.2.5125x3.875in","tmp/labels-qMW4c7/label-1780163897228.png"]}
+2026-05-30 13:58:50 [DEBUG] Print controller received body: {"entryDateTime":"2026-05-30T17:58:50.936Z","id":99,"firstName":"TEST","lastName":"TEST","reason":"TEST","method":"DEBUG","labelPrinted":0}
+2026-05-30 13:58:51 [ERROR] Failed to print
+2026-05-30 13:58:51 [DEBUG] {"errno":-2,"code":"ENOENT","syscall":"spawnSync lp","path":"lp","spawnargs":["-o","landscape","-o","media=Custom.2.5125x3.875in","tmp/labels-qMW4c7/label-1780163930984.png"]}
+2026-05-30 13:58:53 [DEBUG] Entry controller received post body: {"entryDateTime":"2026-05-30T17:58:53.755Z","id":99,"firstName":"TEST","lastName":"TEST","reason":"TEST","method":"DEBUG","labelPrinted":0}

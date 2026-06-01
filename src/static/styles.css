@@ -1,0 +1,107 @@
+:root {
+    --blue: #0000ff;
+    --bradius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    display: flex;
+    border-bottom: 1px dotted var(--blue);
+
+    h1 {
+        flex-basis: 100%;
+    }
+
+}
+
+footer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+main {
+    flex: auto;
+    display: flex;
+}
+
+dialog {
+    transition: all 200ms;
+    transition-behavior: allow-discrete;
+    opacity: 0;
+    transform: translateY(-5%);
+
+    &::backdrop {
+        transition: all 200ms;
+    }
+
+    &:open {
+        opacity: 1;
+        transform: translateY(0);
+
+        @starting-style {
+            opacity: 0;
+            transform: translateY(5%);
+        }
+    }
+}
+
+input {
+    padding: 0.5rem;
+    border-radius: var(--bradius);
+
+    &:focus {
+        background-color: yellow;
+    }
+}
+
+#visitor-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    gap: 1rem;
+}
+
+.field-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.visually-hidden {
+    position: absolute;
+    transform: scale(0, 0);
+}
+
+.reason-field {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    gap: 1rem;
+}
+
+.reason-opt {
+    background-color: var(--blue);
+    color: contrast-color(var(--blue));
+    text-align: center;
+    width: 5rem;
+    padding: 1rem;
+    border-radius: var(--bradius);
+}
+
+#reason-form input {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+input:checked+.reason-opt {
+    background-color: color-mix(in hsl shorter hue, var(--blue) 50%, black 50%);
+}
