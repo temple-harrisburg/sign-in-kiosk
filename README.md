@@ -2,8 +2,18 @@
 
 # Overview
 ## Dependencies
+- [Node.js 26.2.0](https://nodejs.org/en/download/current)
 - [`lp`](https://manpage.me/index.cgi?apropos=0&q=lp&sektion=0&manpath=FreeBSD+12-CURRENT+and+Ports&arch=default&format=html)
-- (Optional, for use with Dymo printers) [matthiasbock/dymo-cups-drivers](https://github.com/matthiasbock/dymo-cups-drivers)
+- (recommended) [matthiasbock/dymo-cups-drivers](https://github.com/matthiasbock/dymo-cups-drivers)
+- (recommended) [pnpm](https://pnpm.io/)
+
+## Quick Start
+```sh
+pnpm install
+pnpm start
+```
+By default the web interface is served at http://localhost:8080.
+
 ## Configuration
 ### Precedence
 Configuration options are read from the following sources, by order of precedence:
@@ -13,7 +23,7 @@ Configuration options are read from the following sources, by order of precedenc
 
 ### Setting Config Options
 #### CLI
-These are the CLI arguments:
+The CLI options are specified in [`src/main.js`](https://github.com/temple-harrisburg/sign-in-kiosk/blob/e2cf51d50b210cebfda8d511ae94b344e4043d64/src/main.js#L18):
 ```js
 const options = {
     /**
@@ -68,10 +78,18 @@ const options = {
 }
 ```
 
+For example:
+```sh
+node src/main.js --verbose --env-file .env.production
+```
+This command will enable verbose logging and read config files from an env file named `.env.production` in the current working directory.
+
+
 #### Database
+Configuration is persisted in the database in the 'config' table. Config options specified here will take precedence over whatever is found in the `.env` file.
 
 #### .env file
-`main.js` looks for variables in the environment with keys that start with a prefix. The default prefix is `CONFIG_`. The key names are assumed to be in 'SNAKE_CASE', so they're converted to 'camelCase', then loaded into the database.
+`src/main.js` looks for variables in the environment with keys that start with a prefix. The default prefix is `CONFIG_`. The key names are assumed to be in 'SNAKE_CASE', so they're converted to 'camelCase', then loaded into the database.
 
 For example, the following env file will result in the below configuration:
 ```sh 
@@ -89,3 +107,5 @@ Results in:
     "labelTemplatePath":"template.svg"
 }
 ```
+
+If these keys are not found in the database, they will be entered as new items. Otherwise, the existing database configuration takes precedence, and the environment variable is ignored.
