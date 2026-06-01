@@ -3,3 +3,4 @@ db.sqlite
 .env
 temp
 tmp
+log.txt
