@@ -158,7 +158,8 @@
                 loadingMessage();
                 fetch(path, parameters)
                     .then(res => res.json())
-                    .then(({ status, data }) => {
+                    .then(({ status, data, error }) => {
+                        if (error) throw error;
                         console.log(status, data);
                         popupMessage(status, data);
                     })
