@@ -674,12 +674,13 @@
                         .then(res => res.json())
                         .then(({ status, data, error }) => {
                             if (error) throw new Error(error);
+                            return status
                         })
                         .finally(() => console.log(`Print POST finished`))
 
                     // If print succeeded, update record
-                    if (printResult.status === "OK") {
-                        const entryUpdateResult = await fetch(`/api/entry/${entryResult.data.lastInsertRowid}`, { body: JSON.stringify({ labelPrinted: 1 }), method: "PATCH", headers, })
+                    if (printResult === "OK") {
+                        await fetch(`/api/entry/${entryResult.data.lastInsertRowid}`, { body: JSON.stringify({ labelPrinted: 1 }), method: "PATCH", headers, })
                             .then(res => res.json())
                             .then(({ status, data, error }) => {
                                 if (error) throw new Error(error);
@@ -688,7 +689,7 @@
                             .finally(() => console.log(`Entry update POST finished`))
 
                         // Optimistically update the current label count;
-                        const labelCount = parseInt(labelCurrentCountIndicator.value)--;
+                        const labelCount = parseInt(labelCurrentCountIndicator.value) - 1;
                         labelCurrentCountIndicator.dispatchEvent(new LabelCountEvent(labelCount));
 
                         const currentLabelCount = await fetch(`/api/config/labelCurrentCount`, {
@@ -706,10 +707,11 @@
                     } else {
                         throw new Error("Printing failed. Try again");
                     }
-                    console.log(entryResult, printResult, entryUpdateResult);
+                    console.log(entryResult, printResult);
                     loaderDialog.dispatchEvent(new LoadingEvent("Success", i18y.getTranslation(currentLang(), "entry-welcome")));
 
                 } catch (err) {
+                    console.error(err);
                     loaderDialog.dispatchEvent(new LoadingEvent("ERROR", err.message));
                 }
 
