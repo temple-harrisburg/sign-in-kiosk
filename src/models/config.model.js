@@ -78,7 +78,9 @@ export class Config extends Model {
         const { db } = global.context;
         const tableName = db.tableName(Config);
         const stmt = db.sqlite.prepare(`SELECT * FROM ${tableName} WHERE key = ?`);
-        return new Config(stmt.get(key,));
+        const data = stmt.get(key,);
+        if (!data) throw new Error(`Config not found for key ${key}`);
+        return new Config(data);
     }
 
     /**
