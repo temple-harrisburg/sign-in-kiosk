@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles.css" />
-    <script src="/i18y.js"></script>
+    <script src="/i18n.js"></script>
     <script src="/barcode.js"></script>
     <title>Document</title>
 </head>
@@ -48,32 +48,32 @@
     <header>
         <h1>Sign-in Kiosk</h1>
         <div class="header-options">
-            <form id="i18y">
+            <form id="i18n">
                 <fieldset>
-                    <legend data-i18y="i18y-title">Language</legend>
+                    <legend data-i18n="i18n-title">Language</legend>
                     <label for="lang-en">EN</label>
                     <input type="radio" name="lang" value="EN" id="lang-en" checked />
                     <label for="lang-es">ES</label>
                     <input type="radio" name="lang" value="ES" id="lang-es" />
                 </fieldset>
             </form>
-            <button command="show-modal" commandfor="config-login-modal" data-i18y="config-login-button">Edit
+            <button command="show-modal" commandfor="config-login-modal" data-i18n="config-login-button">Edit
                 Configuration</button>
             <button id="barcode-scan-launch" command="show-modal" commandfor="barcode-scan-modal"
-                data-i18y="barcode-button">Scan Barcode</button>
+                data-i18n="barcode-button">Scan Barcode</button>
         </div>
         <dialog id="config-login-modal" closedby="any">
             <form id="config-login-form" method="dialog">
-                <label for="password" data-i18y="password">Password</label>
+                <label for="password" data-i18n="password">Password</label>
                 <input type="password" name="password" id="password" required />
-                <button type="submit" data-i18y="submit">Submit</button>
+                <button type="submit" data-i18n="submit">Submit</button>
             </form>
         </dialog>
         <dialog id="barcode-scan-modal" closedby="any">
             <form id="barcode-scan-form">
                 <input type="hidden" id="barcodeinfo" name="barcodeinfo" />
             </form>
-            <p data-i18y="scanner-await">Waiting for input from scanner...</p>
+            <p data-i18n="scanner-await">Waiting for input from scanner...</p>
         </dialog>
     </header>
     <main id="main">
@@ -82,42 +82,42 @@
         <dialog id="reason-modal">
             <form id="reason-form" method="dialog">
                 <fieldset class="reason-field">
-                    <legend data-i18y="reason-greeting">What brings you to Temple Harrisburg?</legend>
+                    <legend data-i18n="reason-greeting">What brings you to Temple Harrisburg?</legend>
                     <input type="radio" name="reason" id="conference" value="Conference" class="visually-hidden"
                         checked />
                     <label for="conference" class="reason-opt" tabindex="0"
-                        data-i18y="reason-conference">Conference</label>
+                        data-i18n="reason-conference">Conference</label>
 
                     <input type="radio" name="reason" id="training" value="Training" class="visually-hidden" />
-                    <label for="training" class="reason-opt" tabindex="0" data-i18y="reason-training">Training</label>
+                    <label for="training" class="reason-opt" tabindex="0" data-i18n="reason-training">Training</label>
 
                     <input type="radio" name="reason" id="meeting" value="Meeting" class="visually-hidden" />
-                    <label for="meeting" class="reason-opt" tabindex="0" data-i18y="reason-meeting">Meeting</label>
+                    <label for="meeting" class="reason-opt" tabindex="0" data-i18n="reason-meeting">Meeting</label>
 
                     <input type="radio" name="reason" id="event" value="Event" class="visually-hidden" />
-                    <label for="event" class="reason-opt" tabindex="0" data-i18y="reason-event">Event</label>
+                    <label for="event" class="reason-opt" tabindex="0" data-i18n="reason-event">Event</label>
                 </fieldset>
-                <button value="default" type="submit" data-i18y="submit">Submit</button>
+                <button value="default" type="submit" data-i18n="submit">Submit</button>
                 <button value="cancel" type="button" command="close" commandfor="reason-modal"
-                    data-i18y="cancel">Cancel</button>
+                    data-i18n="cancel">Cancel</button>
             </form>
         </dialog>
         <dialog id="barcode-result-modal" closedby="any">
             <form method="dialog" id="barcode-result-form">
                 <div class="field-wrapper">
-                    <label for="firstName" data-i18y="first-name">First Name</label>
+                    <label for="firstName" data-i18n="first-name">First Name</label>
                     <input type="text" name="firstName" id="barcodeFirstName" disabled>
                 </div>
                 <div class="field-wrapper">
-                    <label for="lastName" data-i18y="last-name">Last Name</label>
+                    <label for="lastName" data-i18n="last-name">Last Name</label>
                     <input type="text" name="lastName" id="barcodeLastName" disabled>
                 </div>
-                <p data-i18y="barcode-confirm-correct">Is this correct?</p>
+                <p data-i18n="barcode-confirm-correct">Is this correct?</p>
                 <div id="barcode-result-buttons-group">
-                    <button type="submit" id="barcode-result-confirm" data-i18y="yes">Yes</button>
-                    <button type="button" id="barcode-result-edit" data-i18y="edit">Edit</button>
-                    <button id="barcode-result-save" data-i18y="save" class="visually-hidden" disabled>Save</button>
-                    <button type="button" id="barcode-result-cancel" data-i18y="cancel"
+                    <button type="submit" id="barcode-result-confirm" data-i18n="yes">Yes</button>
+                    <button type="button" id="barcode-result-edit" data-i18n="edit">Edit</button>
+                    <button id="barcode-result-save" data-i18n="save" class="visually-hidden" disabled>Save</button>
+                    <button type="button" id="barcode-result-cancel" data-i18n="cancel"
                         commandfor="barcode-result-modal" command="close">Cancel</button>
                 </div>
             </form>
@@ -126,15 +126,15 @@
             <input type="hidden" name="method" id="method" value="form">
             <input type="hidden" name="labelPrinted" id="labelPrinted" value="0">
             <div class="field-wrapper">
-                <label for="firstName" data-i18y="first-name">First Name</label>
+                <label for="firstName" data-i18n="first-name">First Name</label>
                 <input type="text" id="firstName" name="firstName" placeholder="First Name" required />
             </div>
             <div class="field-wrapper">
-                <label for="lastName" data-i18y="last-name">Last Name</label>
+                <label for="lastName" data-i18n="last-name">Last Name</label>
                 <input type="text" id="lastName" name="lastName" placeholder="Last Name" required />
             </div>
             <button type="submit" command="show-modal" commandfor="reason-modal"><span
-                    data-i18y="continue">Continue</span>...</button>
+                    data-i18n="continue">Continue</span>...</button>
         </form>
     </main>
     <footer>
@@ -352,7 +352,7 @@
              * Internationalization form
              * @type {HTMLFormElement}
              */
-            const internationalizationForm = document.getElementById("i18y");
+            const internationalizationForm = document.getElementById("i18n");
 
             /**
              * Admin configuration login form
@@ -426,7 +426,7 @@
                 const msg = document.importNode(messageTemplate.content, true);
                 msg.querySelector('[slot="message"]').textContent = message;
                 msg.querySelector('[slot="detail"]').textContent = detail;
-                msg.querySelector('[slot="dismiss"]').textContent = i18y.getTranslation(currentLang(), "dismiss");
+                msg.querySelector('[slot="dismiss"]').textContent = i18n.getTranslation(currentLang(), "dismiss");
                 return msg;
             }
 
@@ -474,7 +474,7 @@
             internationalizationForm.addEventListener("change", () => {
                 const { value: langCode } = internationalizationForm.lang;
                 console.log(`Switching to language: ${langCode}`);
-                i18y.translate(langCode, document.body);
+                i18n.translate(langCode, document.body);
             })
 
 
@@ -664,7 +664,7 @@
                     const options = { body, method, headers };
                     const entryResult = await fetch('/api/entry', options)
                         .then(res => {
-                            if (res.ok) loaderDialog.dispatchEvent(new LoadingEvent("PRINTING", i18y.getTranslation(currentLang(), "entry-welcome")));
+                            if (res.ok) loaderDialog.dispatchEvent(new LoadingEvent("PRINTING", i18n.getTranslation(currentLang(), "entry-welcome")));
                             return res.json();
                         })
                         .finally(() => console.log(`Entry POST finished`))
@@ -708,7 +708,7 @@
                         throw new Error("Printing failed. Try again");
                     }
                     console.log(entryResult, printResult);
-                    loaderDialog.dispatchEvent(new LoadingEvent("Success", i18y.getTranslation(currentLang(), "entry-welcome")));
+                    loaderDialog.dispatchEvent(new LoadingEvent("Success", i18n.getTranslation(currentLang(), "entry-welcome")));
 
                 } catch (err) {
                     console.error(err);

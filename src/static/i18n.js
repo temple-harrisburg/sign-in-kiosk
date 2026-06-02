@@ -5,7 +5,7 @@
  */
 const translations = {
     "EN": {
-        "i18y-title": "Language",
+        "i18n-title": "Language",
         "config-login-button": "Edit Configuration",
         "password": "Password",
         "submit": "Submit",
@@ -25,7 +25,7 @@ const translations = {
         "barcode-confirm-correct": "Is this correct?",
     },
     "ES": {
-        "i18y-title": "Lengua",
+        "i18n-title": "Lengua",
         "config-login-button": "Editar configuración",
         "password": "la clave",
         "submit": "Presentar",
@@ -46,17 +46,17 @@ const translations = {
     },
 }
 
-const i18y = {
+const i18n = {
     translations,
 
     /**
      * 
      * @param {string} code Two-letter code identifying dictionary to retrieve
      * @param {HTMLElement} root Root node to start searching for elements with translations.
-     * @param {string} [attribute="data-i18y"] Element attribute to compare with key
-     * @default attribute data-i18y 
+     * @param {string} [attribute="data-i18n"] Element attribute to compare with key
+     * @default attribute data-i18n 
      */
-    translate(code, root, attribute = "data-i18y") {
+    translate(code, root, attribute = "data-i18n") {
         for (const [id, text] of Object.entries(translations[code])) {
             const targets = root.querySelectorAll(`*[${attribute}="${id}"]`);
             if (!targets) return;
