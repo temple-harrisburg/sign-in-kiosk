@@ -1,8 +1,8 @@
 import child_process, { ChildProcess } from "node:child_process";
 import os from "node:os";
 import fs from "node:fs";
-import sharp from "sharp";
 import path from "node:path";
+import sharp from "sharp";
 
 class PrinterOpts {
     /**
