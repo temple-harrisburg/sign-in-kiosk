@@ -134,16 +134,17 @@ for (let [key, value] of Object.entries(process.env)) {
     if (key.startsWith(prefix)) {
         key = key.slice(prefix.length);
         key = snakeToCamel(key);
-        const config = await Config.getByKey(key);
-        if (!config) {
-            Config.create({ key, value, })
-                .commit()
-                .then(() => {
-                    mergedConfig[key] = value;
-                })
-        } else {
-            mergedConfig[config['key']] = config['value'];
-        }
+        await Config.getByKey(key)
+            .then(res => res.json())
+            .then(({ status, data, error }) => {
+                if (error) throw new Error(error);
+                mergedConfig[data.key] = data.value;
+            })
+            .catch(error => {
+                Config.create({ key, value, previousValue: value })
+                    .then(config => config.commit())
+                    .then(() => { mergedConfig[key] = value; });
+            })
     }
 }
 
