@@ -179,7 +179,9 @@ api.route('/entry/:id')
     .get(EntryController.get)
     .patch(EntryController.patch);
 
-api.post('/print', PrintController.post);
+api.route("/print")
+    .get(PrintController.get)
+    .post(PrintController.post);
 
 api.post('/auth', (request, response) => {
     const { body } = request;
