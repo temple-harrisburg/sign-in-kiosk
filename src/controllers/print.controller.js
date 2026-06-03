@@ -1,10 +1,38 @@
 import { Controller } from "@kiosk-app/mvc";
 
+/**
+ * Handler for printer commands
+ * @typedef {import('express').Request} Request
+ * @typedef {import('express').Response} Response
+ */
 export class PrintController {
 	/**
+	 * Return the print queue
+	 * @param {Request} request
+	 * @param {Reponse} response
+	 */
+	static async get(request, response) {
+		const { logger, printer } = global.context;
+		logger.debug("Getting print queue");
+		try {
+
+			const data = await printer.getQueue();
+			logger.debug(data);
+			response.status(200);
+			response.json({ status: "OK", data, error: undefined });
+		} catch (err) {
+			logger.error("An error occurred");
+			logger.error(err.message);
+			response.status(500);
+			response.json({ status: "ERROR", data: undefined, error: err.message });
+		}
+
+	}
+
+	/**
 	 * Handle a request to print a label
-	 * @param {import('express').Request} request 
-	 * @param {import('express').Response} response 
+	 * @param {Request} request 
+	 * @param {Response} response 
 	*/
 	static async post(request, response) {
 		const { logger, printer } = global.context;

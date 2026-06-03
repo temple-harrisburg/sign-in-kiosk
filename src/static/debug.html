@@ -68,6 +68,10 @@
                 <legend>Barcode</legend>
                 <button type="button" id="test-barcode-parsing">Test Barcode parsing</button>
             </fieldset>
+            <fieldset>
+                <legend>Printer</legend>
+                <button type="button" id="print-queue">Get Print Queue</button>
+            </fieldset>
         </form>
     </main>
 
@@ -109,6 +113,29 @@
              * @type {HTMLButtonElement}
              */
             const testBarcodeParsingButton = document.getElementById("test-barcode-parsing");
+
+
+            /**
+            * Button to query print queue
+             * @type {HTMLButtonElement}
+             */
+            const getPrintQueueButton = document.getElementById("print-queue");
+
+            getPrintQueueButton.addEventListener("click", async () => {
+                const data = await fetch("/api/print")
+                    .then(res => res.json())
+                    .then(({ status, data, error }) => {
+                        if (error) throw error;
+                        return data;
+                    })
+                    .catch(err => {
+                        popupMessage("ERROR", err);
+                    });
+                popupMessage("SUCCESS", data);
+            });
+
+
+
 
             /**
              * Template for popup messages
@@ -227,7 +254,8 @@
                 })
             })
 
-        })
+        });
+
 
         window.addEventListener("beforeunload", () => {
         })
