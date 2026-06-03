@@ -70,7 +70,7 @@ export class PrintController {
 							break;
 					}
 				}
-				const message = errorMessage(err.code||err);
+				const message = errorMessage(err.code || err);
 				logger.error(`Failed to print`);
 				logger.debug(message);
 				response.status(500);
