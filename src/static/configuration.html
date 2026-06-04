@@ -9,6 +9,15 @@
 </head>
 
 <body>
+
+	<dialog id="popup-message" closedby="any">
+		<div id="message-wrapper"></div>
+	</dialog>
+	<template id="message">
+		<h3 slot="message-title">STATUS</h3>
+		<p slot="message-data">MESSAGE</p>
+		<button command="close" commandfor="popup-message">Dismiss</button>
+	</template>
     <header>
         <nav>
             <ul>
@@ -21,6 +30,8 @@
     <form id="settings-form">
         <fieldset>
             <legend>Labels</legend>
+	    <button type="button" id="reset-label-count">Reset Label Count</button>
+
             <label for="labelDefaultCount">Default Count</label>
             <input type="number" name="labelDefaultCount" id="labelDefaultCount" value="300" />
 
@@ -87,8 +98,29 @@
 
         }
 
-
         window.addEventListener("DOMContentLoaded", () => {
+
+		/**
+		* @type {HTMLTemplateElement}
+		*/
+		const popupMessageTemplate = document.getElementById("message");
+
+		/**
+		 * @type {HTMLDialogElement}
+		 */
+		const popupMessageDialog = document.getElementById("popup-message");
+
+	function popupMessage(status, message){
+		message = typeof message === 'object' ? JSON.stringify(message, null, 2) : message;
+		const node = document.importNode(popupMessageTemplate.content, true);
+		node.querySelector('[slot="message-title"]').textContent = status;
+		node.querySelector('[slot="message-data"]').textContent = message;
+
+		popupMessageDialog.querySelector("#message-wrapper").replaceChildren(node);
+		popupMessageDialog.showModal();
+	}
+
+
 
             /**
              * @type {HTMLFormElement}
@@ -123,6 +155,37 @@
             serializeConfig().then(blob => {
                 downloadConfigLink.setAttribute("href", URL.createObjectURL(blob));
             });
+
+		/**
+		 * @type {HTMLButtonElement}
+		 */
+		const resetLabelCountButton = document.getElementById("reset-label-count");
+
+		resetLabelCountButton.addEventListener("click", async ()=>{
+			const labelDefaultCount = await fetch(`/api/config/labelDefaultCount`)
+				.then(res=>res.json())
+				.then(({ status, data, error })=>{
+					if (error) throw error;
+					return parseInt(data.value);
+				})
+				.catch(error=>{
+					popupMessage("ERROR", error.message);
+				});
+
+			fetch(`/api/config/labelCurrentCount`, { 
+				method: "PATCH",
+				body: JSON.stringify({ value: labelDefaultCount }),
+				headers: { "Content-type":"application/json" }
+			})
+				.then(res=>res.json())
+				.then(({ status, data, error })=>{
+					if (error) throw error;
+					popupMessage("SUCCESS", data);
+				})
+				.catch(error=>{
+					popupMessage("ERROR", error.message);
+				});
+		});
 
 
             // Audio preview buttons
