@@ -165,7 +165,8 @@ const api = express.Router()
 // - routes
 api.route('/config')
     .get(ConfigController.get)
-    .post(ConfigController.post);
+    .post(ConfigController.post)
+    .patch(ConfigController.patch);
 
 api.route('/config/:key')
     .get(ConfigController.get)

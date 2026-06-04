@@ -66,25 +66,45 @@ export class ConfigController extends Controller {
         const { logger, db } = global.context;
         const { key } = request.params;
 
-        /**
-         * @type {ConfigOpts}
-         */
-        const { body } = request;
 
         logger.debug("Config PATCH received data");
-        logger.debug(JSON.stringify(body));
+        logger.debug(JSON.stringify(request.body));
 
-        Config.getByKey(key)
-            .then(config => config.update(body).commit())
-            .then(result => {
+        if (key) {
+            /**
+             * @type {string} String representing the value to set this key
+             */
+            const { body } = request;
+            Config.getByKey(key)
+                .then(config => config.update(body).commit())
+                .then(result => {
+                    response.status(200);
+                    response.json({ status: "OK", data: result, error: undefined });
+                })
+                .catch(error => {
+                    logger.error("An error occured");
+                    logger.error(JSON.stringify(error.message));
+                    response.status(500);
+                    response.json({ status: "ERROR", data: undefined, error });
+                })
+        } else {
+            try {
+                /**
+                 * @type {Record<string, string>} Record of keys and the values to them them to
+                 */
+                const { body } = request;
+                if (!typeof body === 'object') throw Error('Incorrect PATCH body. Must be JSON object.')
+                let results = {};
+                Config.updateMany(body)
+                    .forEach(async config => {
+                        await config.commit().then(result => { results[config.key] = result; });
+                    });
                 response.status(200);
-                response.json({ status: "OK", data: result, error: undefined });
-            })
-            .catch(error => {
-                logger.error("An error occured");
-                logger.error(JSON.stringify(error.message));
-                response.status(500);
-                response.json({ status: "ERROR", data: undefined, error });
-            })
+                response.json({ status: "OK", data: results, error: undefined });
+            } catch (error) {
+                response.status(400);
+                response.json({ status: "ERROR", data: undefined, error: error.message });
+            }
+        }
     }
 }

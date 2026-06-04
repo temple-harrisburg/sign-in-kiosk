@@ -217,23 +217,19 @@
 
             settingsForm.addEventListener("submit", async e => {
                 e.preventDefault();
-                const data = new FormData(settingsForm);
-                let errors = [];
-                for (const [key, value] of data.entries()) {
-                    await fetch(`/api/config/${key}`, {
-                        method: 'PATCH',
-                        body: JSON.stringify({ key, value }),
-                        headers: { "Content-type": "application/json" }
+                const data = Object.fromEntries(new FormData(settingsForm).entries());
+                console.log(data);
+                await fetch(`/api/config`, {
+                    method: "PATCH",
+                    body: JSON.stringify(data),
+                    headers: { "Content-type": "application/json" }
+                })
+                    .then(results => {
+                        console.log(results)
                     })
-                        .then(res => res.json())
-                        .then(({ status, data, error }) => {
-                            if (error) throw error;
-                            console.log(status, data);
-                        })
-                        .catch(error => errors.push(error))
-                }
-                errors && console.error("The following errors occurred");
-                errors && errors.forEach(err => console.error(err));
+                    .catch(error => {
+                        popupMessage("ERROR", error.message);
+                    })
             });
         })
     </script>

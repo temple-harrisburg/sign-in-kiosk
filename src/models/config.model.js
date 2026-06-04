@@ -105,6 +105,15 @@ export class Config extends Model {
     }
 
     /**
+     * Update many config options from a collection of key-value pairs.
+     * @param {Record<string, string>} values Key-value pairs to update
+     * @returns {Config[]} Array of config objects. `commit` must be called on each individually.
+     */
+    static updateMany(values) {
+        return Object.entries(values).map(([key, value]) => new Config({ key, value }));
+    }
+
+    /**
      * 
      * @param {ConfigOpts} values New value for this Config
      * @returns {Config} Updated config instance
