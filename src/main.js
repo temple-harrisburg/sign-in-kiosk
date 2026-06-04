@@ -141,7 +141,7 @@ for (let [key, value] of Object.entries(process.env)) {
                 mergedConfig[data.key] = data.value;
             })
             .catch(error => {
-                Config.create({ key, value, previousValue: value })
+                Config.create({ key, value })
                     .then(config => config.commit())
                     .then(() => { mergedConfig[key] = value; });
             })

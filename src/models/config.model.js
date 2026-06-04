@@ -63,10 +63,10 @@ export class Config extends Model {
     */
     constructor(config) {
         super();
-        const { key, value, previousValue } = config;
+        const { key, value } = config;
         this.key = key;
         this.value = value;
-        this.previousValue = previousValue;
+        // this.previousValue = previousValue;
     }
 
     /**
@@ -129,11 +129,11 @@ export class Config extends Model {
     async commit() {
         const { db, logger } = global.context;
         const tableName = db.tableName(Config);
-        const stmt = db.sqlite.prepare(`INSERT INTO ${tableName} (key, value, previousValue) VALUES (?, ?, ?)
+        const stmt = db.sqlite.prepare(`INSERT INTO ${tableName} (key, value) VALUES (?, ?)
             ON CONFLICT (key)
             DO UPDATE SET previousValue=value, value=excluded.value
             `)
-        const result = stmt.run(this.key, this.value, this.previousValue);
+        const result = stmt.run(this.key, this.value,);
         return result;
     }
 }
