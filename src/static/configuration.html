@@ -23,14 +23,14 @@
             <ul>
                 <li><a href="/">Home</a></li>
                 <li><a href="/debug.html">Debug</a></li>
-		<li><a href="http://localhost:631" target="_blank">Print Console</a></li>
+                <li><a href="http://localhost:631" target="_blank">Print Console</a></li>
             </ul>
         </nav>
     </header>
     <form id="settings-form">
         <fieldset>
             <legend>Labels</legend>
-	    <button type="button" id="reset-label-count">Reset Label Count</button>
+            <button type="button" id="reset-label-count">Reset Label Count</button>
 
             <label for="labelDefaultCount">Default Count</label>
             <input type="number" name="labelDefaultCount" id="labelDefaultCount" value="300" />
@@ -156,36 +156,36 @@
                 downloadConfigLink.setAttribute("href", URL.createObjectURL(blob));
             });
 
-		/**
-		 * @type {HTMLButtonElement}
-		 */
-		const resetLabelCountButton = document.getElementById("reset-label-count");
+            /**
+             * @type {HTMLButtonElement}
+             */
+            const resetLabelCountButton = document.getElementById("reset-label-count");
 
-		resetLabelCountButton.addEventListener("click", async ()=>{
-			const labelDefaultCount = await fetch(`/api/config/labelDefaultCount`)
-				.then(res=>res.json())
-				.then(({ status, data, error })=>{
-					if (error) throw error;
-					return parseInt(data.value);
-				})
-				.catch(error=>{
-					popupMessage("ERROR", error.message);
-				});
+            resetLabelCountButton.addEventListener("click", async () => {
+                const labelDefaultCount = await fetch(`/api/config/labelDefaultCount`)
+                    .then(res => res.json())
+                    .then(({ status, data, error }) => {
+                        if (error) throw error;
+                        return parseInt(data.value);
+                    })
+                    .catch(error => {
+                        popupMessage("ERROR", error.message);
+                    });
 
-			fetch(`/api/config/labelCurrentCount`, { 
-				method: "PATCH",
-				body: JSON.stringify({ value: labelDefaultCount }),
-				headers: { "Content-type":"application/json" }
-			})
-				.then(res=>res.json())
-				.then(({ status, data, error })=>{
-					if (error) throw error;
-					popupMessage("SUCCESS", data);
-				})
-				.catch(error=>{
-					popupMessage("ERROR", error.message);
-				});
-		});
+                fetch(`/api/config/labelCurrentCount`, {
+                    method: "PATCH",
+                    body: JSON.stringify({ value: labelDefaultCount }),
+                    headers: { "Content-type": "application/json" }
+                })
+                    .then(res => res.json())
+                    .then(({ status, data, error }) => {
+                        if (error) throw error;
+                        popupMessage("SUCCESS", data);
+                    })
+                    .catch(error => {
+                        popupMessage("ERROR", error.message);
+                    });
+            });
 
 
             // Audio preview buttons

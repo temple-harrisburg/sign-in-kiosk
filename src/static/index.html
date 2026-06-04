@@ -674,7 +674,7 @@
                         .then(res => res.json())
                         .then(({ status, data, error }) => {
                             if (error) throw new Error(error);
-			    return { status, data };
+                            return { status, data };
                         })
                         .finally(() => console.log(`Print POST finished`))
 
@@ -703,7 +703,6 @@
                             .then(({ status, data, error }) => {
                                 if (error) throw new Error(error);
                             });
-                            // .catch(err => loaderDialog.dispatchEvent(new LoadingEvent("ERROR", err.message)));
                     } else {
                         throw printResult.data;
                     }
@@ -713,10 +712,10 @@
                 } catch (err) {
                     console.error(err);
                     loaderDialog.dispatchEvent(new LoadingEvent("ERROR", err.message));
-		} finally {
-			visitorForm.reset();
-			reasonForm.reset();
-		}
+                } finally {
+                    visitorForm.reset();
+                    reasonForm.reset();
+                }
 
 
             })
