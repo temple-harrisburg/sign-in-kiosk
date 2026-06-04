@@ -34,33 +34,33 @@ export default class Printer {
         tmpDir ??= os.tmpdir();
         this.tmpDir = fs.mkdtempSync(path.join(tmpDir, "labels-"), "utf8");
         this.template = fs.readFileSync(template).toString('utf8');
-	    this.printerName = printerName;
+        this.printerName = printerName;
     }
 
-	 async getQueue(){
-		const args = ["-o"]
-		const { output, status } = child_process.spawnSync("lpstat", args);
-		const data = output.filter(x=>!!x).map(x=>x.toString('utf8')).join('');
-		if (status !== 0) throw data;
-		const rows = data.split(/\n/g);
-		const entries = rows.map(row=>row.split(/[ ]{2,}/g).flatMap((row,i)=>i==0?row.split(" "):row));
-		 
-		const result = entries.map(entry=>{
-			try {
-			const [printer, queueNumber] = /^([\w-]+)-(\d+)$/.exec(entry[0]).slice(1,3);
-			return { 
-				printer,
-				queueNumber,
-				user: entry[1],
-				size: entry[2],
-				since: entry[3],
-			};
-			} catch {
-				return null
-			}
-		});
-		return result.filter(x=>!!x);
-	}
+    async getQueue() {
+        const args = ["-o"]
+        const { output, status } = child_process.spawnSync("lpstat", args);
+        const data = output.filter(x => !!x).map(x => x.toString('utf8')).join('');
+        if (status !== 0) throw data;
+        const rows = data.split(/\n/g);
+        const entries = rows.map(row => row.split(/[ ]{2,}/g).flatMap((row, i) => i == 0 ? row.split(" ") : row));
+
+        const result = entries.map(entry => {
+            try {
+                const [printer, queueNumber] = /^([\w-]+)-(\d+)$/.exec(entry[0]).slice(1, 3);
+                return {
+                    printer,
+                    queueNumber,
+                    user: entry[1],
+                    size: entry[2],
+                    since: entry[3],
+                };
+            } catch {
+                return null
+            }
+        });
+        return result.filter(x => !!x);
+    }
 
     /**
      * @private
