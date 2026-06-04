@@ -10,14 +10,14 @@
 
 <body>
 
-	<dialog id="popup-message" closedby="any">
-		<div id="message-wrapper"></div>
-	</dialog>
-	<template id="message">
-		<h3 slot="message-title">STATUS</h3>
-		<p slot="message-data">MESSAGE</p>
-		<button command="close" commandfor="popup-message">Dismiss</button>
-	</template>
+    <dialog id="popup-message" closedby="any">
+        <div id="message-wrapper"></div>
+    </dialog>
+    <template id="message">
+        <h3 slot="message-title">STATUS</h3>
+        <p slot="message-data">MESSAGE</p>
+        <button command="close" commandfor="popup-message">Dismiss</button>
+    </template>
     <header>
         <nav>
             <ul>
@@ -100,25 +100,25 @@
 
         window.addEventListener("DOMContentLoaded", () => {
 
-		/**
-		* @type {HTMLTemplateElement}
-		*/
-		const popupMessageTemplate = document.getElementById("message");
+            /**
+            * @type {HTMLTemplateElement}
+            */
+            const popupMessageTemplate = document.getElementById("message");
 
-		/**
-		 * @type {HTMLDialogElement}
-		 */
-		const popupMessageDialog = document.getElementById("popup-message");
+            /**
+             * @type {HTMLDialogElement}
+             */
+            const popupMessageDialog = document.getElementById("popup-message");
 
-	function popupMessage(status, message){
-		message = typeof message === 'object' ? JSON.stringify(message, null, 2) : message;
-		const node = document.importNode(popupMessageTemplate.content, true);
-		node.querySelector('[slot="message-title"]').textContent = status;
-		node.querySelector('[slot="message-data"]').textContent = message;
+            function popupMessage(status, message) {
+                message = typeof message === 'object' ? JSON.stringify(message, null, 2) : message;
+                const node = document.importNode(popupMessageTemplate.content, true);
+                node.querySelector('[slot="message-title"]').textContent = status;
+                node.querySelector('[slot="message-data"]').textContent = message;
 
-		popupMessageDialog.querySelector("#message-wrapper").replaceChildren(node);
-		popupMessageDialog.showModal();
-	}
+                popupMessageDialog.querySelector("#message-wrapper").replaceChildren(node);
+                popupMessageDialog.showModal();
+            }
 
 
 
