@@ -5,19 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles.css" />
+    <script src="/popupMessage.js"></script>
     <title>Configuration</title>
 </head>
 
 <body>
-
-    <dialog id="popup-message" closedby="any">
-        <div id="message-wrapper"></div>
-    </dialog>
-    <template id="message">
-        <h3 slot="message-title">STATUS</h3>
-        <p slot="message-data">MESSAGE</p>
-        <button command="close" commandfor="popup-message">Dismiss</button>
-    </template>
     <header>
         <nav>
             <ul>
@@ -38,7 +30,7 @@
             <label for="labelCurrentCount">Current Count</label>
             <input type="number" name="labelCurrentCount" id="labelCurrentCount" value="300" />
 
-            <label for="labelLowThreshold">Current Count</label>
+            <label for="labelLowThreshold">Low Threshold</label>
             <input type="number" name="labelLowThreshold" id="labelLowThreshold" value="20" />
 
             <label for="labelTemplatePath">Template Path</label>
@@ -104,28 +96,6 @@
         window.addEventListener("DOMContentLoaded", () => {
 
             /**
-            * @type {HTMLTemplateElement}
-            */
-            const popupMessageTemplate = document.getElementById("message");
-
-            /**
-             * @type {HTMLDialogElement}
-             */
-            const popupMessageDialog = document.getElementById("popup-message");
-
-            function popupMessage(status, message) {
-                message = typeof message === 'object' ? JSON.stringify(message, null, 2) : message;
-                const node = document.importNode(popupMessageTemplate.content, true);
-                node.querySelector('[slot="message-title"]').textContent = status;
-                node.querySelector('[slot="message-data"]').textContent = message;
-
-                popupMessageDialog.querySelector("#message-wrapper").replaceChildren(node);
-                popupMessageDialog.showModal();
-            }
-
-
-
-            /**
              * @type {HTMLFormElement}
              */
             const settingsForm = document.getElementById("settings-form");
@@ -165,6 +135,8 @@
             const resetLabelCountButton = document.getElementById("reset-label-count");
 
             resetLabelCountButton.addEventListener("click", async () => {
+                const popup = window.createPopupMessage();
+                popup.showModal();
                 const labelDefaultCount = await fetch(`/api/config/labelDefaultCount`)
                     .then(res => res.json())
                     .then(({ status, data, error }) => {
@@ -172,7 +144,7 @@
                         return parseInt(data.value);
                     })
                     .catch(error => {
-                        popupMessage("ERROR", error.message);
+                        popup.showMessage("ERROR", error.message);
                     });
 
                 fetch(`/api/config/labelCurrentCount`, {
@@ -183,10 +155,10 @@
                     .then(res => res.json())
                     .then(({ status, data, error }) => {
                         if (error) throw error;
-                        popupMessage("SUCCESS", data);
+                        popup.showMessage("SUCCESS", JSON.stringify(data));
                     })
                     .catch(error => {
-                        popupMessage("ERROR", error.message);
+                        popup.showMessage("ERROR", error.message);
                     });
             });
 
@@ -220,18 +192,22 @@
 
             settingsForm.addEventListener("submit", async e => {
                 e.preventDefault();
+                const popup = window.createPopupMessage();
+                popup.showModal();
                 const data = Object.fromEntries(new FormData(settingsForm).entries());
-                console.log(data);
                 await fetch(`/api/config`, {
                     method: "PATCH",
                     body: JSON.stringify(data),
                     headers: { "Content-type": "application/json" }
                 })
-                    .then(results => {
-                        console.log(results)
+                    .then(res => res.json())
+                    .then(({ status, data, error }) => {
+                        if (error) throw error;
+                        console.log(data)
+                        popup.showMessage("RESULT", JSON.stringify(data, null, 2));
                     })
                     .catch(error => {
-                        popupMessage("ERROR", error.message);
+                        popup.showMessage("ERROR", error.message);
                     })
             });
         })
