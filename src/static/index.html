@@ -402,8 +402,12 @@
                     labelCurrentCountIndicator.value = config["labelCurrentCount"];
                 })
 
-            labelCurrentCountIndicator.addEventListener("label-count", ({ count }) => {
+            labelCurrentCountIndicator.addEventListener("label-count", async ({ count }) => {
                 labelCurrentCountIndicator.value = count;
+                if (count <= config["labelLowThreshold"]) {
+                    const sfx = await new Audio(config["audioLowTone"]);
+                    await sfx.play();
+                }
             })
 
             function currentLang() {
