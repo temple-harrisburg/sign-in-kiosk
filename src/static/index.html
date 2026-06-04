@@ -674,12 +674,12 @@
                         .then(res => res.json())
                         .then(({ status, data, error }) => {
                             if (error) throw new Error(error);
-                            return status
+			    return { status, data };
                         })
                         .finally(() => console.log(`Print POST finished`))
 
                     // If print succeeded, update record
-                    if (printResult === "OK") {
+                    if (printResult.status === "OK") {
                         await fetch(`/api/entry/${entryResult.data.lastInsertRowid}`, { body: JSON.stringify({ labelPrinted: 1 }), method: "PATCH", headers, })
                             .then(res => res.json())
                             .then(({ status, data, error }) => {
@@ -702,10 +702,10 @@
                             .then(res => res.json())
                             .then(({ status, data, error }) => {
                                 if (error) throw new Error(error);
-                            })
-                            .catch(err => loaderDialog.dispatchEvent(new LoadingEvent("ERROR", err.message)));
+                            });
+                            // .catch(err => loaderDialog.dispatchEvent(new LoadingEvent("ERROR", err.message)));
                     } else {
-                        throw new Error("Printing failed. Try again");
+                        throw printResult.data;
                     }
                     console.log(entryResult, printResult);
                     loaderDialog.dispatchEvent(new LoadingEvent("Success", i18n.getTranslation(currentLang(), "entry-welcome")));
@@ -713,7 +713,10 @@
                 } catch (err) {
                     console.error(err);
                     loaderDialog.dispatchEvent(new LoadingEvent("ERROR", err.message));
-                }
+		} finally {
+			visitorForm.reset();
+			reasonForm.reset();
+		}
 
 
             })
