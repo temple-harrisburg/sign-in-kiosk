@@ -124,7 +124,7 @@ window.customElements.define("popup-message", PopupMessageElement, { extends: "d
  * @param {"loading"|"message"} status
  * @returns {PopupMessageElement} Reference to popup message
  */
-window.popupMessage = function (status = "loading") {
+window.createPopupMessage = function (status = "loading") {
     /**
      * @type {PopupMessageElement}
      */
