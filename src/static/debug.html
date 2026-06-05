@@ -6,44 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles.css" />
     <script src="/barcode.js"></script>
+    <script src="/popupMessage.js"></script>
     <title>Document</title>
 </head>
 
 <body>
-    <template id="spinner-template">
-        <style>
-            .spinner {
-                margin: 0 auto;
-                width: 50px;
-                aspect-ratio: 1;
-                border-radius: 50%;
-                background:
-                    radial-gradient(farthest-side, var(--blue) 94%, #0000) top/8px 8px no-repeat,
-                    conic-gradient(#0000 30%, var(--blue));
-                mask: radial-gradient(farthest-side, #0000 calc(100% - 8px), #000 0);
-                animation: rotate 1s infinite linear;
-            }
-
-            h1:empty {
-                margin: 0;
-            }
-
-            @keyframes rotate {
-                to {
-                    transform: rotate(1turn)
-                }
-            }
-        </style>
-        <h1 slot="message"></h1>
-        <div class="spinner"></div>
-    </template>
-    <template id="message-template">
-        <h3 slot="message-status">STATUS</h3>
-        <pre slot="message-data"></pre>
-    </template>
-    <dialog id="popup-message" closedby="any">
-        <div id="message-wrapper"></div>
-    </dialog>
     <header>
         <nav>
             <ul>
@@ -73,6 +40,10 @@
                 <legend>Printer</legend>
                 <button type="button" id="print-queue">Get Print Queue</button>
             </fieldset>
+            <fieldset>
+                <legend>UI</legend>
+                <button type="button" id="test-popup-message">Open a popup message</button>
+            </fieldset>
         </form>
     </main>
 
@@ -83,12 +54,6 @@
              * @typedef {Object} BarcodeHandler
              * @typedef {Object} Pdf417Parser
              */
-
-            /**
-             * 
-             * @type {HTMLDialogElement}
-             */
-            const popupMessageDialog = document.getElementById("popup-message");
 
 
             /**
@@ -123,6 +88,8 @@
             const getPrintQueueButton = document.getElementById("print-queue");
 
             getPrintQueueButton.addEventListener("click", async () => {
+                const popup = window.createPopupMessage();
+                popup.showModal();
                 const data = await fetch("/api/print")
                     .then(res => res.json())
                     .then(({ status, data, error }) => {
@@ -130,46 +97,27 @@
                         return data;
                     })
                     .catch(err => {
-                        popupMessage("ERROR", err);
+                        popup.showMessage("ERROR", err.message);
                     });
-                popupMessage("SUCCESS", data);
+                popup.showMessage("RESULT", JSON.stringify(data, null, 2));
             });
 
+            const testPopupMessageButton = document.getElementById("test-popup-message");
 
-            /**
-             * Template for popup messages
-             * @type {HTMLTemplateElement}
-             */
-            const messageTemplate = document.getElementById("message-template");
-
-            /**
-             * Template for loading spinners
-             * @type {HTMLTemplateElement}
-             */
-            const spinnerTemplate = document.getElementById("spinner-template");
-
-            function loadingMessage(message) {
-                const spinner = document.importNode(spinnerTemplate.content, true);
-                popupMessageDialog.querySelector("#message-wrapper").replaceChildren(spinner);
-                popupMessageDialog.showModal();
-            }
-
-            function popupMessage(status, data) {
-                const node = document.importNode(messageTemplate.content, true);
-                node.querySelector('[slot="message-status"]').textContent = status;
-                node.querySelector('[slot="message-data"]').textContent = JSON.stringify(data, null, 2);
-                popupMessageDialog.querySelector("#message-wrapper").replaceChildren(node);
-                popupMessageDialog.showModal();
-            }
-
-            popupMessageDialog.addEventListener("close", () => {
-                // Give exit animation time to play
+            testPopupMessageButton.addEventListener("click", () => {
+                /**
+                 * @type {HTMLDialogElement}
+                 */
+                const popup = window.createPopupMessage();
+                popup.showModal();
                 setTimeout(() => {
-                    popupMessageDialog.querySelector("#message-wrapper").replaceChildren();
-                }, 250);
-            })
+                    popup.showMessage("Hello World!");
+                }, 2000);
+            });
 
             function postTestData(path) {
+                const popup = window.createPopupMessage();
+                popup.showModal();
                 const testData = {
                     "entryDateTime": new Date(),
                     "firstName": "TEST",
@@ -181,16 +129,15 @@
                 const parameters = {
                     body: JSON.stringify(testData), method: "POST", headers: { "Content-type": "application/json" }
                 };
-                loadingMessage();
                 fetch(path, parameters)
                     .then(res => res.json())
                     .then(({ status, data, error }) => {
                         if (error) throw error;
                         console.log(status, data);
-                        popupMessage(status, data);
+                        popup.showMessage(status, JSON.stringify(data, null, 2));
                     })
                     .catch(err => {
-                        popupMessage("ERROR", err);
+                        popup.showMessage("ERROR", err.message);
                     })
 
             }
@@ -201,8 +148,9 @@
             logTestEntryButton.addEventListener("click", () => postTestData('/api/entry'));
 
             updateLastEntryButton.addEventListener("click", async () => {
+                const popup = window.createPopupMessage();
+                popup.showModal();
                 try {
-
                     const latestEntryId = await fetch('/api/entry?orderBy=entryDateTime&direction=DESC&limit=1')
                         .then(res => res.json())
                         .then(({ status, data, error }) => {
@@ -220,20 +168,22 @@
                     })
                         .then(res => res.json())
                         .then(result => {
-                            popupMessage(result.status, result.data);
+                            popup.showMessage("RESULT", JSON.stringify(result, null, 2));
                         });
                 } catch (err) {
-                    popupMessage("ERROR", err);
+                    popup.showMessage("ERROR", err.message);
                 }
             })
 
             testBarcodeParsingButton.addEventListener("click", () => {
+                const popup = window.createPopupMessage();
+                popup.showModal();
                 const parser = new Pdf417Parser();
                 const parseInputCallback = (input) => {
                     parser.feed(...input);
                     console.log(parser);
                     const data = Object.fromEntries(parser.result)
-                    popupMessage('Result', data);
+                    popup.showMessage("RESULT", JSON.stringify(data, null, 2));
                     window.removeEventListener('keydown', keydownHandler)
 
                 };
@@ -247,8 +197,9 @@
                     barcodeHandler.handleKeydown(e)
                 };
                 window.addEventListener('keydown', keydownHandler)
-                popupMessage('Waiting', 'Waiting for input from barcode reader')
-                popupMessageDialog.addEventListener('close', () => {
+                // popupMessage('Waiting', 'Waiting for input from barcode reader')
+                popup.showMessage("Waiting", "Waiting for input from barcode reader");
+                popup.addEventListener('close', () => {
                     window.removeEventListener('keydown', keydownHandler);
                 })
             })
