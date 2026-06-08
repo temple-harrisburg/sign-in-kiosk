@@ -1,50 +1,210 @@
-@import "css/spinner.css";
+@layer theme, typography, layout, utilities, components, animations;
 
-:root {
-    --blue: #0000ff;
-    --bradius: 5px;
-    font-family: Arial, Helvetica, sans-serif;
-}
+@layer theme {
 
-body {
-    margin: 0;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
+    :root {
+        /* Colors */
+        --red: #ff0000;
+        --cherry: #8d2020;
+        --blue: #0000ff;
+        --green: #00ff00;
+        --base: #fff;
+        --accent: var(--cherry);
+        --accent-shade: color-mix(in hsl shorter hue, var(--accent) 50%, black 50%);
+        --accent-tint: color-mix(in hsl shorter hue, var(--accent) 25%, var(--base) 75%);
+        --base-shade: color-mix(in hsl shorter hue, var(--base) 50%, var(--accent) 50%);
+        --base-tint: color-mix(in hsl shorter hue, var(--base) 50%, white 50%);
 
-header {
-    display: flex;
-    border-bottom: 1px dotted var(--blue);
+        /* Dimensions */
+        --x-small: 0.25rem;
+        --small: 0.5rem;
+        --medium: 1rem;
+        --large: 2rem;
+        --x-large: 3rem;
+
+        /* Borders */
+        --border-radius: var(--small);
+
+        /* Durations */
+        --transition: 200ms;
+
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        background-color: var(--base);
+    }
+
+    header {
+        background-color: var(--accent);
+        color: contrast-color(var(--accent));
+    }
+
+    footer {
+        background-color: var(--accent);
+        color: contrast-color(var(--accent));
+    }
 
     h1 {
-        flex-basis: 100%;
+        margin-block-start: var(--small);
+        margin-block-end: var(--small);
+    }
+
+    .visually-hidden {
+        position: absolute;
+        transform: scale(0, 0);
+    }
+
+    .drop-shadow {
+        box-shadow: 0 var(--small) var(--small) rgba(0, 0, 0, 50%);
+    }
+}
+
+@layer typography {
+    :root {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+}
+
+@layer layout {
+
+    body {
+        display: flex;
+        flex-direction: column;
+    }
+
+
+    header {
+        display: flex;
+
+        h1 {
+            flex-basis: 100%;
+            margin: auto var(--small);
+        }
+    }
+
+    nav ul {
+        list-style: none;
+        margin: 0;
+        display: flex;
+
+        .nav-item {
+            color: contrast-color(--var(--accent));
+        }
+    }
+
+    main {
+        flex: auto;
+        display: flex;
+        backdrop-filter: blur(5px);
+    }
+
+    footer {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+
+        >p {
+            margin: var(--small)
+        }
+    }
+
+    fieldset {
+        display: flex;
+        gap: var(--small)
     }
 
 }
 
-footer {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-}
+@layer components {
 
-main {
-    flex: auto;
-    display: flex;
-}
+    /* Buttons */
+    .button {
+        transition-property: transform, border-style;
+        transition-duration: 100ms;
+        transition-behavior: allow-discrete;
+        transition-timing-function: ease-out;
+        transform: scale(1);
+        padding: var(--small);
+        border-width: 2px;
+        border-radius: var(--x-small);
+        border-style: outset;
 
-dialog {
-    transition: all 200ms;
-    transition-behavior: allow-discrete;
-    opacity: 0;
-    transform: translateY(-5%);
-
-    &::backdrop {
-        transition: all 200ms;
+        &:active {
+            transform: scale(99%);
+            border-style: inset;
+        }
     }
 
-    &:open {
+    .button.accent {
+        border-color: var(--accent-shade);
+        background-color: var(--accent);
+        color: contrast-color(var(--accent));
+    }
+
+    .button.base {
+        background-color: var(--base);
+        border-color: var(--base-shade);
+        color: contrast-color(var(--base));
+    }
+
+    /* Input Fields */
+    .field-wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .field {
+        padding: var(--small);
+        border-radius: var(--border-radius);
+
+        &:focus {
+            background-color: var(--accent-tint);
+        }
+    }
+
+    .field.large {
+        font-size: var(--large);
+    }
+
+
+    /* Loading spinner */
+    .spinner {
+        margin: 0 auto;
+        width: 50px;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background:
+            radial-gradient(farthest-side, var(--accent) 94%, #0000) top/8px 8px no-repeat,
+            conic-gradient(#0000 30%, var(--accent));
+        mask: radial-gradient(farthest-side, #0000 calc(100% - 8px), #000 0);
+        animation: rotate 1s infinite linear;
+    }
+
+    @keyframes rotate {
+        to {
+            transform: rotate(1turn)
+        }
+    }
+
+    /* Popup Dialogs */
+    .popup {
+        border-radius: var(--border-radius);
+
+        transition: all var(--transition);
+        transition-behavior: allow-discrete;
+        opacity: 0;
+        transform: translateY(-5%);
+    }
+
+    .popup::backdrop {
+        backdrop-filter: blur(0px);
+        transition: backdrop-filter 200ms;
+    }
+
+
+    .popup:open {
         opacity: 1;
         transform: translateY(0);
 
@@ -53,57 +213,100 @@ dialog {
             transform: translateY(5%);
         }
     }
+
+    .popup:open::backdrop {
+        backdrop-filter: blur(2px);
+
+        @starting-style {
+            backdrop-filter: blur(0px);
+        }
+    }
+
+    /* Entry Form */
+    #entry-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: auto;
+        gap: var(--medium);
+        background-color: var(--base);
+        border-radius: var(--border-radius);
+        padding: var(--large);
+    }
+
+    /* Reason Form */
+    #reason-form {
+        container-name: reason-form;
+        container-type: normal;
+
+        input {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        input:checked+.reason-opt {
+            background-color: var(--accent-shade);
+        }
+    }
+
+    #label-count-wrapper {
+        display: flex;
+        border-style: inset;
+        border-width: 1px;
+        border-radius: var(--x-small);
+        border-color: light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    }
+
+    #label-current-count {
+        background-color: transparent;
+        color: contrast-color(var(--accent));
+        text-align: center;
+        width: 5rem;
+        padding: 0;
+        margin: 0;
+
+        border-style: none;
+    }
+
+    label[for="label-current-count"] {
+        position: relative;
+        fill: contrast-color(var(--accent));
+
+        svg {
+            width: var(--large);
+        }
+    }
+
 }
 
-input {
-    padding: 0.5rem;
-    border-radius: var(--bradius);
-
-    &:focus {
-        background-color: yellow;
+@layer utilities {
+    .bg-base {
+        background-color: var(--base);
     }
 }
 
-#visitor-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: auto;
-    gap: 1rem;
-}
+@layer animations {
+    :root {
+        --confetti-frames: 15;
+        --confetti-frame-width: 615px;
+        --confetti-frame-height: 198px;
+    }
 
-.field-wrapper {
-    display: flex;
-    flex-direction: column;
-}
+    .confetti {
+        width: var(--confetti-frame-width);
+        height: var(--confetti-frame-height);
+        background-image: url('/sprites/confetti.webp');
+        animation: confetti 1s steps(var(--confetti-frames)) 1;
+    }
 
-.visually-hidden {
-    position: absolute;
-    transform: scale(0, 0);
-}
+    @keyframes confetti {
+        from {
+            background-position-y: 0px;
+        }
 
-.reason-field {
-    display: flex;
-    justify-content: space-between;
-    align-content: center;
-    gap: 1rem;
-}
-
-.reason-opt {
-    background-color: var(--blue);
-    color: contrast-color(var(--blue));
-    text-align: center;
-    width: 5rem;
-    padding: 1rem;
-    border-radius: var(--bradius);
-}
-
-#reason-form input {
-    position: absolute;
-    left: 0;
-    top: 0;
-}
-
-input:checked+.reason-opt {
-    background-color: color-mix(in hsl shorter hue, var(--blue) 50%, black 50%);
+        to {
+            background-position-y: calc(-1 * var(--confetti-frame-height) * var(--confetti-frames));
+        }
+    }
 }
