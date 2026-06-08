@@ -25,43 +25,47 @@
                     <input type="radio" name="lang" value="ES" id="lang-es" />
                 </fieldset>
             </form>
-            <button command="show-modal" commandfor="config-login-modal" data-i18n="config-login-button">Edit
+            <button command="show-modal" commandfor="config-login-modal" class="button base"
+                data-i18n="config-login-button">Edit
                 Configuration</button>
-            <button id="barcode-scan-launch" data-i18n="barcode-button">Scan Barcode</button>
+            <button id="barcode-scan-launch" class="button base" data-i18n="barcode-button">Scan Barcode</button>
         </div>
-        <dialog id="config-login-modal" closedby="any">
+        <dialog id="config-login-modal" closedby="any" class="popup drop-shadow">
             <form id="config-login-form" method="dialog">
                 <label for="password" data-i18n="password">Password</label>
                 <input type="password" name="password" id="password" required />
-                <button type="submit" data-i18n="submit">Submit</button>
+                <button type="submit" class="button accent" data-i18n="submit">Submit</button>
             </form>
         </dialog>
     </header>
     <main id="main">
-        <dialog id="reason-modal">
+        <dialog id="reason-modal" class="popup drop-shadow">
             <form id="reason-form" method="dialog">
                 <fieldset class="reason-field">
                     <legend data-i18n="reason-greeting">What brings you to Temple Harrisburg?</legend>
                     <input type="radio" name="reason" id="conference" value="Conference" class="visually-hidden"
                         checked />
-                    <label for="conference" class="reason-opt" tabindex="0"
+                    <label for="conference" class="reason-opt button accent" tabindex="0"
                         data-i18n="reason-conference">Conference</label>
 
                     <input type="radio" name="reason" id="training" value="Training" class="visually-hidden" />
-                    <label for="training" class="reason-opt" tabindex="0" data-i18n="reason-training">Training</label>
+                    <label for="training" class="reason-opt button accent" tabindex="0"
+                        data-i18n="reason-training">Training</label>
 
                     <input type="radio" name="reason" id="meeting" value="Meeting" class="visually-hidden" />
-                    <label for="meeting" class="reason-opt" tabindex="0" data-i18n="reason-meeting">Meeting</label>
+                    <label for="meeting" class="reason-opt button accent" tabindex="0"
+                        data-i18n="reason-meeting">Meeting</label>
 
                     <input type="radio" name="reason" id="event" value="Event" class="visually-hidden" />
-                    <label for="event" class="reason-opt" tabindex="0" data-i18n="reason-event">Event</label>
+                    <label for="event" class="reason-opt button accent" tabindex="0"
+                        data-i18n="reason-event">Event</label>
                 </fieldset>
-                <button value="default" type="submit" data-i18n="submit">Submit</button>
-                <button value="cancel" type="button" command="close" commandfor="reason-modal"
+                <button value="default" type="submit" class="button accent" data-i18n="submit">Submit</button>
+                <button value="cancel" type="button" command="close" commandfor="reason-modal" class="button base"
                     data-i18n="cancel">Cancel</button>
             </form>
         </dialog>
-        <dialog id="barcode-result-modal" closedby="any">
+        <dialog id="barcode-result-modal" closedby="any" class="popup drop-shadow">
             <form method="dialog" id="barcode-result-form">
                 <div class="field-wrapper">
                     <label for="firstName" data-i18n="first-name">First Name</label>
@@ -81,25 +85,33 @@
                 </div>
             </form>
         </dialog>
-        <form id="visitor-form" method="dialog">
+        <form id="entry-form" method="dialog" class="drop-shadow">
             <input type="hidden" name="method" id="method" value="form">
             <input type="hidden" name="labelPrinted" id="labelPrinted" value="0">
             <div class="field-wrapper">
-                <label for="firstName" data-i18n="first-name">First Name</label>
-                <input type="text" id="firstName" name="firstName" placeholder="First Name" required />
+                <label for="firstName" class="visually-hidden" data-i18n="first-name">First Name</label>
+                <input type="text" id="firstName" name="firstName" placeholder="First Name" required
+                    class="field large" />
             </div>
             <div class="field-wrapper">
-                <label for="lastName" data-i18n="last-name">Last Name</label>
-                <input type="text" id="lastName" name="lastName" placeholder="Last Name" required />
+                <label for="lastName" class="visually-hidden" data-i18n="last-name">Last Name</label>
+                <input type="text" id="lastName" name="lastName" placeholder="Last Name" required class="field large" />
             </div>
-            <button type="submit" command="show-modal" commandfor="reason-modal"><span
+            <button type="submit" command="show-modal" commandfor="reason-modal" class="button accent"><span
                     data-i18n="continue">Continue</span>...</button>
         </form>
     </main>
     <footer>
         <p>Copyright Temple University 2026</p>
-        <label id="label-current-count-wrapper">Labels Remaining <input type="number" value="300"
-                name="label-current-count" id="label-current-count" disabled inert /></label>
+        <p title="Current label count" id="label-count-wrapper">
+            <label for="label-current-count"><span class="visually-hidden">Labels Remaining</span><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 640 640"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
+                    <path
+                        d="M433.2 103.1L581.4 253.4C609.1 281.5 609.1 326.5 581.4 354.6L425 512.9C415.7 522.3 400.5 522.4 391.1 513.1C381.7 503.8 381.6 488.6 390.9 479.2L547.3 320.8C556.5 311.5 556.5 296.4 547.3 287.1L399 136.9C389.7 127.5 389.8 112.3 399.2 103C408.6 93.7 423.8 93.8 433.1 103.2zM64.1 293.5L64.1 160C64.1 124.7 92.8 96 128.1 96L261.6 96C278.6 96 294.9 102.7 306.9 114.7L450.9 258.7C475.9 283.7 475.9 324.2 450.9 349.2L317.4 482.7C292.4 507.7 251.9 507.7 226.9 482.7L82.9 338.7C70.9 326.7 64.2 310.4 64.2 293.4zM208.1 208C208.1 190.3 193.8 176 176.1 176C158.4 176 144.1 190.3 144.1 208C144.1 225.7 158.4 240 176.1 240C193.8 240 208.1 225.7 208.1 208z" />
+                </svg></label>
+            <input type="number" value="300" name="label-current-count" id="label-current-count" disabled inert />
+        </p>
     </footer>
     <script>
 
@@ -233,16 +245,13 @@
             audioLowLabels
         }
 
-
-
-
         window.addEventListener("DOMContentLoaded", async () => {
 
             // Entry form elements
             /**
              * @type {HTMLFormElement}
              */
-            const visitorForm = document.getElementById("visitor-form");
+            const entryForm = document.getElementById("entry-form");
 
             /**
              * @type {HTMLFormElement}
@@ -418,7 +427,7 @@
                 const entries = inputs.map(input => [input.name, input.value]);
                 entries.push(['method', 'barcode']);
                 const autoFillEvent = new AutofillFormEvent(Object.fromEntries(entries));
-                visitorForm.dispatchEvent(autoFillEvent);
+                entryForm.dispatchEvent(autoFillEvent);
             })
 
             barcodeResultEditButton.addEventListener("click", () => {
@@ -467,15 +476,15 @@
              * 
              */
 
-            visitorForm.addEventListener("autofill", ({ data }) => {
+            entryForm.addEventListener("autofill", ({ data }) => {
                 for (const [key, value] of Object.entries(data)) {
-                    visitorForm[key].value = value;
+                    entryForm[key].value = value;
                 }
             })
 
 
-            const entryContinueButton = visitorForm.querySelector("button")
-            entryContinueButton.addEventListener("click", () => { if (visitorForm.reportValidity()) reasonDialog.showModal() })
+            const entryContinueButton = entryForm.querySelector("button")
+            entryContinueButton.addEventListener("click", () => { if (entryForm.reportValidity()) reasonDialog.showModal() })
 
             reasonForm.querySelectorAll('label.reason-opt').forEach(
                 /**
@@ -522,13 +531,17 @@
             reasonForm.addEventListener("submit", async e => {
                 e.preventDefault();
                 reasonDialog.close();
+
+                /** 
+                 * @type {HTMLDialogElement} Popup for showing status messages
+                 */
                 const popup = window.createPopupMessage();
                 popup.showModal();
-                // console.log(popup);
-                // loaderDialog.dispatchEvent(new LoadingEvent("LOADING"))
+
                 const record = new VisitorRecord();
 
-                const forms = [reasonForm, visitorForm];
+                // 1. Collate data from all forms
+                const forms = [reasonForm, entryForm];
                 forms.forEach(form => {
                     const formdata = new FormData(form);
                     for (const [key, val] of formdata.entries()) {
@@ -542,6 +555,8 @@
                     const method = "POST";
                     const headers = { "Content-type": "application/json" };
                     const options = { body, method, headers };
+
+                    // 2. Log the entry
                     const entryResult = await fetch('/api/entry', options)
                         .then(res => {
                             if (res.ok) {
@@ -550,8 +565,8 @@
                             return res.json();
                         })
                         .finally(() => console.log(`Entry POST finished`))
-                    console.log(entryResult);
 
+                    // 3. Attempt to print label
                     const printResult = await fetch('/api/print', options)
                         .then(res => res.json())
                         .then(({ status, data, error }) => {
@@ -560,7 +575,7 @@
                         })
                         .finally(() => console.log(`Print POST finished`))
 
-                    // If print succeeded, update record
+                    // 3.a If print succeeded, update record
                     if (printResult.status === "OK") {
                         await fetch(`/api/entry/${entryResult.data.lastInsertRowid}`, { body: JSON.stringify({ labelPrinted: 1 }), method: "PATCH", headers, })
                             .then(res => res.json())
@@ -570,10 +585,11 @@
                             })
                             .finally(() => console.log(`Entry update POST finished`))
 
-                        // Optimistically update the current label count;
+                        // 3.a.1 Optimistically update the current label count
                         const labelCount = parseInt(labelCurrentCountIndicator.value) - 1;
                         labelCurrentCountIndicator.dispatchEvent(new LabelCountEvent(labelCount));
 
+                        // 3.a.2 Save new label count to database
                         const currentLabelCount = await fetch(`/api/config/labelCurrentCount`, {
                             method: "PATCH",
                             body: JSON.stringify({ value: labelCount }),
@@ -586,6 +602,7 @@
                                 if (error) throw new Error(error);
                             });
                     } else {
+                        // 3.b If print fails, throw the stderr message
                         throw printResult.data;
                     }
                     console.log(entryResult, printResult);
@@ -596,7 +613,7 @@
                     console.error(err);
                     popup.showMessage("ERROR", err.message);
                 } finally {
-                    visitorForm.reset();
+                    entryForm.reset();
                     reasonForm.reset();
                 }
 

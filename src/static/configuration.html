@@ -13,9 +13,9 @@
     <header>
         <nav>
             <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/debug.html">Debug</a></li>
-                <li><a href="http://localhost:631" target="_blank">Print Console</a></li>
+                <li class="nav-item"><a href="/">Home</a></li>
+                <li class="nav-item"><a href="/debug.html">Debug</a></li>
+                <li class="nav-item"><a href="http://localhost:631" target="_blank">Print Console</a></li>
             </ul>
         </nav>
     </header>
@@ -24,35 +24,51 @@
             <legend>Labels</legend>
             <button type="button" id="reset-label-count">Reset Label Count</button>
 
-            <label for="labelDefaultCount">Default Count</label>
-            <input type="number" name="labelDefaultCount" id="labelDefaultCount" value="300" />
+            <div class="field-wrapper">
+                <label for="labelDefaultCount">Default Count</label>
+                <input type="number" name="labelDefaultCount" id="labelDefaultCount" value="300" />
+            </div>
 
-            <label for="labelCurrentCount">Current Count</label>
-            <input type="number" name="labelCurrentCount" id="labelCurrentCount" value="300" />
+            <div class="field-wrapper">
+                <label for="labelCurrentCount">Current Count</label>
+                <input type="number" name="labelCurrentCount" id="labelCurrentCount" value="300" />
+            </div>
 
-            <label for="labelLowThreshold">Low Threshold</label>
-            <input type="number" name="labelLowThreshold" id="labelLowThreshold" value="20" />
+            <div class="field-wrapper">
+                <label for="labelLowThreshold">Low Threshold</label>
+                <input type="number" name="labelLowThreshold" id="labelLowThreshold" value="20" />
+            </div>
 
-            <label for="labelTemplatePath">Template Path</label>
-            <input type="text" name="labelTemplatePath" id="labelTemplatePath" value="" />
+            <div class="field-wrapper">
+                <label for="labelTemplatePath">Template Path</label>
+                <input type="text" name="labelTemplatePath" id="labelTemplatePath" value="" />
+            </div>
         </fieldset>
 
         <fieldset>
             <legend>Audio SFX</legend>
-            <label for="audioSuccess">Success <button type="button">Preview</button></label>
-            <input type="text" name="audioSuccess" id="audioSuccess" value="/sfx/tone.mp3" />
+            <div class="field-wrapper">
+                <label for="audioSuccess">Success <button type="button">Preview</button></label>
+                <input type="text" name="audioSuccess" id="audioSuccess" value="/sfx/tone.mp3" />
+            </div>
 
-            <label for="audioLowTone">Low Labels <button type="button">Preview </button></label>
-            <input type="text" name="audioLowTone" id="audioLowTone" value="/sfx/low_tone.mp3" />
+            <div class="field-wrapper">
+                <label for="audioLowTone">Low Labels <button type="button">Preview </button></label>
+                <input type="text" name="audioLowTone" id="audioLowTone" value="/sfx/low_tone.mp3" />
+            </div>
 
-            <label for="audioReplaceLabels">Replace Labels <button type="button">Preview</button></label>
-            <input type="text" name="audioReplaceLabels" id="audioReplaceLabels" value="/sfx/replace_labels.mp3" />
+            <div class="field-wrapper">
+                <label for="audioReplaceLabels">Replace Labels <button type="button">Preview</button></label>
+                <input type="text" name="audioReplaceLabels" id="audioReplaceLabels" value="/sfx/replace_labels.mp3" />
+            </div>
         </fieldset>
 
         <fieldset>
             <legend>Administration</legend>
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" />
+            <div class="field-wrapper">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" />
+            </div>
         </fieldset>
 
         <button type="reset" disabled>Reset</button>
