@@ -83,12 +83,9 @@ class PopupMessageElement extends HTMLDialogElement {
     }
 
     connectedCallback() {
-        const wrapper = document.createElement("div");
-        const spinner = document.createElement("div");
-        spinner.classList.add("spinner");
-        wrapper.appendChild(spinner);
-        this.appendChild(wrapper)
+        this.showSpinner();
         this.setAttribute("closedby", "any");
+        this.classList.add("popup");
         this.addEventListener("close", () => {
             // Give exit animation time to play
             setTimeout(() => this.remove(), 250)
@@ -121,15 +118,19 @@ window.customElements.define("popup-message", PopupMessageElement, { extends: "d
 
 /**
  * Show a popup message, by default with a loading spinner.
- * @param {"loading"|"message"} status
+ * @typedef {"loading"|"message"} Status
+ * @param {{status:Status, classList:string[]}} options
  * @returns {PopupMessageElement} Reference to popup message
  */
-window.createPopupMessage = function (status = "loading") {
+window.createPopupMessage = function (options = { status: "loading", classList: ["popup", "drop-shadow"] }) {
     /**
      * @type {PopupMessageElement}
      */
     const popup = document.createElement("dialog", { is: "popup-message" });
+
+    const { status, classList } = options;
     popup.setAttribute("data-status", status);
+    classList.forEach(cls => popup.classList.add(cls));
     document.body.appendChild(popup);
     return popup;
 }
