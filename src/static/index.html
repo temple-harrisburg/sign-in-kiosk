@@ -650,7 +650,14 @@
                     .catch(err => {
                         // loaderDialog.dispatchEvent(new LoadingEvent("ERROR", err.message))
                     })
-            })
+            });
+
+            // Cycle background every 10 minutes
+            const backdrops = ["/backdrops/backdrop1.webp", "/backdrops/backdrop2.webp", "/backdrops/backdrop3.webp", "/backdrops/backdrop4.webp"]
+            const backdropCycle = new Backdrops(document.body, ...backdrops);
+            setInterval(() => {
+                backdropCycle.swapBackdrops();
+            }, 10 * 60 * 1000); // Change every 10 minutes
 
         })
     </script>

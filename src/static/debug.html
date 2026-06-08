@@ -44,6 +44,12 @@
             <fieldset>
                 <legend>UI</legend>
                 <button type="button" id="test-popup-message">Open a popup message</button>
+                <label for="backdrop-crossfade-duration">Backdrop Crossfade Duration (<span
+                        id="crossfade-duration">2.0</span>s)</label>
+                <input type="range" id="backdrop-crossfade-duration" name="backdrop-crossfade-duration" min="0"
+                    max="5000" step="1" value="2000" />
+                <button type="button" id="next-backdrop" class="button accent">Next Backdrop</button>
+
             </fieldset>
         </form>
     </main>
@@ -80,6 +86,33 @@
              * @type {HTMLButtonElement}
              */
             const testBarcodeParsingButton = document.getElementById("test-barcode-parsing");
+
+            /**
+             * Backdrop cross-fade duration control
+             * @type {HTMLInputElement}
+             */
+            const backdropCrossFadeInput = document.getElementById("backdrop-crossfade-duration");
+
+            const crossfadeDuration = document.getElementById("crossfade-duration");
+
+            backdropCrossFadeInput.addEventListener("input", e => {
+                const duration = parseFloat(backdropCrossFadeInput.value) / 1000
+                crossfadeDuration.textContent = duration.toFixed(1);
+            })
+
+            /**
+             * Button for swapping to the next backdrop
+             * @type {HTMLButtonElement}
+             */
+            const nextBackdropButton = document.getElementById("next-backdrop");
+            const backdrops = ["/backdrops/backdrop1.webp", "/backdrops/backdrop2.webp", "/backdrops/backdrop3.webp", "/backdrops/backdrop4.webp"];
+
+            const bg = new Backdrops(document.body, ...backdrops);
+
+            nextBackdropButton.addEventListener("click", () => {
+                const duration = parseInt(backdropCrossFadeInput.value);
+                bg.swapBackdrops(duration);
+            })
 
 
             /**
