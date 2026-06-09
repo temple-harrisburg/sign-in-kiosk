@@ -43,8 +43,7 @@
             <form id="reason-form" method="dialog">
                 <fieldset class="reason-field">
                     <legend data-i18n="reason-greeting">What brings you to Temple Harrisburg?</legend>
-                    <input type="radio" name="reason" id="conference" value="Conference" class="visually-hidden"
-                        checked />
+                    <input type="radio" name="reason" id="conference" value="Conference" class="visually-hidden" />
                     <label for="conference" class="reason-opt button accent" tabindex="0"
                         data-i18n="reason-conference">Conference</label>
 
@@ -60,29 +59,6 @@
                     <label for="event" class="reason-opt button accent" tabindex="0"
                         data-i18n="reason-event">Event</label>
                 </fieldset>
-                <button value="default" type="submit" class="button accent" data-i18n="submit">Submit</button>
-                <button value="cancel" type="button" command="close" commandfor="reason-modal" class="button base"
-                    data-i18n="cancel">Cancel</button>
-            </form>
-        </dialog>
-        <dialog id="barcode-result-modal" closedby="any" class="popup drop-shadow">
-            <form method="dialog" id="barcode-result-form">
-                <div class="field-wrapper">
-                    <label for="firstName" data-i18n="first-name">First Name</label>
-                    <input type="text" name="firstName" id="barcodeFirstName" disabled>
-                </div>
-                <div class="field-wrapper">
-                    <label for="lastName" data-i18n="last-name">Last Name</label>
-                    <input type="text" name="lastName" id="barcodeLastName" disabled>
-                </div>
-                <p data-i18n="barcode-confirm-correct">Is this correct?</p>
-                <div id="barcode-result-buttons-group">
-                    <button type="submit" id="barcode-result-confirm" data-i18n="yes">Yes</button>
-                    <button type="button" id="barcode-result-edit" data-i18n="edit">Edit</button>
-                    <button id="barcode-result-save" data-i18n="save" class="visually-hidden" disabled>Save</button>
-                    <button type="button" id="barcode-result-cancel" data-i18n="cancel"
-                        commandfor="barcode-result-modal" command="close">Cancel</button>
-                </div>
             </form>
         </dialog>
         <form id="entry-form" method="dialog" class="drop-shadow">
@@ -90,12 +66,13 @@
             <input type="hidden" name="labelPrinted" id="labelPrinted" value="0">
             <div class="field-wrapper">
                 <label for="firstName" class="visually-hidden" data-i18n="first-name">First Name</label>
-                <input type="text" id="firstName" name="firstName" placeholder="First Name" required
-                    class="field large" />
+                <input type="text" id="firstName" name="firstName" placeholder="First Name" required class="field large"
+                    value="test" />
             </div>
             <div class="field-wrapper">
                 <label for="lastName" class="visually-hidden" data-i18n="last-name">Last Name</label>
-                <input type="text" id="lastName" name="lastName" placeholder="Last Name" required class="field large" />
+                <input type="text" id="lastName" name="lastName" placeholder="Last Name" required class="field large"
+                    value="test" />
             </div>
             <button type="submit" command="show-modal" commandfor="reason-modal" class="button accent"><span
                     data-i18n="continue">Continue</span>...</button>
@@ -270,25 +247,6 @@
             const barcodeLaunchButton = document.getElementById("barcode-scan-launch");
 
             /**
-             * @type {HTMLFormElement}
-             */
-            const barcodeForm = document.getElementById("barcode-scan-form");
-
-            /**
-             * @type {HTMLDialogElement}
-             */
-            const barcodeResultDialog = document.getElementById("barcode-result-modal");
-            const barcodeResultForm = document.getElementById("barcode-result-form");
-            const barcodeResultEditButton = document.getElementById("barcode-result-edit");
-            const barcodeResultConfirmButton = document.getElementById("barcode-result-confirm");
-            const barcodeResultSaveButton = document.getElementById("barcode-result-save");
-
-            /**
-             * @type {HTMLDivElement}
-             */
-            const barcodeResultButtonsGroup = document.getElementById("barcode-result-buttons-group");
-
-            /**
              * @type {HTMLInputElement}
              */
             const labelCurrentCountIndicator = document.getElementById("label-current-count");
@@ -318,7 +276,9 @@
                         return Object.fromEntries(data.map(({ key, value }) => [key, value]))
                     })
                     .catch(err => {
-                        // loaderDialog.dispatchEvent(new LoadingEvent("ERROR", `Something went wrong: ${err}`));
+                        const popup = window.createPopupMessage();
+                        popup.showMessage("ERROR", `Somethign went wrong: ${err.message}`);
+                        popup.showModal();
                     });
             }
 
@@ -379,9 +339,11 @@
                     parser.feed(...keyboardEvents);
                     const result = Object.fromEntries(parser.result);
 
-                    const [firstName, lastName] = [result["DAC"], result["DCS"]]
-                    // loaderDialog.close();
-                    barcodeResultDialog.dispatchEvent(new BarcodeScanEvent("OK", { firstName, lastName }));
+                    const [firstName, lastName] = [result["DAC"], result["DCS"]];
+                    if (!firstName || !lastName) throw Error('Failed to read barcode. Try again.');
+                    barcodePopup.close();
+                    const autoFillEvent = new AutofillFormEvent({ firstName, lastName });
+                    entryForm.dispatchEvent(autoFillEvent);
                 } catch (err) {
                     console.error(err);
                     barcodePopup.showMessage("ERROR", err.message);
@@ -412,62 +374,6 @@
             });
 
 
-            barcodeResultDialog.addEventListener("barcode-scan", e => {
-                const { status, data } = e;
-                if (status === "OK") {
-                    barcodeResultDialog.querySelector("input#barcodeFirstName").value = data.firstName;
-                    barcodeResultDialog.querySelector("input#barcodeLastName").value = data.lastName;
-                }
-                barcodeResultDialog.showModal();
-                barcodePopup.close();
-            });
-
-            barcodeResultForm.addEventListener("submit", e => {
-                const inputs = Array.from(barcodeResultForm.querySelectorAll("input"));
-                const entries = inputs.map(input => [input.name, input.value]);
-                entries.push(['method', 'barcode']);
-                const autoFillEvent = new AutofillFormEvent(Object.fromEntries(entries));
-                entryForm.dispatchEvent(autoFillEvent);
-            })
-
-            barcodeResultEditButton.addEventListener("click", () => {
-                // Show 'Save' button
-                barcodeResultSaveButton.classList.toggle('visually-hidden', false);
-                barcodeResultSaveButton.toggleAttribute("disabled", false)
-
-                // Hide 'Edit' button
-                barcodeResultEditButton.classList.toggle('visually-hidden', true);
-                barcodeResultEditButton.toggleAttribute("disabled", true)
-
-                // Hide 'Yes' button
-                barcodeResultConfirmButton.classList.toggle('visually-hidden', true);
-                barcodeResultConfirmButton.toggleAttribute("disabled", true);
-
-                // Unlock inputs
-                const firstNameInput = barcodeResultDialog.querySelector("input#barcodeFirstName")
-                firstNameInput.toggleAttribute("disabled", false)
-                firstNameInput.focus();
-
-                barcodeResultDialog.querySelector("input#barcodeLastName").toggleAttribute("disabled", false)
-            })
-
-            barcodeResultSaveButton.addEventListener("click", () => {
-                // Hide 'Save' button
-                barcodeResultSaveButton.classList.toggle('visually-hidden', true);
-                barcodeResultSaveButton.toggleAttribute("disabled", true);
-
-                // Show 'Edit' button
-                barcodeResultEditButton.classList.toggle('visually-hidden', false);
-                barcodeResultEditButton.toggleAttribute("disabled", false)
-
-                // Show 'Yes' button
-                barcodeResultConfirmButton.classList.toggle('visually-hidden', false);
-                barcodeResultConfirmButton.toggleAttribute("disabled", false)
-
-                // Lock inputs
-                barcodeResultDialog.querySelector("input#barcodeFirstName").toggleAttribute("disabled", true)
-                barcodeResultDialog.querySelector("input#barcodeLastName").toggleAttribute("disabled", true)
-            });
 
 
             /**
@@ -486,11 +392,19 @@
             const entryContinueButton = entryForm.querySelector("button")
             entryContinueButton.addEventListener("click", () => { if (entryForm.reportValidity()) reasonDialog.showModal() })
 
+
+
             reasonForm.querySelectorAll('label.reason-opt').forEach(
                 /**
                  * @param {HTMLLabelElement} el
                  */
-                (el, i, parent) => {
+                (el, i, nodes) => {
+
+                    el.addEventListener("click", e => {
+                        el.control.toggleAttribute("checked", true);
+                        reasonForm.requestSubmit();
+                    });
+
                     el.addEventListener("keydown",
                         /**
                          * @param {KeyboardEvent} e
@@ -500,35 +414,31 @@
                             console.log(key)
                             switch (key) {
                                 case "Tab":
+                                    // Enable navigating radio options with Tab
+                                    const next = nodes[(i + 1) % nodes.length];
+                                    next.toggleAttribute("checked", true);
+                                    next.focus();
                                     break;
                                 case "Enter":
-                                    const active = el.control.getAttribute("checked") === '' ?? false;
-                                    if (active) {
-                                        el.control.toggleAttribute("checked", false);
-                                    } else {
-                                        el.control.toggleAttribute("checked", true);
-                                        reasonForm.querySelector('button[type="submit"]').focus();
-                                    }
-
-                                    break;
-                                /**
-                                 * @todo add handlers for keyboard events
-                                 */
-                                case "ArrowLeft":
-                                    break;
-                                case "ArrowRight":
+                                    // Submit the form
+                                    el.control.toggleAttribute("checked", true);
+                                    reasonForm.requestSubmit();
                                     break;
                                 default:
                                     break;
                             }
                         })
+                });
 
-                })
+            reasonForm.addEventListener("keydown", e => {
+                if (e.key === 'Enter') reasonForm.requestSubmit();
+            })
 
             /**
              * @description Handle submission of 'entry' by collecting data from visitor form and reason form.
              */
             reasonForm.addEventListener("submit", async e => {
+                console.log(e)
                 e.preventDefault();
                 reasonDialog.close();
 
@@ -615,9 +525,8 @@
                 } finally {
                     entryForm.reset();
                     reasonForm.reset();
+                    reasonForm.querySelectorAll('input[type="radio"]').forEach(el => el.toggleAttribute("checked", false));
                 }
-
-
             })
 
             /*
