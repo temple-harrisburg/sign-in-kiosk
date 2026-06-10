@@ -439,15 +439,18 @@
                             console.log(key)
                             switch (key) {
                                 case "Tab":
+
                                     // Enable navigating radio options with Tab
-                                    const next = nodes[(i + 1) % nodes.length];
-                                    next.toggleAttribute("checked", true);
-                                    next.focus();
+                                    // e.preventDefault();
+                                    // const next = nodes[(i + e.shiftKey ? -1 : 1) % nodes.length];
+                                    // next.control.toggleAttribute("checked", true);
+                                    // next.focus();
                                     break;
                                 case "Enter":
                                     // Submit the form
-                                    el.control.toggleAttribute("checked", true);
-                                    reasonForm.requestSubmit();
+                                    // e.preventDefault();
+                                    // el.control.toggleAttribute("checked", true);
+                                    // reasonForm.requestSubmit();
                                     break;
                                 default:
                                     break;
@@ -455,9 +458,9 @@
                         })
                 });
 
-            reasonForm.addEventListener("keydown", e => {
-                if (e.key === 'Enter') reasonForm.requestSubmit();
-            })
+            // reasonForm.addEventListener("keydown", e => {
+            //     if (e.key === 'Enter') reasonForm.requestSubmit();
+            // })
 
             /**
              * @description Handle submission of 'entry' by collecting data from visitor form and reason form.
