@@ -51,6 +51,10 @@
         margin-block-end: var(--small);
     }
 
+    dialog {
+        border: none;
+    }
+
     .visually-hidden {
         position: absolute;
         transform: scale(0, 0);
@@ -59,11 +63,24 @@
     .drop-shadow {
         box-shadow: 0 var(--small) var(--small) rgba(0, 0, 0, 50%);
     }
+
+    .icon {
+        width: var(--large);
+        fill: contrast-color(var(--accent));
+    }
 }
 
 @layer typography {
     :root {
         font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .font-large {
+        font-size: large;
+    }
+
+    .font-larger {
+        font-size: larger;
     }
 }
 
@@ -80,7 +97,7 @@
 
         h1 {
             flex-basis: 100%;
-            margin: auto var(--small);
+            margin-left: var(--small);
         }
     }
 
@@ -137,13 +154,13 @@
         }
     }
 
-    .button.accent {
+    .button.button-accent {
         border-color: var(--accent-shade);
         background-color: var(--accent);
         color: contrast-color(var(--accent));
     }
 
-    .button.base {
+    .button.button-base {
         background-color: var(--base);
         border-color: var(--base-shade);
         color: contrast-color(var(--base));
@@ -191,7 +208,7 @@
     /* Popup Dialogs */
     .popup {
         border-radius: var(--border-radius);
-
+        border: 1px solid var(--accent-shade);
         transition: all var(--transition);
         transition-behavior: allow-discrete;
         opacity: 0;
@@ -222,6 +239,22 @@
         }
     }
 
+    .popup-content-wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .popup-title {
+        font-size: small;
+    }
+
+
+    .popup-paragraph {
+        text-align: center;
+        font-size: x-large;
+        margin: var(--small) 0;
+    }
+
     /* Entry Form */
     #entry-form {
         display: flex;
@@ -247,6 +280,16 @@
 
         input:checked+.reason-opt {
             background-color: var(--accent-shade);
+        }
+
+        fieldset {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--medium);
+
+            >label {
+                text-align: center;
+            }
         }
     }
 

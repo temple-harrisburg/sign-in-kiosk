@@ -57,15 +57,18 @@ class PopupMessageElement extends HTMLDialogElement {
      */
     showMessage(...messages) {
         const wrapper = document.createElement("div");
+        wrapper.classList.add("popup-content-wrapper")
         if (messages.length > 1) {
             const title = messages.shift();
             const h3 = document.createElement('h3');
             h3.textContent = title;
+            h3.classList.add("popup-title")
             wrapper.appendChild(h3);
         }
         messages.forEach(msg => {
             const p = document.createElement('p');
             p.textContent = msg;
+            p.classList.add("popup-paragraph");
             wrapper.appendChild(p);
         })
         this.replaceChildren(wrapper);
