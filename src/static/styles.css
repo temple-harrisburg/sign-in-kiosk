@@ -73,6 +73,7 @@
 @layer typography {
     :root {
         font-family: Arial, Helvetica, sans-serif;
+        font-size: large;
     }
 
     .font-large {
@@ -81,6 +82,14 @@
 
     .font-larger {
         font-size: larger;
+    }
+
+    .font-x-large {
+        font-size: x-large;
+    }
+
+    .font-xx-large {
+        font-size: xx-large;
     }
 }
 
@@ -181,9 +190,6 @@
         }
     }
 
-    .field.large {
-        font-size: var(--large);
-    }
 
 
     /* Loading spinner */
@@ -251,7 +257,7 @@
 
     .popup-paragraph {
         text-align: center;
-        font-size: x-large;
+        font-size: xx-large;
         margin: var(--small) 0;
     }
 
