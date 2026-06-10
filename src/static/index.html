@@ -310,7 +310,8 @@
              */
             const config = await initConfig()
                 .then(config => {
-                    labelCurrentCountIndicator.value = config["labelCurrentCount"];
+                    labelCurrentCountIndicator.value = parseInt(config["labelCurrentCount"]);
+                    return config;
                 })
 
             labelCurrentCountIndicator.addEventListener("label-count", async ({ count }) => {
@@ -491,9 +492,12 @@
 
                     // 2. Log the entry
                     const entryResult = await fetch('/api/entry', options)
-                        .then(res => {
+                        .then(async res => {
                             if (res.ok) {
+                                const sfx = await new Audio(config["audioSuccess"]);
+                                sfx.play();
                                 popup.showMessage("SUCCESS", i18n.getTranslation(currentLang(), "entry-welcome"));
+
                             }
                             return res.json();
                         })
