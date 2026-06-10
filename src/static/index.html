@@ -231,6 +231,18 @@
             const entryForm = document.getElementById("entry-form");
 
             /**
+             * The first name field
+             * @type {HTMLInputElement}
+             */
+            const firstNameInput = document.getElementById("firstName");
+
+            /**
+             * The last name field
+             * @type {HTMLInputElement}
+             */
+            const lastNameInput = document.getElementById("lastName");
+
+            /**
              * @type {HTMLFormElement}
              */
             const reasonForm = document.getElementById("reason-form");
@@ -516,13 +528,22 @@
                         throw printResult.data;
                     }
                     console.log(entryResult, printResult);
-                    popup.showMessage("Success", i18n.getTranslation(currentLang(), "entry-welcome"));
+                    // popup.showMessage("Success", i18n.getTranslation(currentLang(), "entry-welcome"));
                     // loaderDialog.dispatchEvent(new LoadingEvent("Success", i18n.getTranslation(currentLang(), "entry-welcome")));
 
                 } catch (err) {
                     console.error(err);
                     popup.showMessage("ERROR", err.message);
                 } finally {
+                    setTimeout(() => {
+                        popup.close();
+                    }, 5000);
+
+                    // Return focus to entryForm once popup is closed
+                    popup.addEventListener("close", () => {
+                        firstNameInput.focus({ focusVisible: true });
+                    })
+
                     entryForm.reset();
                     reasonForm.reset();
                     reasonForm.querySelectorAll('input[type="radio"]').forEach(el => el.toggleAttribute("checked", false));
