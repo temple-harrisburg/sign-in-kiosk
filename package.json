@@ -24,9 +24,11 @@
     "@types/node": "^25.9.1",
     "@types/express": "^5.0.6"
   },
-  "pnpm": {
-    "executionEnv": {
-      "nodeVersion": "26.2.0"
+  "engines": {
+    "runtime": {
+      "name": "node",
+      "version": "^26.2.0",
+      "onFail": "download"
     }
   }
 }
