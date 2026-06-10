@@ -314,7 +314,7 @@
                 })
 
             labelCurrentCountIndicator.addEventListener("label-count", async ({ count }) => {
-                labelCurrentCountIndicator.value = count;
+                labelCurrentCountIndicator.value = Math.floor(count);
                 if (count <= config["labelLowThreshold"]) {
                     const sfx = await new Audio(config["audioLowTone"]);
                     await sfx.play();
