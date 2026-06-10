@@ -4,7 +4,7 @@
 ## Dependencies
 - [Node.js 26.2.0](https://nodejs.org/en/download/current)
 - [`lp`](https://manpage.me/index.cgi?apropos=0&q=lp&sektion=0&manpath=FreeBSD+12-CURRENT+and+Ports&arch=default&format=html)
-- (recommended) [matthiasbock/dymo-cups-drivers](https://github.com/matthiasbock/dymo-cups-drivers)
+- (recommended) [printer-driver-dymo](https://packages.ubuntu.com/search?keywords=printer%2Ddriver%2Ddymo&searchon=all&suite=all&section=all)
 - (recommended) [pnpm](https://pnpm.io/)
 
 ## Quick Start
