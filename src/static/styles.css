@@ -321,6 +321,58 @@
         }
     }
 
+    button#show-menu-drawer {
+        background-color: transparent;
+        border: 1px solid var(--base);
+        margin: var(--x-small);
+        border-radius: var(--border-radius);
+
+        &:active * {
+            fill: var(--base)
+        }
+    }
+
+    #menu-drawer {
+        transition-property: display, position, width;
+        transition-duration: var(--transition);
+        transition-behavior: allow-discrete;
+        transition-timing-function: ease-out;
+        position: absolute;
+        left: auto;
+        margin: 0;
+        padding: 0;
+        height: 100dvh;
+        width: 0;
+        z-index: 1;
+        border: none;
+        overflow: auto;
+    }
+
+    #menu-drawer:popover-open {
+        width: 15rem;
+
+        @starting-style {
+            width: 0;
+        }
+    }
+
+    #menu-drawer::backdrop {
+        transition-property: display, overlay, background-color;
+        transition-duration: var(--transition);
+        transition-behavior: allow-discrete;
+    }
+
+    #menu-drawer:popover-open::backdrop {
+        backdrop-filter: blur(2px);
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    #drawer-content {
+        padding: var(--medium);
+        overflow: auto;
+
+    }
+
 }
 
 @layer utilities {
