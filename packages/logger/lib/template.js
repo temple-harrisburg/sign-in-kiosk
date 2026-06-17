@@ -94,7 +94,7 @@ export default class Template {
     /**
      * Execute the template with the provided key-value pairs.
      * @public
-     * @params {Record<string, string>} values Key-value pairs defining replacements to be made.
+     * @param {Record<string, string>} values Key-value pairs defining replacements to be made.
      * @returns {string}
      */
     execute(values = {}) {
