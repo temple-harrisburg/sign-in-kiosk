@@ -4,11 +4,13 @@
 
     :root {
         /* Colors */
-        --red: #ff0000;
         --cherry: #8d2020;
-        --blue: #0000ff;
-        --green: #00ff00;
-        --base: #fff;
+        --white: #fff;
+        --pomegranate: #551d44;
+        --mango: orange;
+        --lime: rgb(10, 175, 98);
+
+        --base: var(--white);
         --accent: var(--cherry);
         --accent-shade: color-mix(in hsl shorter hue, var(--accent) 50%, black 50%);
         --accent-tint: color-mix(in hsl shorter hue, var(--accent) 25%, var(--base) 75%);
@@ -23,10 +25,21 @@
         --x-large: 3rem;
 
         /* Borders */
+        --border-width: 2px;
         --border-radius: var(--small);
 
         /* Durations */
         --transition: 200ms;
+
+        /* Components */
+        --toast-width: 300px;
+        --toast-height: 3rem;
+        --toast-margin-top: 0.5rem;
+        --toast-margin-bottom: 0.5rem;
+        --toast-success: var(--lime);
+        --toast-error: var(--cherry);
+        --toast-warning: var(--mango);
+        --toast-message: rgb(214, 214, 214);
 
     }
 
@@ -259,6 +272,70 @@
         text-align: center;
         font-size: xx-large;
         margin: var(--small) 0;
+    }
+
+    /* Toasts */
+    .toast {
+
+        --y-position: calc((sibling-count() - sibling-index()) * -1 * (var(--toast-height) + var(--toast-margin-top) + var(--toast-margin-bottom)));
+
+        all: initial;
+        width: var(--toast-width);
+        height: var(--toast-height);
+
+        /* Position */
+        z-index: 1;
+        position: absolute;
+        bottom: var(--small);
+        left: 50%;
+        right: 50%;
+        margin: 0 calc(var(--toast-width) / 2 * -1);
+
+        /* Aesthetics */
+        border-radius: var(--border-radius);
+        border-width: var(--border-width);
+        border-color: initial;
+        border-style: solid;
+        background: var(--base);
+        text-align: center;
+        font-family: sans-serif;
+
+        /* Transition styles */
+        transition-property: opacity, transform, overlay;
+        transition-duration: var(--transition);
+        transition-behavior: allow-discrete;
+        opacity: 0;
+        transform: translateY(var(--y-position)) translateX(50%);
+
+        &:popover-open {
+            opacity: 1;
+            transform: translateY(var(--y-position));
+
+            @starting-style {
+                opacity: 0;
+                transform: translateY(10%);
+            }
+        }
+
+        &.toast-success {
+            border-color: var(--toast-success);
+            background-color: color-mix(in srgb, var(--base) 75%, var(--toast-success) 25%);
+        }
+
+        &.toast-error {
+            border-color: var(--toast-error);
+            background-color: color-mix(in srgb, var(--base) 75%, var(--toast-error) 25%);
+        }
+
+        &.toast-warning {
+            border-color: var(--toast-warning);
+            background-color: color-mix(in srgb, var(--base) 75%, var(--toast-warning) 25%);
+        }
+
+        &.toast-message {
+            border-color: var(--toast-message);
+            background-color: color-mix(in srgb, var(--base) 75%, var(--toast-message) 25%);
+        }
     }
 
     /* Entry Form */

@@ -9,6 +9,7 @@
     <script src="/js/barcode.js"></script>
     <script src="/js/popupMessage.js"></script>
     <script src="/js/backdrop.js"></script>
+    <script src="/js/toast.js"></script>
     <title>Sign-in Kiosk</title>
 </head>
 
@@ -92,6 +93,7 @@
     </main>
     <footer>
         <p>Copyright Temple University 2026</p>
+        <div id="toast-container"></div>
         <p title="Current label count" id="label-count-wrapper">
             <label for="label-current-count"><span class="visually-hidden">Labels Remaining</span><svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -287,6 +289,9 @@
              */
             const configLoginForm = document.getElementById("config-login-form");
 
+            // Toasts
+            const toasts = new Toast(document.getElementById("toast-container"), { timeout: 5000 });
+
 
             /**
              * @typedef {Record<string, string>} Config
@@ -300,9 +305,10 @@
                         return Object.fromEntries(data.map(({ key, value }) => [key, value]))
                     })
                     .catch(err => {
-                        const popup = window.createPopupMessage();
-                        popup.showMessage("ERROR", `Somethign went wrong: ${err.message}`);
-                        popup.showModal();
+                        // const popup = window.createPopupMessage();
+                        // popup.showMessage("ERROR", `Somethign went wrong: ${err.message}`);
+                        // popup.showModal();
+                        toasts.newToast("ERROR", `Something went wrong: ${err.message}`);
                     });
             }
 
@@ -411,6 +417,7 @@
                 for (const [key, value] of Object.entries(data)) {
                     entryForm[key].value = value;
                 }
+                toasts.newToast("MESSAGE", "Proceed from the form on the screen.");
             })
 
 
@@ -518,6 +525,7 @@
 
                     // 3.a If print succeeded, update record
                     if (printResult.status === "OK") {
+                        toasts.newToast("SUCCESS", "Label successfully printed. Have a good day!");
                         await fetch(`/api/entry/${entryResult.data.lastInsertRowid}`, { body: JSON.stringify({ labelPrinted: 1 }), method: "PATCH", headers, })
                             .then(res => res.json())
                             .then(({ status, data, error }) => {
@@ -552,7 +560,8 @@
 
                 } catch (err) {
                     console.error(err);
-                    popup.showMessage("ERROR", err.message);
+                    toasts.newToast("ERROR", `An error occurred: ${err.message}`);
+                    // popup.showMessage("ERROR", err.message);
                 } finally {
                     setTimeout(() => {
                         popup.close();
