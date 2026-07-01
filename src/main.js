@@ -13,6 +13,7 @@ import { ConfigController } from "./controllers/config.controller.js";
 import { EntryController } from "./controllers/entry.controller.js";
 import { PrintController } from "./controllers/print.controller.js";
 import express from "express";
+import { RSSController } from "./controllers/rss.controller.js";
 
 // CLI Options
 const options = {
@@ -159,6 +160,9 @@ context.update("printer", printer);
 const app = express();
 app.use(express.static(values["static-dir"]));
 app.use(express.json());
+
+// RSS Feed
+app.get('/feed.xml', RSSController.get);
 
 const api = express.Router()
 
