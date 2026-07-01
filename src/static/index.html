@@ -236,6 +236,12 @@
 
         window.addEventListener("DOMContentLoaded", async () => {
 
+            // Main content area
+            /**
+             * @type {HTMLElement}
+             */
+            const main = document.getElementById("main");
+
             // Entry form elements
             /**
              * @type {HTMLFormElement}
@@ -247,6 +253,9 @@
              * @type {HTMLInputElement}
              */
             const firstNameInput = document.getElementById("firstName");
+
+            // Focus first name field on first page load
+            firstNameInput.focus();
 
             /**
              * The last name field
@@ -286,6 +295,16 @@
              * @type {HTMLFormElement}
              */
             const configLoginForm = document.getElementById("config-login-form");
+
+            /**
+             * Focus the first unfilled form field or submit button when clicking outside the form
+             */
+            main.addEventListener("click", e => {
+                if (e.target === main) {
+                    const { firstName, lastName } = entryForm;
+                    try { [firstName, lastName, entryContinueButton].filter(({ value }) => !value).at(0).focus() } catch { };
+                }
+            })
 
 
             /**
