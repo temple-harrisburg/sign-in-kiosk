@@ -1,0 +1,9 @@
+{
+    "name": "@kiosk-app/xml",
+    "type": "module",
+    "exports": {
+        ".": {
+            "default": "./index.js"
+        }
+    }
+}
