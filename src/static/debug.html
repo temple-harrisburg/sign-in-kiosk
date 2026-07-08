@@ -8,10 +8,15 @@
     <script src="/js/barcode.js"></script>
     <script src="/js/popupMessage.js"></script>
     <script src="/js/backdrop.js"></script>
+    <script src="/js/label.js"></script>
+    <!-- MIT License https://www.npmjs.com/package/qrcode -->
+    <script src="/js/qrcode.js"></script>
     <title>Document</title>
 </head>
 
 <body>
+    <!-- Pre-load logo -->
+    <img class="visually-hidden" src="/logo.webp" />
     <header>
         <nav>
             <ul>
@@ -62,6 +67,14 @@
              * @typedef {Object} Pdf417Parser
              */
 
+            const TEST_DATA = {
+                "entryDateTime": new Date(),
+                "firstName": "TEST TEST TEST",
+                "lastName": "TEST TEST TEST",
+                "reason": "TEST",
+                "method": "DEBUG",
+                "labelPrinted": 0,
+            };
 
             /**
              * Button for printing test labels
@@ -177,7 +190,32 @@
             }
 
 
-            printTestLabelButton.addEventListener("click", () => postTestData('/api/print'));
+            printTestLabelButton.addEventListener("click", async () => {
+                const popup = window.createPopupMessage();
+                popup.showModal();
+                const label = new Label(720, 427, '/logo.svg');
+
+                /**
+                 * @type {Blob}
+                 */
+                const blob = await label.draw({ name: `${TEST_DATA.firstName} ${TEST_DATA.lastName}`, reason: TEST_DATA.reason });
+                const bytes = await blob.bytes();
+                console.log(`Label bytes`, bytes);
+
+                const body = {
+                    "label": bytes.toBase64()
+                }
+
+                fetch('/api/print', { method: 'POST', body: JSON.stringify(body), headers: { 'Content-Type': 'application/json' } })
+                    .then(res => res.json())
+                    .then(({ status, data, error }) => {
+                        if (error) throw error;
+                        popup.showMessage(status, JSON.stringify(data, null, 2));
+                    })
+                    .catch(err => {
+                        popup.showMessage("ERROR", err.message);
+                    });
+            });
 
             logTestEntryButton.addEventListener("click", () => postTestData('/api/entry'));
 

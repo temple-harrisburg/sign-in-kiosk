@@ -9,6 +9,9 @@
     <script src="/js/barcode.js"></script>
     <script src="/js/popupMessage.js"></script>
     <script src="/js/backdrop.js"></script>
+    <script src="/js/label.js"></script>
+    <!-- MIT License https://www.npmjs.com/package/qrcode -->
+    <script src="/js/qrcode.js"></script>
     <title>Sign-in Kiosk</title>
 </head>
 
@@ -527,7 +530,15 @@
                         .finally(() => console.log(`Entry POST finished`))
 
                     // 3. Attempt to print label
-                    const printResult = await fetch('/api/print', options)
+                    const label = new Label(720, 427, '/assets/logo.svg');
+                    const bytes = await label.draw({ name: `${record['firstName']} ${record['lastName']}`, reason: record['reason'] })
+                        .then(blob => blob.bytes());
+
+                    const labeldata = JSON.stringify({
+                        "label": bytes.toBase64()
+                    });
+
+                    const printResult = await fetch('/api/print', { method: 'POST', body: labeldata, headers: { 'Content-Type': 'application/json' } })
                         .then(res => res.json())
                         .then(({ status, data, error }) => {
                             if (error) throw new Error(error);
