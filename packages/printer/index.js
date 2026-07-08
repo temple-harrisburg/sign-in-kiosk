@@ -1,36 +1,40 @@
-import crypto from "node:crypto";
 import child_process, { ChildProcess } from "node:child_process";
 import os from "node:os";
-import fs from "node:fs/promises";
-import fs_sync from "node:fs";
+import fs from "node:fs";
 import path from "node:path";
+import sharp from "sharp";
 
-/**
- * Interface for creating print jobs
- * 
- * @module
- */
+class PrinterOpts {
+    /**
+     * Path to the SVG file to use as template for Printer label
+     * @type {import("node:fs").PathLike}
+     */
+    template
+
+    /**
+     * Location for temporary files created when printing
+     * @type {string|undefined}
+     */
+    tmpDir
+
+	/**
+	 * ID of the printer to use
+	 * @type {string|undefined}
+	 */
+	printerName
+}
+
 export default class Printer {
     /**
      * 
-     * @param {{tmpDir:string}} options 
+     * @param {PrinterOpts} options 
      */
     constructor(options) {
-        let { tmpDir } = options;
-
+        let { template, tmpDir, printerName } = options;
         tmpDir ??= os.tmpdir();
-        fs.mkdtemp(path.join(tmpDir, `labels-`)).then(path => {
-            this.tmpDir = path;
-        })
-    }
-
-    /**
-     * @param {".png"|".jpg"|".jpeg"|".txt"} suffix 
-     * @returns {string} Path to a unique file located in the temporary directory
-     */
-    uniqueTempFile(suffix = ".png") {
-        const uuid = crypto.randomUUID();
-        return path.join(this.tmpDir, `${uuid}${suffix}`);
+        this.tmpDir = fs.mkdtempSync(path.join(tmpDir, "labels-"), "utf8");
+        this.template = fs.readFileSync(template).toString('utf8');
+        this.printerName = printerName;
     }
 
     async getQueue() {
@@ -59,15 +63,45 @@ export default class Printer {
     }
 
     /**
-     * 
-     * @param {Buffer} buffer
+     * @private
+     * @param {Record<string, string>} values 
+     * @returns {string} Template with strings wrapped in '%' replaced with the value from the `values`
+     * @example ```js
+     * this.template = '%foo% %bar%';
+     * const result = this.prepareTemplate({foo: 1, bar: 'baz'});
+     * console.log(result);
+     * // '1 baz'
      */
-    async print(buffer) {
-        const fileName = this.uniqueTempFile(".png");
+    prepareTemplate(values) {
+        /**
+         * 
+         * @param {string} match 
+         * @returns {string}
+         */
+        const replaceFn = (match) => {
+            const key = match.substring(1, match.length - 1);
+            return values[key] ?? "";
+        }
+        return this.template.replace(/\%(\w+)\%/g, replaceFn);
+    }
 
-        fs_sync.writeFileSync(fileName, buffer);
+    /**
+     * @async
+     * @typedef {import("node:child_process").SpawnSyncReturns} SpawnSyncReturns
+     * @param {Record<string, string>} entry 
+     * @param {import('sharp').SharpOptions} [sharpOptions={ density: 200 }] 
+     * @returns {Promise<SpawnSyncReturns<NonSharedBuffer>>}
+     */
+    async print(entry, sharpOptions = { density: 200 }) {
+        const ts = Date.now();
+        const fileName = path.join(this.tmpDir, `label-${ts}.png`);
+        const template = this.prepareTemplate(entry);
 
-        const args = ["-o", "landscape", "-o", "media=Custom.2.5125xc.875in", fileName];
-        return await child_process.spawnSync("lp", args);
+        const label = await new sharp(Buffer.from(template, 'utf8'), sharpOptions)
+            .png()
+            .toFile(fileName)
+
+        const args = ["-o", "landscape", "-o", "media=Custom.2.5125x3.875in", fileName];
+        return child_process.spawnSync("lp", args);
     }
 }

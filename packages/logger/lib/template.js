@@ -10,16 +10,19 @@ export default class Template {
     static builtins = {
 
         /**
+
          * @returns {string} 4-digit year
          */
         "YYYY": () => Temporal.Now.zonedDateTimeISO().year,
 
         /**
+
          * @returns {string} 2-digit year
          */
         "YY": () => Temporal.Now.zonedDateTimeISO().year.slice(-2),
 
         /**
+
          * @returns {string} 2-digit month
          */
         "MM": () => `${Temporal.Now.zonedDateTimeISO().month}`.padStart(2, "0"),
@@ -35,11 +38,13 @@ export default class Template {
         "M": () => `${Temporal.Now.zonedDateTimeISO().minute}`.padStart(2, "0"),
 
         /**
-         * @returns {string} 2-digit 0-padded hour
+
+         * @returns {string} 2-digit 0-padded second
          */
         "H": () => Temporal.Now.zonedDateTimeISO().hour,
 
         /**
+
          * @returns {string} 2-digit 0-padded second
          */
         "S": () => `${Temporal.Now.zonedDateTimeISO().second}`.padStart(2, "0"),
@@ -54,10 +59,8 @@ export default class Template {
     }
 
     /**
-     * Replace template tokens (camelCase strings preceded by '$') with a closure capturing either input values or pre-defined functions from the 'builtins' static property.
-     * @private
+     * 
      * @param {string} template 
-     * @returns {Array<string|()=>string>}
      */
     static _prepare(template) {
         const tokens = template.split(/(\$[A-Za-z]+)/g);
@@ -77,7 +80,6 @@ export default class Template {
     }
 
     /**
-     * @public
      * @returns {string}
      */
     static execute(template, values = {}) {
@@ -91,12 +93,6 @@ export default class Template {
         }).join('')
     }
 
-    /**
-     * Execute the template with the provided key-value pairs.
-     * @public
-     * @param {Record<string, string>} values Key-value pairs defining replacements to be made.
-     * @returns {string}
-     */
     execute(values = {}) {
         return this.preparedTemplate.map(tokenOrReplacement => {
             if (typeof tokenOrReplacement === 'string') {

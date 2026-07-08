@@ -11,7 +11,8 @@
     <script src="/js/label.js"></script>
     <!-- MIT License https://www.npmjs.com/package/qrcode -->
     <script src="/js/qrcode.js"></script>
-    <title>Document</title>
+    <script src="/js/toast.js"></script>
+    <title>Debug</title>
 </head>
 
 <body>
@@ -55,11 +56,14 @@
                     max="5000" step="1" value="2000" />
                 <button type="button" id="next-backdrop" class="button accent">Next Backdrop</button>
 
+                <button type="button" id="toast-message">Show Toast Message</button>
             </fieldset>
         </form>
     </main>
 
-    <footer></footer>
+    <footer>
+        <div id="toast-container"></div>
+    </footer>
     <script>
         window.addEventListener("DOMContentLoaded", () => {
             /**
@@ -75,6 +79,11 @@
                 "method": "DEBUG",
                 "labelPrinted": 0,
             };
+            /**
+             * Set up toast messages
+             */
+            const toast = new Toast(document.getElementById("toast-container"), { timeout: 5000 });
+
 
             /**
              * Button for printing test labels
@@ -274,6 +283,17 @@
                 popup.addEventListener('close', () => {
                     window.removeEventListener('keydown', keydownHandler);
                 })
+            });
+
+
+            const toastMessageButton = document.getElementById("toast-message");
+            const toastStatus = ["MESSAGE", "SUCCESS", "WARNING", "ERROR"];
+            let statusIndex = 0;
+            toastMessageButton.addEventListener("click", () => {
+                const status = toastStatus[statusIndex];
+                const errToast = toast.newToast(status, `This is a toast message with status: ${status}`);
+                statusIndex++;
+                statusIndex %= toastStatus.length;
             })
 
         });
