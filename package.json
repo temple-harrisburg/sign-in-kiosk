@@ -14,15 +14,15 @@
   "license": "GPL-3.0-only",
   "packageManager": "pnpm@10.28.0",
   "dependencies": {
-    "express": "^5.2.1",
+    "@kiosk-app/logger": "workspace:^",
     "@kiosk-app/mvc": "workspace:^",
     "@kiosk-app/printer": "workspace:^",
-    "@kiosk-app/logger": "workspace:^",
-    "@kiosk-app/utils": "workspace:^"
+    "@kiosk-app/utils": "workspace:^",
+    "express": "^5.2.1"
   },
   "devDependencies": {
-    "@types/node": "^25.9.1",
-    "@types/express": "^5.0.6"
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.9.1"
   },
   "engines": {
     "runtime": {

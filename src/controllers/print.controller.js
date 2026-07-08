@@ -36,17 +36,19 @@ export class PrintController {
 	*/
 	static async post(request, response) {
 		const { logger, printer } = global.context;
-		const { body } = request;
 
-		logger.debug("Printer POST received data")
-		logger.debug(JSON.stringify(body));
-		await printer.print(body)
+		const { label } = request.body;
+
+		const buffer = Uint8Array.fromBase64(label)
+
+		await printer.print(buffer)
 			.then(({ error, output, status }) => {
 				if (error) throw error;
 				const data = output
 					.filter(x => !!x)
 					.map(buffer => buffer.toString('utf8'))
 					.join('');
+				logger.debug(data);
 				if (status !== 0) throw data;
 				response.status(200);
 				response.json({ status: "OK", data, error: undefined });
@@ -76,6 +78,5 @@ export class PrintController {
 				response.status(500);
 				response.json({ status: "ERROR", error: message, data: undefined });
 			});
-
 	}
 }
