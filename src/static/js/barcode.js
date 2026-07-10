@@ -121,6 +121,12 @@ class Pdf417Parser {
     #chunks = [];
 
     /**
+     * Parser received a keypress which will modify the next keydown event.
+     * @type {boolean}
+     */
+    #awaitingModified = false;
+
+    /**
      * The AAMVA compliance indicator
      * @type {'@'}
      */
