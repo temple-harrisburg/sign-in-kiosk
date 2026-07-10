@@ -67,7 +67,7 @@ export default class Printer {
 
         fs_sync.writeFileSync(fileName, buffer);
 
-        const args = ["-o", "landscape", "-o", "media=Custom.2.5125xc.875in", fileName];
+        const args = ["-o", "landscape", fileName];
         return await child_process.spawnSync("lp", args);
     }
 }
