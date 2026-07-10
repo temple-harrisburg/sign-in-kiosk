@@ -203,11 +203,7 @@ class Pdf417Parser {
                 case 'Control':
                     this.#buffer.push(key);
                     if (this.#fieldNumber === 2) {
-                        this.#buffer.push(events[i + 1].key);
-                        this.#dataElementSeparator = this.#buffer.join('');
-                        this.#fieldNumber++;
-                        i++;
-                        this.flush();
+                        this.#awaitingModified = true;
                         break;
                     }
 
@@ -230,6 +226,19 @@ class Pdf417Parser {
                 default:
 
                     switch (this.#fieldNumber) {
+
+                        /**
+                         * (Field 2) Data element separator
+                         */
+                        case 2:
+                            if (this.#awaitingModified) {
+                                this.#buffer.push(key);
+                                this.#dataElementSeparator = this.#buffer.join('');
+                                this.#fieldNumber++;
+                                this.flush();
+                                this.#awaitingModified = false;
+                            }
+                            break;
 
                         /**
                          *
@@ -298,6 +307,7 @@ class Pdf417Parser {
 
                         default:
                             this.#buffer.push(key);
+
                             if (this.#buffer.join('').endsWith(this.#dataElementSeparator)) {
                                 let data = this.#buffer.join('');
                                 data = data.slice(0, data.indexOf(this.#dataElementSeparator));
