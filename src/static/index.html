@@ -33,8 +33,7 @@
                 <button command="show-modal" commandfor="config-login-modal" class="button button-accent"
                     data-i18n="config-login-button">Edit
                     Configuration</button>
-                <button id="barcode-scan-launch" class="button button-base" data-i18n="barcode-button">Scan
-                    Barcode</button>
+                <!-- <button id="barcode-scan-launch" class="button button-base" data-i18n="barcode-button">Scan Barcode</button> -->
             </div>
             <dialog id="config-login-modal" closedby="any" class="popup drop-shadow">
                 <form id="config-login-form" method="dialog">
@@ -378,55 +377,67 @@
             * @typedef {Object} Pdf417Parser
             */
 
+            const barcodeInputThreshold = 10;
+
+            const keystats = {
+                barcodeInput: [],
+                lastKeydownTimestamp: -1,
+                currentKeydownTimestap: -1,
+                timeBetweenKeydowns: undefined
+            }
+
+            let parser = new Pdf417Parser();
+
             /**
-             * @type {HTMLDialogElement|undefined}
+             * @type {HTMLDialogElement}
              */
             let barcodePopup;
-            const parseInputCallback = (keyboardEvents) => {
-                console.log(`Caught ${keyboardEvents.length} keystrokes`)
-                try {
-                    /**
-                     * @type {Pdf417Parser}
-                     */
-                    const parser = new Pdf417Parser();
-                    parser.feed(...keyboardEvents);
-                    const result = Object.fromEntries(parser.result);
 
-                    const [firstName, lastName] = [result["DAC"], result["DCS"]];
-                    if (!firstName || !lastName) throw Error('Failed to read barcode. Try again.');
-                    barcodePopup.close();
-                    const autoFillEvent = new AutofillFormEvent({ firstName, lastName });
-                    entryForm.dispatchEvent(autoFillEvent);
-                } catch (err) {
-                    console.error(err);
-                    barcodePopup.showMessage("ERROR", err.message);
+            const debounce = (fn, t) => {
+                let timeout;
+                return function (...args) {
+                    clearTimeout(timeout);
+                    timeout = setTimeout(() => fn.apply(this, args), t);
                 }
             }
 
-            const startReadingCallback = () => {
-                barcodePopup.showSpinner();
-                barcodePopup.showModal();
-            };
+            const getResult = debounce(() => {
+                console.log(parser);
+                try {
+                    const result = Object.fromEntries(parser.result);
+                    const [firstName, lastName] = [result["DAC"], result["DCS"]];
+                    if (!firstName || !lastName) {
+                        barcodePopup.showMessage('ERROR', 'Failed to read barcode. Try again.');
+                        return;
+                    }
+                    const autoFillEvent = new AutofillFormEvent({ firstName, lastName });
+                    entryForm.dispatchEvent(autoFillEvent);
+                    barcodePopup.close();
+                } finally {
+                    // Reset parser
+                    parser = new Pdf417Parser();
+                }
+            }, 150)
 
-            const handler = new BarcodeHandler({ timeoutDuration: 20, parseInputCallback, startReadingCallback });
-            function handleKeydown(e) {
-                handler.handleKeydown(e);
-            }
 
-            barcodeLaunchButton.addEventListener("click", e => {
-                barcodePopup = window.createPopupMessage();
-                barcodePopup.showMessage("Waiting for input from scanner...");
-                barcodePopup.showModal();
-                console.log("Starting keydown trap")
-                document.addEventListener("keydown", handleKeydown);
-
-                barcodePopup.addEventListener("close", () => {
-                    console.log("Ending keydown trap");
-                    document.removeEventListener("keydown", handleKeydown);
-                });
+            window.addEventListener('keydown', e => {
+                keystats.lastKeydownTimestamp = keystats.currentKeydownTimestap;
+                keystats.currentKeydownTimestap = Date.now();
+                keystats.timeBetweenKeydowns = keystats.currentKeydownTimestap - keystats.lastKeydownTimestamp;
+                // console.log(keystats.timeBetweenKeydowns);
+                if (keystats.timeBetweenKeydowns < barcodeInputThreshold) {
+                    if (!barcodePopup || !barcodePopup.open) {
+                        barcodePopup = window.createPopupMessage();
+                        barcodePopup.showSpinner();
+                        barcodePopup.showModal();
+                    }
+                    e.preventDefault();
+                    parser.feed(e);
+                    keystats.barcodeInput.push(e);
+                    // console.log(parser.result);
+                    getResult();
+                }
             });
-
-
 
 
             /**
