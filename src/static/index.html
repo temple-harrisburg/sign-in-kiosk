@@ -378,13 +378,13 @@
             * 
             */
 
-            debounce = (fn, t) => {
+            const debounce = (fn, t) => {
                 let timeout;
                 return function (...args) {
                     clearTimeout(timeout);
                     timeout = setTimeout(() => fn.apply(this, args), t);
                 }
-            }
+            };
 
 
             /**
@@ -402,7 +402,7 @@
                     e => (e.ctrlKey || e.shiftKey) && e.key === 'w',    // Close tab/window
                     e => (e.ctrlKey || e.shiftKey) && e.key === 't',    // New tab / open last closed tab
                     e => e.key === 'Enter',                             // Submit form
-                ]
+                ];
 
                 static isBlacklisted = (e) => KeypressHandler.BLACKLIST.some(fn => fn(e));
 
@@ -415,7 +415,7 @@
                     const INPUT_THRESHOLD_COUNT = 4;    // Minimum amount of input keypresses needed to attempt a guess
                     const HUMAN_THRESHOLD_MS = 10;      // Threshold of average time between keypresses before input considered human
 
-                    if (!keypresses || keypresses.length < INPUT_THRESHOLD_COUNT) return "UNKNOWN"
+                    if (!keypresses || keypresses.length < INPUT_THRESHOLD_COUNT) return "UNKNOWN";
 
                     const elapsed = [];
                     for (let i = 1; i < keypresses.length; i += 2) {
