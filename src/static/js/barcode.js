@@ -1,102 +1,3 @@
-class BarcodeHandlerOpts {
-    /**
-     * How long to wait for the next keypress before executing the parse callback
-     * @type {number}
-     */
-    timeoutDuration;
-
-    /**
-     * Function executed once barcode reading finished
-     * @type {(content:KeyboardEvent[])=>void}
-     */
-    parseInputCallback;
-
-    /**
-     * Function executed one barcode reading starts
-     * @type {()=>void}
-     */
-    startReadingCallback;
-}
-
-class BarcodeHandler {
-    /**
-    * Wait period before parsing current input content
-    * @type {number}
-    */
-    #timeoutDuration = 20;
-
-    /**
-    * Whether the class is currently reading input
-    * @type {boolean}
-    */
-    #isReadingInput = false;
-
-    /**
-     * The sequence of keydown events
-     * @type {KeyboardEvent[]}
-     */
-    #inputContent = [];
-
-    /**
-    * Handle ID of the timeout
-    * @type {number}
-    */
-    #timer = 0;
-
-    /**
-     * Function executed one barcode reading starts
-     * @type {()=>void}
-     */
-    #startReadingCallback;
-
-    /**
-     * Function executed once barcode reading finished
-     * @type {(content:KeyboardEvent[])=>void}
-     */
-    #parseInputCallback;
-
-    /**
-     * 
-     * @param {BarcodeHandlerOpts} options 
-     */
-    constructor(options = { timeoutDuration: 20, parseInputCallback: () => { }, startReadingCallback: () => { } }) {
-        const { timeoutDuration, parseInputCallback, startReadingCallback } = options;
-        this.#timeoutDuration = timeoutDuration;
-        this.#parseInputCallback = parseInputCallback;
-        this.#startReadingCallback = startReadingCallback;
-    }
-
-    /**
-    * @public
-    */
-    handleKeydown(e) {
-        e.preventDefault();
-        if (!this.#isReadingInput) {
-            this.#isReadingInput = true;
-            this.#startReadingCallback();
-        }
-        if (this.#timer) {
-            clearTimeout(this.#timer);
-            this.#inputContent.push(e);
-        }
-
-        // Call parser callback once input finishes
-        this.#timer = setTimeout(() => {
-            this.#parseInputCallback(this.#inputContent)
-            this.reset();
-        }, this.#timeoutDuration);
-    }
-
-    /**
-    * @private
-    */
-    reset() {
-        this.#isReadingInput = false;
-        this.#inputContent = [];
-        this.#timer = 0;
-    }
-}
-
 /**
  * Parses an array of keypresses according to the AAMVA spec
  * @see {@link https://web.archive.org/web/20260218201105/https://www.aamva.org/getmedia/99ac7057-0f4d-4461-b0a2-3a5532e1b35c/AAMVA-2020-DLID-Card-Design-Standard.pdf}
@@ -224,9 +125,10 @@ class Pdf417Parser {
                     if (this.#fieldNumber === 4) {
                         this.#segmentTerminator = key;
                         this.#fieldNumber++;
-                    } else {
-                        this.#buffer.push(key);
                     }
+                    // else {
+                    //     this.#buffer.push(key);
+                    // }
                     break;
 
                 default:

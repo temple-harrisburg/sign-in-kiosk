@@ -240,6 +240,9 @@
 
         window.addEventListener("DOMContentLoaded", async () => {
 
+            // Show warning when attempting to navigate away from page
+            window.addEventListener('beforeunload', () => true);
+
             // Main content area
             /**
              * @type {HTMLElement}
@@ -372,26 +375,8 @@
             /**
             * 
             * BARCODE SCANNING
-            * see '/barcode.js'
-            * @typedef {Object} BarcodeHandler
-            * @typedef {Object} Pdf417Parser
+            * 
             */
-
-            const barcodeInputThreshold = 10;
-
-            const keystats = {
-                barcodeInput: [],
-                lastKeydownTimestamp: -1,
-                currentKeydownTimestap: -1,
-                timeBetweenKeydowns: undefined
-            }
-
-            let parser = new Pdf417Parser();
-
-            /**
-             * @type {HTMLDialogElement}
-             */
-            let barcodePopup;
 
             const debounce = (fn, t) => {
                 let timeout;
@@ -399,52 +384,147 @@
                     clearTimeout(timeout);
                     timeout = setTimeout(() => fn.apply(this, args), t);
                 }
-            }
-
-            const getResult = debounce(() => {
-                console.log(parser);
-                try {
-                    const result = Object.fromEntries(parser.result);
-                    const [firstName, lastName] = [result["DAC"], result["DCS"]];
-                    if (!firstName || !lastName) {
-                        barcodePopup.showMessage('ERROR', 'Failed to read barcode. Try again.');
-                        return;
-                    }
-                    const autoFillEvent = new AutofillFormEvent({ firstName, lastName });
-                    entryForm.dispatchEvent(autoFillEvent);
-                    barcodePopup.close();
-                } finally {
-                    // Reset parser
-                    parser = new Pdf417Parser();
-                }
-            }, 150)
-
-
-            window.addEventListener('keydown', e => {
-                keystats.lastKeydownTimestamp = keystats.currentKeydownTimestap;
-                keystats.currentKeydownTimestap = Date.now();
-                keystats.timeBetweenKeydowns = keystats.currentKeydownTimestap - keystats.lastKeydownTimestamp;
-                // console.log(keystats.timeBetweenKeydowns);
-                if (keystats.timeBetweenKeydowns < barcodeInputThreshold) {
-                    if (!barcodePopup || !barcodePopup.open) {
-                        barcodePopup = window.createPopupMessage();
-                        barcodePopup.showSpinner();
-                        barcodePopup.showModal();
-                    }
-                    e.preventDefault();
-                    parser.feed(e);
-                    keystats.barcodeInput.push(e);
-                    // console.log(parser.result);
-                    getResult();
-                }
-            });
+            };
 
 
             /**
-             * 
-             * ENTRY FORMS 
-             * 
+             * Handle sequences of keypresses with callbacks for the start and end of reading.
              */
+            class KeypressHandler {
+                /**
+                 * Blacklisted keypress events to prevent side effects
+                 * @type {KeyboardEvent[]}
+                 */
+                static BLACKLIST = [
+                    e => e.ctrlKey && e.key === 'j',                    // Open downloads
+                    e => e.ctrlKey && e.key === 'q',                    // Quit browser
+                    e => e.ctrlKey && e.key === 'd',                    // New bookmark
+                    e => (e.ctrlKey || e.shiftKey) && e.key === 'w',    // Close tab/window
+                    e => (e.ctrlKey || e.shiftKey) && e.key === 't',    // New tab / open last closed tab
+                    e => e.key === 'Enter',                             // Submit form
+                ];
+
+                static isBlacklisted = (e) => KeypressHandler.BLACKLIST.some(fn => fn(e));
+
+                /**
+                 * Guess if a series of keypresses is human or automated input based on average of elapsed time between keypresses
+                 * @param {KeyboardEvent[]} keypresses
+                 * @return {"HUMAN"|"SCANNER"|"UNKNOWN"}
+                 */
+                static guess(keypresses) {
+                    const INPUT_THRESHOLD_COUNT = 4;    // Minimum amount of input keypresses needed to attempt a guess
+                    const HUMAN_THRESHOLD_MS = 10;      // Threshold of average time between keypresses before input considered human
+
+                    if (!keypresses || keypresses.length < INPUT_THRESHOLD_COUNT) return "UNKNOWN";
+
+                    const elapsed = [];
+                    for (let i = 1; i < keypresses.length; i += 2) {
+                        const [prev, curr] = [keypresses[i - 1], keypresses[i]];
+                        elapsed.push(curr.timeStamp - prev.timeStamp);
+                    }
+
+                    const average = (...n) => n.reduce((p, c) => p + c) / n.length;
+                    const avg = average(...elapsed);
+                    console.debug(`Average time between keypresses: ${avg}`);
+                    return avg < HUMAN_THRESHOLD_MS ? "SCANNER" : "HUMAN";
+                }
+
+                /**
+                 * @type {KeyboardEvent[]}
+                 */
+                #buffer = [];
+
+                /**
+                 * @type {"IDLE"|"READ"|"PARSE"}
+                 */
+                #state = "IDLE";
+
+
+                constructor(element, readingStartCb, readingStopCb) {
+                    this.target = element;
+                    this.target.addEventListener('keydown', e => this.handleKeydown(e));
+
+                    this.readingStartCb = readingStartCb;
+                    this.readingStopCb = readingStopCb;
+                }
+
+
+                #readingStartWrapper = (fn) => {
+                    this.#state = "READ";
+                    fn();
+                }
+
+                #readingStopWrapper = debounce(() => {
+                    this.readingStopCb(this.#buffer);
+                    this.flush();
+                    this.#state = "IDLE";
+                }, 250)
+
+                /**
+                 * @param {KeyboardEvent} e
+                 */
+                handleKeydown(e) {
+                    if (KeypressHandler.isBlacklisted(e)) {
+                        // console.debug('Blacklisted keypress', e);
+                        e.preventDefault();
+                    };
+                    this.#state === "IDLE" && this.#readingStartWrapper(() => this.readingStartCb(this.#buffer));
+                    this.#buffer.push(e);
+                    this.#readingStopWrapper();
+                }
+
+                flush() {
+                    this.#buffer = [];
+                    this.#state = "IDLE";
+                }
+            }
+
+            /**
+             * @type {HTMLDialogElement}
+             */
+            let barcodePopup;
+            const createBarcodePopup = debounce((keypresses) => {
+                barcodePopup = window.createPopupMessage();
+                if (KeypressHandler.guess(keypresses) === "SCANNER") {
+                    barcodePopup.showSpinner();
+                    barcodePopup.showModal();
+                }
+
+            }, 250);
+            function readingStartCallback(keypresses) {
+                createBarcodePopup();
+            }
+
+
+
+            /**
+             * @param {KeyboardEvent[]} keypresses
+             */
+            function readingStopCallback(keypresses) {
+                if (KeypressHandler.guess(keypresses) === "SCANNER") {
+                    try {
+
+                        /**
+                         * @see {@link barcode.js}
+                         */
+                        const parser = new Pdf417Parser();
+                        parser.feed(...keypresses);
+                        const result = Object.fromEntries(parser.result);
+                        // console.debug(parser);
+                        // console.debug(result);
+
+                        const [firstName, lastName] = [result["DAC"], result["DCS"]];
+                        if (!firstName || !lastName) throw new Error();
+                        const autoFillEvent = new AutofillFormEvent({ firstName, lastName });
+                        entryForm.dispatchEvent(autoFillEvent);
+                    } catch (err) {
+                        toasts.newToast("ERROR", "Failed to read barcode input. Try again");
+                    }
+                }
+            }
+
+            const keypressHandle = new KeypressHandler(window, readingStartCallback, readingStopCallback);
+
 
             entryForm.addEventListener("autofill", ({ data }) => {
                 for (const [key, value] of Object.entries(data)) {
