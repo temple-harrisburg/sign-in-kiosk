@@ -47,7 +47,7 @@ export default class Template {
 
          * @returns {string} 2-digit 0-padded second
          */
-        "S": () => `${new Date().getSecond()}`.padStart(2, "0"),
+        "S": () => `${new Date().getSeconds()}`.padStart(2, "0"),
     }
     /**
      * 
