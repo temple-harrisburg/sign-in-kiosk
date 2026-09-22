@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import os from "node:os";
 import process from "node:process";
 import { execSync, spawnSync } from "node:child_process";
