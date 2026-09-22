@@ -13,41 +13,41 @@ export default class Template {
 
          * @returns {string} 4-digit year
          */
-        "YYYY": () => Temporal.Now.zonedDateTimeISO().year,
+        "YYYY": () => new Date().getFullYear().toString(),
 
         /**
 
          * @returns {string} 2-digit year
          */
-        "YY": () => Temporal.Now.zonedDateTimeISO().year.slice(-2),
+        "YY": () => new Date().getFullYear().toString().slice(-2),
 
         /**
 
          * @returns {string} 2-digit month
          */
-        "MM": () => `${Temporal.Now.zonedDateTimeISO().month}`.padStart(2, "0"),
+        "MM": () => `${new Date().getMonth() + 1}`.padStart(2, "0"),
 
         /**
          * @returns {string} 2-digit 0-padded Day of month
          */
-        "DD": () => `${Temporal.Now.zonedDateTimeISO().day}`.padStart(2, "0"),
+        "DD": () => `${new Date().getDate()}`.padStart(2, "0"),
 
         /**
          * @returns {string} 2-digit 0-padded minute
          */
-        "M": () => `${Temporal.Now.zonedDateTimeISO().minute}`.padStart(2, "0"),
+        "M": () => `${new Date().getMinutes()}`.padStart(2, "0"),
+
+        /**
+
+         * @returns {string} 2-digit 0-padded hour
+         */
+        "H": () => `${new Date().getHours() % 12 + 1}`.padStart(2, "0"),
 
         /**
 
          * @returns {string} 2-digit 0-padded second
          */
-        "H": () => Temporal.Now.zonedDateTimeISO().hour,
-
-        /**
-
-         * @returns {string} 2-digit 0-padded second
-         */
-        "S": () => `${Temporal.Now.zonedDateTimeISO().second}`.padStart(2, "0"),
+        "S": () => `${new Date().getSecond()}`.padStart(2, "0"),
     }
     /**
      * 
