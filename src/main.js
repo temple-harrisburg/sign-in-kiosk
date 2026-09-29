@@ -148,28 +148,17 @@ const logger = new Logger(outputs);
 
 
 // DATABASE
+values["db-uri"] === ":memory:" && logger.warn("Database is running in-memory. Data will not be saved.")
 const db = new Database(values["db-uri"]);
 db.on('register', (args) => {
     const { model, tableName } = args;
     logger.debug(args);
-    logger.info(`Created table ${tableName} for model ${model.name}`);
+    logger.debug(`Created table ${tableName} for model ${model.name}`);
 });
 db.registerModel(Entry);
 db.registerModel(Config);
 
 
-// PRINTING
-
-// Check that `lp` exists on the host
-const lpCheckResult = spawnSync("bash", ["-c", "if ! command -v lp; then exit 1; fi"]);
-if (lpCheckResult.error || lpCheckResult.status !== 0) {
-    logger.error(`\`lp\` is not installed on host. Printing will not work.`);
-} else {
-    logger.debug(JSON.stringify(lpCheckResult, null, 2))
-    const { output } = lpCheckResult;
-    logger.info('`lp` detected on host')
-    logger.debug(output);
-}
 
 // Initalize global context
 context.update("db", db);
@@ -205,11 +194,17 @@ for (let [key, value] of Object.entries(process.env)) {
     }
 }
 
-// CLI Template overrides DB and .env config
-values["print-template"] && (mergedConfig["labelTemplatePath"] = values["print-template"]);
+// PRINTER
+// - Create printer instance
+const printer = new Printer({ tmpDir: values['print-tmpdir'] });
 
-// Create printer instance
-const printer = new Printer({ template: mergedConfig["labelTemplatePath"], tmpDir: values['print-tmpdir'] });
+// - Check for `lp` printing program
+const lpExists = printer.check_lp() === 0;
+if (lpExists) {
+    logger.debug("`lp` detected on system.");
+} else {
+    logger.warn("Could not detect `lp`. Printing will fail!");
+}
 context.update("printer", printer);
 
 // SERVER
