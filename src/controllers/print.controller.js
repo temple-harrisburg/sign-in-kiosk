@@ -1,5 +1,20 @@
 import { Controller } from "@kiosk-app/mvc";
 
+// Patch in Uint8Array.fromBase64
+if (!Object.hasOwn(Uint8Array, 'fromBase64')) {
+	/** 
+	 * @param {string} b64string 
+	 * @returns {Uint8Array} 
+	 */
+	Uint8Array.fromBase64 = function (b64string) {
+		const buffer = new Uint8Array(b64string.length);
+		for (let i = 0; i < b64string.length; i++) {
+			buffer[i] = b64string.charCodeAt(i);
+		}
+		return buffer;
+	}
+}
+
 /**
  * Handler for printer commands
  * @typedef {import('express').Request} Request

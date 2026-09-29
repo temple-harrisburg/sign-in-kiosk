@@ -1,12 +1,10 @@
-import { DatabaseSync } from "node:sqlite";
+// import { DatabaseSync } from "node:sqlite";
+import BetterSQLiteDatabase from "better-sqlite3";
 import Model, { ColumnDef } from "./model.js";
 
 export default class Database {
-    /**
-     * Instance of SQLite database
-     * @type {DatabaseSync}
-     * @see {@link [Node.js - SQLite](https://nodejs.org/api/sqlite.html) }
-     */
+
+    /** @type {InstanceType<BetterSQLiteDatabase>} */
     sqlite;
 
     /**
@@ -25,7 +23,8 @@ export default class Database {
      * @param {string|":memory:"} connectionUri Path to SQlite database or ":memory:" for in-memory database.
     */
     constructor(connectionUri = ":memory:") {
-        this.sqlite = new DatabaseSync(connectionUri);
+        // this.sqlite = new DatabaseSync(connectionUri);
+        this.sqlite = new BetterSQLiteDatabase(connectionUri);
     }
 
     /**
