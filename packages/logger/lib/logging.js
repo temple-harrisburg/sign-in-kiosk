@@ -1,6 +1,5 @@
-
-import process from "node:process";
 import fs from "node:fs";
+import { styleText } from "node:util";
 import Template from "./template.js";
 
 /**
@@ -64,14 +63,16 @@ class Output {
      */
     static _style(message, logLevel) {
         const styles = {
-            "ERROR": "31",
-            "INFO": "0",
-            "DEBUG": "0",
-            "WARN": "33"
+            "ERROR": "red",
+            "INFO": "blue",
+            "DEBUG": "green",
+            "WARN": "yellow",
         }
 
         const level = LogLevelString[logLevel];
-        return `\x1b[${styles[level]}m${message}\x1b[0m`
+        const styled = styleText(styles[level], message);
+        console.log(styled);
+        return styled
     }
 
     /**
