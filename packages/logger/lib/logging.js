@@ -8,15 +8,16 @@ import Template from "./template.js";
  */
 export const LogLevel = {
     ERROR: 1,
-    WARN: 2,
-    INFO: 4,
-    DEBUG: 8,
+    INFO: 2,
+    WARN: 4,
+    DEBUG: 8
 }
 
+/** @type {string} */
 export const LogLevelString = Object.fromEntries(Object.entries(LogLevel).map(x => x.reverse()));
 
 /**
- * @interface OutputOptions Options for a logging an output stream
+ * @interface Options for a logging to an output stream
  */
 class OutputOptions {
     /**
@@ -42,16 +43,15 @@ class OutputOptions {
 }
 
 
-class Output extends OutputOptions {
+class Output {
     /**
      * 
      * @param {OutputOptions} options 
      */
     constructor(options) {
-        super();
         const { logLevel, template, outputStream, color } = options;
         this.template = new Template(template);
-        this.logLevel = logLevel
+        this.logLevel = LogLevel.ERROR | logLevel
         this.outputStream = outputStream;
         this.color = color;
     }
