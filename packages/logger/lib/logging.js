@@ -1,6 +1,5 @@
-
-import process from "node:process";
 import fs from "node:fs";
+import { styleText } from "node:util";
 import Template from "./template.js";
 
 /**
@@ -8,15 +7,16 @@ import Template from "./template.js";
  */
 export const LogLevel = {
     ERROR: 1,
-    WARN: 2,
-    INFO: 4,
-    DEBUG: 8,
+    INFO: 2,
+    WARN: 4,
+    DEBUG: 8
 }
 
+/** @type {string} */
 export const LogLevelString = Object.fromEntries(Object.entries(LogLevel).map(x => x.reverse()));
 
 /**
- * @interface OutputOptions Options for a logging an output stream
+ * @interface Options for a logging to an output stream
  */
 class OutputOptions {
     /**
@@ -42,16 +42,15 @@ class OutputOptions {
 }
 
 
-class Output extends OutputOptions {
+class Output {
     /**
      * 
      * @param {OutputOptions} options 
      */
     constructor(options) {
-        super();
         const { logLevel, template, outputStream, color } = options;
         this.template = new Template(template);
-        this.logLevel = logLevel
+        this.logLevel = LogLevel.ERROR | logLevel
         this.outputStream = outputStream;
         this.color = color;
     }
@@ -64,14 +63,16 @@ class Output extends OutputOptions {
      */
     static _style(message, logLevel) {
         const styles = {
-            "ERROR": "31",
-            "INFO": "0",
-            "DEBUG": "0",
-            "WARN": "33"
+            "ERROR": "red",
+            "INFO": "blue",
+            "DEBUG": "green",
+            "WARN": "yellow",
         }
 
         const level = LogLevelString[logLevel];
-        return `\x1b[${styles[level]}m${message}\x1b[0m`
+        const styled = styleText(styles[level], message);
+        console.log(styled);
+        return styled
     }
 
     /**

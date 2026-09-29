@@ -1,5 +1,5 @@
 import crypto from "node:crypto";
-import child_process, { ChildProcess } from "node:child_process";
+import child_process from "node:child_process";
 import os from "node:os";
 import fs from "node:fs/promises";
 import fs_sync from "node:fs";
@@ -22,6 +22,11 @@ export default class Printer {
         fs.mkdtemp(path.join(tmpDir, `labels-`)).then(path => {
             this.tmpDir = path;
         })
+    }
+
+    check_lp() {
+        const { status } = child_process.spawnSync("bash", ["-c", "command -v lp"]);
+        return status;
     }
 
     /**
