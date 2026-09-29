@@ -1,0 +1,9 @@
+{
+    "name": "@kiosk-app/cli",
+    "type": "module",
+    "exports": {
+        ".": {
+            "default": "./index.js"
+        }
+    }
+}
