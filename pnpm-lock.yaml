@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@kiosk-app/cli':
+        specifier: workspace:^
+        version: link:packages/cli
       '@kiosk-app/logger':
         specifier: workspace:^
         version: link:packages/logger
